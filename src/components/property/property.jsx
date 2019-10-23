@@ -15,7 +15,7 @@ const Property = (props) => {
           <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio" />
         </div>
       </div>
-    </div>   
+    </div>
     <div className="property__container container">
       <div className="property__wrapper">
         <div className="property__mark">
@@ -34,12 +34,12 @@ const Property = (props) => {
       <span className="property__price-text">&nbsp;night</span>
     </div>
   </section>;
-}
+};
 
 Property.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-}
+};
 
 export {Property};
