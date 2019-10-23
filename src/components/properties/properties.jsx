@@ -37,18 +37,18 @@ const Properties = (props) => {
             </div>
           </article>
         </React.Fragment>
-    ))}
+      ))}
     </React.Fragment>
   );
 };
 
 Properties.propTypes = {
   items: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired
-    }).isRequired
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired
+      }).isRequired
   ).isRequired
 };
 
