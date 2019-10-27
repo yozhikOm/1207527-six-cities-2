@@ -28,10 +28,12 @@ const properties = [
   }
 ];
 
+const onClickTitle = () => {};
+
 const App = () => {
   return (
     <div className="cities__places-list places__list tabs__content">
-      <Properties items={properties} />
+      <Properties items={properties} onClickTitle={onClickTitle} />
     </div>
   );
 };
