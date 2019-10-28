@@ -30,7 +30,7 @@ const Properties = (props) => {
                   <span className="visually-hidden">Rating</span>
                 </div>
               </div>
-              <h2 className="place-card__name">
+              <h2 className="place-card__name" onClick={props.onClickTitle}>
                 <a href="#">{item.title}</a>
               </h2>
               <p className="place-card__type">{item.type}</p>
@@ -47,9 +47,11 @@ Properties.propTypes = {
       PropTypes.shape({
         title: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired
+        price: PropTypes.number.isRequired,
+        onClickTitle: PropTypes.func
       }).isRequired
-  ).isRequired
+  ).isRequired,
+  onClickTitle: PropTypes.func
 };
 
 export {Properties};

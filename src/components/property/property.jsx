@@ -42,4 +42,10 @@ Property.propTypes = {
   price: PropTypes.number.isRequired,
 };
 
+Property.defaultProps = {
+  title: `Some title`,
+  type: `Room`,
+  price: 88
+};
+
 export {Property};
