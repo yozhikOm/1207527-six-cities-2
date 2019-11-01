@@ -7,7 +7,12 @@ const properties = [
     id: 1,
     title: `Some title`,
     type: `Room`,
-    price: 88
+    price: 88,
+    photos: [
+      {
+        src: `../../public/img/amsterdam.jpg`
+      },
+    ]
   }
 ];
 

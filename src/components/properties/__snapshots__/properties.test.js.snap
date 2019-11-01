@@ -21,7 +21,7 @@ exports[`Properties компонент рендерится корректно 1
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
+        src="../../public/img/amsterdam.jpg"
         width="260"
       />
     </a>

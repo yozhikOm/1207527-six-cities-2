@@ -12,7 +12,7 @@ const Properties = (props) => {
             </div>
             <div className="cities__image-wrapper place-card__image-wrapper">
               <a href="#">
-                <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
+                <img className="place-card__image" src={item.photos[0].src} width="260" height="200" alt="Place image" />
               </a>
             </div>
             <div className="place-card__info">
@@ -50,7 +50,7 @@ Properties.propTypes = {
         price: PropTypes.number.isRequired,
         onClickTitle: PropTypes.func
       }).isRequired
-  ).isRequired,
+  ),
   onClickTitle: PropTypes.func
 };
 
