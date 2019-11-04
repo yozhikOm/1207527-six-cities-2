@@ -1,39 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PropertyCard = (props) => {
+const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
+  const {id, title, type, price, photos} = offerInfo;
+
   return (
     <React.Fragment>
-      <article className="cities__place-card place-card">
+      <article className="cities__place-card place-card" id={id}
+        onMouseEnter={(evt) => {
+          const cardId = evt.currentTarget.id;
+          cardMouseEnterHandler(cardId);
+        }}
+      >
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={props.photos[0].src} width="260" height="200" alt="Place image" />
+            <img className="place-card__image" src={photos[0].src} width="260" height="200" alt="Place image" />
           </a>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
-              <b className="place-card__price-value">&euro;{props.price}</b>
+              <b className="place-card__price-value">&euro;{price}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
             <button className="place-card__bookmark-button button" type="button">
-
               <span className="visually-hidden">To bookmarks</span>
             </button>
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style="width: 93%"></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{props.title}</a>
+            <a href="#">{title}</a>
           </h2>
-          <p className="place-card__type">Apartment</p>
+          <p className="place-card__type">{type}</p>
         </div>
       </article>
     </React.Fragment>
@@ -41,17 +46,22 @@ const PropertyCard = (props) => {
 };
 
 PropertyCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  photos: [
-    {
-      src: PropTypes.string
-    }
-  ]
+  offerInfo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    photos: PropTypes.arrayOf(
+        PropTypes.shape({
+          src: PropTypes.string,
+        })
+    ),
+  }),
+  cardMouseEnterHandler: PropTypes.func,
 };
 
 PropertyCard.defaultProps = {
+  id: 1,
   title: `Some title`,
   type: `Room`,
   price: 88,

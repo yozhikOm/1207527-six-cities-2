@@ -216,6 +216,8 @@ exports[`App компонент рендерится корректно 1`] = `
           >
             <article
               className="cities__place-card place-card"
+              id={1}
+              onMouseEnter={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -286,7 +288,6 @@ exports[`App компонент рендерится корректно 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="#"
@@ -303,6 +304,8 @@ exports[`App компонент рендерится корректно 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              id={2}
+              onMouseEnter={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -373,7 +376,6 @@ exports[`App компонент рендерится корректно 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="#"
@@ -390,6 +392,8 @@ exports[`App компонент рендерится корректно 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              id={3}
+              onMouseEnter={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -460,7 +464,6 @@ exports[`App компонент рендерится корректно 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="#"
@@ -477,6 +480,8 @@ exports[`App компонент рендерится корректно 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              id={4}
+              onMouseEnter={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -547,7 +552,6 @@ exports[`App компонент рендерится корректно 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="#"

@@ -9,7 +9,6 @@ import {Properties} from '../properties/properties.jsx';
 class App extends PureComponent {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -29,11 +28,8 @@ class App extends PureComponent {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">312 places to stay in Amsterdam</b>
-
                 <Sorting />
-                <div className="cities__places-list places__list tabs__content">
-                  <Properties items={offers} onClickTitle={onClickTitle} />
-                </div>
+                <Properties items={offers} onClickTitle={onClickTitle} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"></section>
@@ -41,7 +37,6 @@ class App extends PureComponent {
             </div>
           </div>
         </main>
-
       </div>
     );
   }
@@ -50,10 +45,10 @@ class App extends PureComponent {
 App.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        type: PropTypes.string,
-        price: PropTypes.number,
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
         photos: PropTypes.arrayOf(
             PropTypes.shape({
               src: PropTypes.string,

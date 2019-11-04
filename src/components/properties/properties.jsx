@@ -1,53 +1,48 @@
-import React from 'react';
+import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
+import {PropertyCard} from "../property-card/property-card.jsx";
 
-const Properties = (props) => {
-  return (
-    <React.Fragment>
-      {props.items.map((item) => (
-        <React.Fragment key={item.id}>
-          <article className="cities__place-card place-card">
-            <div className="place-card__mark">
-              <span>Premium</span>
-            </div>
-            <div className="cities__image-wrapper place-card__image-wrapper">
-              <a href="#">
-                <img className="place-card__image" src={item.photos[0].src} width="260" height="200" alt="Place image" />
-              </a>
-            </div>
-            <div className="place-card__info">
-              <div className="place-card__price-wrapper">
-                <div className="place-card__price">
-                  <b className="place-card__price-value">&euro;{item.price}</b>
-                  <span className="place-card__price-text">&#47;&nbsp;night</span>
-                </div>
-                <button className="place-card__bookmark-button button" type="button">
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
-              </div>
-              <div className="place-card__rating rating">
-                <div className="place-card__stars rating__stars">
-                  <span className="visually-hidden">Rating</span>
-                </div>
-              </div>
-              <h2 className="place-card__name" onClick={props.onClickTitle}>
-                <a href="#">{item.title}</a>
-              </h2>
-              <p className="place-card__type">{item.type}</p>
-            </div>
-          </article>
-        </React.Fragment>
-      ))}
-    </React.Fragment>
-  );
-};
+class Properties extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hoveredCardID: -1
+    };
+    this._cardMouseEnterHandler = this._cardMouseEnterHandler.bind(this);
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <div className="cities__places-list places__list tabs__content">
+          {this.props.items.map((item) => (
+            <React.Fragment key={item.id}>
+              <PropertyCard offerInfo={item} cardMouseEnterHandler={this._cardMouseEnterHandler} />
+            </React.Fragment>
+          ))}
+        </div>
+      </React.Fragment>
+    );
+  }
+
+  _cardMouseEnterHandler(id) {
+    this.setState({hoveredCardID: id});
+  }
+}
 
 Properties.propTypes = {
   items: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
+        photos: PropTypes.arrayOf(
+            PropTypes.shape({
+              src: PropTypes.string,
+            })
+        ),
         onClickTitle: PropTypes.func
       }).isRequired
   ),
