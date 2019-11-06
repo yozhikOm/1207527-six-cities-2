@@ -14,15 +14,13 @@ class Properties extends PureComponent {
 
   render() {
     return (
-      <React.Fragment>
-        <div className="cities__places-list places__list tabs__content">
-          {this.props.items.map((item) => (
-            <React.Fragment key={item.id}>
-              <PropertyCard offerInfo={item} cardMouseEnterHandler={this._cardMouseEnterHandler} />
-            </React.Fragment>
-          ))}
-        </div>
-      </React.Fragment>
+      <div className="cities__places-list places__list tabs__content">
+        {this.props.items.map((item) => (
+          <React.Fragment key={item.id}>
+            <PropertyCard offerInfo={item} cardMouseEnterHandler={this._cardMouseEnterHandler} />
+          </React.Fragment>
+        ))}
+      </div>
     );
   }
 
@@ -43,10 +41,8 @@ Properties.propTypes = {
               src: PropTypes.string,
             })
         ),
-        onClickTitle: PropTypes.func
       }).isRequired
   ),
-  onClickTitle: PropTypes.func
 };
 
 export {Properties};

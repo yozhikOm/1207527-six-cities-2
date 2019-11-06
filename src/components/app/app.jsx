@@ -16,8 +16,6 @@ class App extends PureComponent {
       offers
     } = this.props;
 
-    const onClickTitle = () => {};
-
     return (
       <div className="page page--gray page--main">
         <Header />
@@ -29,7 +27,7 @@ class App extends PureComponent {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">312 places to stay in Amsterdam</b>
                 <Sorting />
-                <Properties items={offers} onClickTitle={onClickTitle} />
+                <Properties items={offers} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"></section>

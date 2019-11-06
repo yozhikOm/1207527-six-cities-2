@@ -26,7 +26,7 @@ exports[`Properties компонент рендерится корректно 1
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="../../public/img/amsterdam.jpg"
+          src="img/apartment-01.jpg"
           width="260"
         />
       </a>
@@ -44,7 +44,7 @@ exports[`Properties компонент рендерится корректно 1
             className="place-card__price-value"
           >
             €
-            88
+            650
           </b>
           <span
             className="place-card__price-text"
@@ -78,17 +78,285 @@ exports[`Properties компонент рендерится корректно 1
       </div>
       <h2
         className="place-card__name"
+        onClick={[Function]}
       >
         <a
           href="#"
         >
-          Some title
+          Cozy house amsterdam
+        </a>
+      </h2>
+      <p
+        className="place-card__type"
+      >
+        House
+      </p>
+    </div>
+  </article>
+  <article
+    className="cities__place-card place-card"
+    id={2}
+    onMouseEnter={[Function]}
+  >
+    <div
+      className="place-card__mark"
+    >
+      <span>
+        Premium
+      </span>
+    </div>
+    <div
+      className="cities__image-wrapper place-card__image-wrapper"
+    >
+      <a
+        href="#"
+      >
+        <img
+          alt="Place image"
+          className="place-card__image"
+          height="200"
+          src="img/apartment-02.jpg"
+          width="260"
+        />
+      </a>
+    </div>
+    <div
+      className="place-card__info"
+    >
+      <div
+        className="place-card__price-wrapper"
+      >
+        <div
+          className="place-card__price"
+        >
+          <b
+            className="place-card__price-value"
+          >
+            €
+            45
+          </b>
+          <span
+            className="place-card__price-text"
+          >
+            / night
+          </span>
+        </div>
+        <button
+          className="place-card__bookmark-button button"
+          type="button"
+        >
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </button>
+      </div>
+      <div
+        className="place-card__rating rating"
+      >
+        <div
+          className="place-card__stars rating__stars"
+        >
+          <span
+            className="visually-hidden"
+          >
+            Rating
+          </span>
+        </div>
+      </div>
+      <h2
+        className="place-card__name"
+        onClick={[Function]}
+      >
+        <a
+          href="#"
+        >
+          Cosy room in spacious apartment
         </a>
       </h2>
       <p
         className="place-card__type"
       >
         Room
+      </p>
+    </div>
+  </article>
+  <article
+    className="cities__place-card place-card"
+    id={3}
+    onMouseEnter={[Function]}
+  >
+    <div
+      className="place-card__mark"
+    >
+      <span>
+        Premium
+      </span>
+    </div>
+    <div
+      className="cities__image-wrapper place-card__image-wrapper"
+    >
+      <a
+        href="#"
+      >
+        <img
+          alt="Place image"
+          className="place-card__image"
+          height="200"
+          src="img/room.jpg"
+          width="260"
+        />
+      </a>
+    </div>
+    <div
+      className="place-card__info"
+    >
+      <div
+        className="place-card__price-wrapper"
+      >
+        <div
+          className="place-card__price"
+        >
+          <b
+            className="place-card__price-value"
+          >
+            €
+            128
+          </b>
+          <span
+            className="place-card__price-text"
+          >
+            / night
+          </span>
+        </div>
+        <button
+          className="place-card__bookmark-button button"
+          type="button"
+        >
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </button>
+      </div>
+      <div
+        className="place-card__rating rating"
+      >
+        <div
+          className="place-card__stars rating__stars"
+        >
+          <span
+            className="visually-hidden"
+          >
+            Rating
+          </span>
+        </div>
+      </div>
+      <h2
+        className="place-card__name"
+        onClick={[Function]}
+      >
+        <a
+          href="#"
+        >
+          Elegant private room in stylish house
+        </a>
+      </h2>
+      <p
+        className="place-card__type"
+      >
+        Room
+      </p>
+    </div>
+  </article>
+  <article
+    className="cities__place-card place-card"
+    id={4}
+    onMouseEnter={[Function]}
+  >
+    <div
+      className="place-card__mark"
+    >
+      <span>
+        Premium
+      </span>
+    </div>
+    <div
+      className="cities__image-wrapper place-card__image-wrapper"
+    >
+      <a
+        href="#"
+      >
+        <img
+          alt="Place image"
+          className="place-card__image"
+          height="200"
+          src="img/apartment-03.jpg"
+          width="260"
+        />
+      </a>
+    </div>
+    <div
+      className="place-card__info"
+    >
+      <div
+        className="place-card__price-wrapper"
+      >
+        <div
+          className="place-card__price"
+        >
+          <b
+            className="place-card__price-value"
+          >
+            €
+            1520
+          </b>
+          <span
+            className="place-card__price-text"
+          >
+            / night
+          </span>
+        </div>
+        <button
+          className="place-card__bookmark-button button"
+          type="button"
+        >
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </button>
+      </div>
+      <div
+        className="place-card__rating rating"
+      >
+        <div
+          className="place-card__stars rating__stars"
+        >
+          <span
+            className="visually-hidden"
+          >
+            Rating
+          </span>
+        </div>
+      </div>
+      <h2
+        className="place-card__name"
+        onClick={[Function]}
+      >
+        <a
+          href="#"
+        >
+          Huge Tinyhouse in the green, between sea and city
+        </a>
+      </h2>
+      <p
+        className="place-card__type"
+      >
+        House
       </p>
     </div>
   </article>
