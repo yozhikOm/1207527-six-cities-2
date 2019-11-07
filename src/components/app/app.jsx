@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from "prop-types";
 import {PureComponent} from 'react';
 import {MainPage} from '../main-page/main-page.jsx';
-import {PropertyCard} from '../property-card/property-card.jsx';
+import {PropertyDetails} from '../property-details/property-details.jsx';
 
 class App extends PureComponent {
   constructor(props) {
@@ -14,18 +14,13 @@ class App extends PureComponent {
       case `/`:
         return <MainPage offers={appProperties.mainPageProps.offers}/>;
       case `/offer`:
-        return <PropertyCard offerInfo={appProperties.propertyCardProps.offer} cardMouseEnterHandler={() =>{}} />;
+        return <PropertyDetails {...appProperties.propertyDetailsProps.offer}/>;
     }
     return null;
   }
 
   render() {
-    /* const {
-      appProps
-    } = this.props; */
-
     return <React.Fragment>{this._getPageScreen(this.props)}</React.Fragment>;
-
   }
 }
 

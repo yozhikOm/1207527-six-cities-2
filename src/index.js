@@ -7,7 +7,7 @@ const appProps = {
   mainPageProps: {
     offers: {offers}.offers
   },
-  propertyCardProps: {
+  propertyDetailsProps: {
     offer: {offers}.offers[1],
   }
 };
