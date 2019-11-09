@@ -12,6 +12,7 @@ const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
   const onCardTitleClick = (evt) => {
     console.log(`'` + evt.target.textContent + `' has just been clicked`);
     console.log(id + `: '` + title + `' has just been clicked`);
+    window.location.assign(`/offer/` + id);
   };
 
   return (
