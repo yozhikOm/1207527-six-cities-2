@@ -41,7 +41,7 @@ App.propTypes = {
         })
     )
   }),
-  propertyCardProps: {
+  propertyCardProps: PropTypes.shape({
     offer: PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
@@ -53,7 +53,7 @@ App.propTypes = {
           })
       )
     })
-  }
+  })
 };
 /* App.propTypes = {
   offers: PropTypes.arrayOf(
