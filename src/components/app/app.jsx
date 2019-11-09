@@ -36,7 +36,8 @@ App.propTypes = {
               PropTypes.shape({
                 src: PropTypes.string,
               })
-          )
+          ),
+          coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
         })
     )
   }),
