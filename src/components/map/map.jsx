@@ -11,9 +11,7 @@ class Map extends PureComponent {
   render() {
 
     return (
-      <section className="cities__map map">
-        <div id="map" style={{width: `100%`, height: `100%`}} ></div>
-      </section>
+      <div id="map" style={{width: `100%`, height: `100%`}} ></div>
     );
   }
 
@@ -55,7 +53,7 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   coordinatesArray: PropTypes.arrayOf(
-      PropTypes.arrayOf(PropTypes.number, PropTypes.number)
+      PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired
   ),
 };
 
