@@ -1,12 +1,11 @@
 import React from 'react';
-import {PropertyDetails} from './property-details.jsx';
+import {MainPage} from './main-page.jsx';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import {offers} from '../../mocks/offers.js';
 
-it(`PropertyDetails компонент рендерится корректно`, () => {
+it(`MainPage компонент рендерится корректно`, () => {
   const renderer = new ShallowRenderer();
-
-  renderer.render(<PropertyDetails offer={offers[0]} neighboringOffers={[offers[1], offers[2]]}/>);
+  renderer.render(<MainPage offers={offers}/>);
 
   const result = renderer.getRenderOutput();
   expect(result).toMatchSnapshot();

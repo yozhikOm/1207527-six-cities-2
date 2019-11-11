@@ -36,12 +36,14 @@ Properties.propTypes = {
         title: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
         photos: PropTypes.arrayOf(
             PropTypes.shape({
               src: PropTypes.string,
             })
         ),
         coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+        host: PropTypes.string.isRequired,
       }).isRequired
   ),
 };
