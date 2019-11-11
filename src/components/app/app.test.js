@@ -1,6 +1,6 @@
 import React from 'react';
 import {App} from './app.jsx';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import {offers} from '../../mocks/offers.js';
 
 it(`App компонент рендерится корректно`, () => {
@@ -12,6 +12,13 @@ it(`App компонент рендерится корректно`, () => {
       offer: {offers}.offers[0]
     }
   };
-  const appComponent = renderer.create(<App {...appProps} />).toJSON();
-  expect(appComponent).toMatchSnapshot();
+
+  const renderer = new ShallowRenderer();
+  renderer.render(<App {...appProps} />);
+
+  const result = renderer.getRenderOutput();
+  expect(result).toMatchSnapshot();
+
+  // const appComponent = renderer.create(<App {...appProps} />).toJSON();
+  // expect(appComponent).toMatchSnapshot();
 });

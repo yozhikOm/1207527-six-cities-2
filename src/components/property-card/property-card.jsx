@@ -60,6 +60,7 @@ PropertyCard.propTypes = {
           src: PropTypes.string,
         })
     ),
+    coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
   }),
   cardMouseEnterHandler: PropTypes.func,
 };

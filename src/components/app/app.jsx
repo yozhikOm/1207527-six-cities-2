@@ -36,11 +36,12 @@ App.propTypes = {
               PropTypes.shape({
                 src: PropTypes.string,
               })
-          )
+          ),
+          coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
         })
     )
   }),
-  propertyCardProps: {
+  propertyCardProps: PropTypes.shape({
     offer: PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
@@ -52,7 +53,7 @@ App.propTypes = {
           })
       )
     })
-  }
+  })
 };
 /* App.propTypes = {
   offers: PropTypes.arrayOf(

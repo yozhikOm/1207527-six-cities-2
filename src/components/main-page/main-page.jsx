@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Header} from '../header/header.jsx';
 import {Menu} from '../menu/menu.jsx';
 import {Sorting} from '../sorting/sorting.jsx';
+import {Map} from '../map/map.jsx';
 import {Properties} from '../properties/properties.jsx';
 
 class MainPage extends PureComponent {
@@ -14,6 +15,8 @@ class MainPage extends PureComponent {
     const {
       offers
     } = this.props;
+
+    const coordinatesArray = offers.map((offer) => offer.coordinates);
 
     return (
       <div className="page page--gray page--main">
@@ -29,7 +32,7 @@ class MainPage extends PureComponent {
                 <Properties items={offers} />
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map"></section>
+                <Map coordinatesArray={coordinatesArray}/>
               </div>
             </div>
           </div>
@@ -50,7 +53,8 @@ MainPage.propTypes = {
             PropTypes.shape({
               src: PropTypes.string,
             })
-        )
+        ),
+        coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
       })
   )
 };
