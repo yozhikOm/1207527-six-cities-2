@@ -6,7 +6,7 @@ import {Map} from '../map/map.jsx';
 import {PropertyCard} from '../property-card/property-card.jsx';
 
 const PropertyDetails = (props) => {
-  const {currentCity, offer, neighboringOffers} = props;
+  const {currentCityCoords, offer, neighboringOffers} = props;
 
   return (
     <React.Fragment>
@@ -124,7 +124,7 @@ const PropertyDetails = (props) => {
           </div>
           <section className="property__map map">
             <Map
-              currentCityCoords={}
+              currentCityCoords={currentCityCoords}
               coordinatesArray={(neighboringOffers.map((neibOffer) => neibOffer.location.coordinates)).concat([offer.location.coordinates])}/>
           </section>
         </section>
@@ -146,6 +146,7 @@ const PropertyDetails = (props) => {
 };
 
 PropertyDetails.propTypes = {
+  currentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     location: PropTypes.shape({

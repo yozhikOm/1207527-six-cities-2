@@ -1,12 +1,10 @@
-import * as React from 'react';
-// import PropTypes from "prop-types";
+import React from 'react';
 import {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from "../../reducer.js";
 
 import {MainPage} from '../main-page/main-page.jsx';
 import {PropertyDetails} from '../property-details/property-details.jsx';
-// import {offers} from '../../mocks/offers.js';
 
 class App extends PureComponent {
   _getPageScreen(appProperties) {
@@ -19,7 +17,7 @@ class App extends PureComponent {
       case `/offer`:
         const id = 2;
         const offer = offers.find((item) => item.id === id);
-        const neighboringOffers = this._getNeighboringOffers(offer);
+        const neighboringOffers = null; // this._getNeighboringOffers(offer);
         return <PropertyDetails
           currentCityCoords={currentCity.coordinates}
           offer={offer}
@@ -41,49 +39,6 @@ class App extends PureComponent {
     return <React.Fragment>{this._getPageScreen(this.props)}</React.Fragment>;
   }
 }
-
-/* App.propTypes = {
-  mainPageProps: PropTypes.shape({
-    offers: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          location: PropTypes.shape({
-            city: PropTypes.string,
-            coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
-          }).isRequired,
-          title: PropTypes.string.isRequired,
-          type: PropTypes.string.isRequired,
-          price: PropTypes.number.isRequired,
-          description: PropTypes.string.isRequired,
-          photos: PropTypes.arrayOf(
-              PropTypes.shape({
-                src: PropTypes.string,
-              })
-          ),
-          host: PropTypes.string.isRequired,
-        })
-    )
-  }),
-  propertyCardProps: PropTypes.shape({
-    offer: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      location: PropTypes.shape({
-        city: PropTypes.string,
-        coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
-      }).isRequired,
-      type: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      description: PropTypes.string.isRequired,
-      photos: PropTypes.arrayOf(
-          PropTypes.shape({
-            src: PropTypes.string,
-          })
-      ),
-      host: PropTypes.string.isRequired,
-    })
-  })
-}; */
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   currentCity: state.currentCity,
