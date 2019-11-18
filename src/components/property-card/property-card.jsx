@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
-  const {id, title, type, price, photos} = offerInfo;
+  const {id, title, type, price, isPremium, photos} = offerInfo;
 
   const onCardMouseEnter = (evt) => {
     const cardId = evt.currentTarget.id;
@@ -17,9 +17,12 @@ const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
 
   return (
     <article className="cities__place-card place-card" id={id} onMouseEnter={onCardMouseEnter}>
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+      {isPremium ?
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div> :
+        <React.Fragment/>
+      }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={photos[0].src} width="260" height="200" alt="Place image" />
@@ -52,16 +55,20 @@ const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
 PropertyCard.propTypes = {
   offerInfo: PropTypes.shape({
     id: PropTypes.number.isRequired,
+    location: PropTypes.shape({
+      city: PropTypes.string,
+      coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+    }).isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool,
     description: PropTypes.string.isRequired,
     photos: PropTypes.arrayOf(
         PropTypes.shape({
           src: PropTypes.string,
         })
     ),
-    coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
     host: PropTypes.string.isRequired,
   }),
   cardMouseEnterHandler: PropTypes.func,

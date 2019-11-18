@@ -13,27 +13,30 @@ class MainPage extends PureComponent {
 
   render() {
     const {
-      offers
+      currentCity,
+      cities,
+      offers,
+      onCityClick,
     } = this.props;
 
-    const coordinatesArray = offers.map((offer) => offer.coordinates);
+    const coordinatesArray = offers.map((offer) => offer.location.coordinates);
 
     return (
       <div className="page page--gray page--main">
         <Header />
         <main className="page__main page__main--index">
-          <Menu />
+          <Menu cities={cities} onCityClick={onCityClick}/>
           <div className="cities">
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">312 places to stay in Amsterdam</b>
+                <b className="places__found">{offers.length} places to stay in {currentCity.title}</b>
                 <Sorting />
                 <Properties items={offers} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map coordinatesArray={coordinatesArray}/>
+                  <Map currentCityCoords={currentCity.coordinates} coordinatesArray={coordinatesArray}/>
                 </section>
               </div>
             </div>
@@ -45,9 +48,23 @@ class MainPage extends PureComponent {
 }
 
 MainPage.propTypes = {
+  currentCity: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+  }),
+  cities: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+      })
+  ),
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
+        location: PropTypes.shape({
+          city: PropTypes.string.isRequired,
+          coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+        }).isRequired,
         title: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
@@ -57,10 +74,10 @@ MainPage.propTypes = {
               src: PropTypes.string,
             })
         ),
-        coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
         host: PropTypes.string.isRequired,
       })
-  )
+  ),
+  onCityClick: PropTypes.func.isRequired,
 };
 
 export {MainPage};

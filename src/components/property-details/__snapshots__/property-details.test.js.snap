@@ -271,6 +271,12 @@ exports[`PropertyDetails компонент рендерится коррект�
               ],
             ]
           }
+          currentCityCoords={
+            Array [
+              52.38333,
+              4.9,
+            ]
+          }
         />
       </section>
     </section>
@@ -296,13 +302,17 @@ exports[`PropertyDetails компонент рендерится коррект�
               id={1}
               offerInfo={
                 Object {
-                  "coordinates": Array [
-                    52.369553943508,
-                    4.85309666406198,
-                  ],
                   "description": "Sparkling clean, comfy and private room close to the city center. The place is super sweet with coffee & tea available.",
                   "host": "Giovanni",
                   "id": 2,
+                  "isPremium": false,
+                  "location": Object {
+                    "city": "Amsterdam",
+                    "coordinates": Array [
+                      52.369553943508,
+                      4.85309666406198,
+                    ],
+                  },
                   "photos": Array [
                     Object {
                       "src": "img/apartment-02.jpg",
@@ -333,13 +343,17 @@ exports[`PropertyDetails компонент рендерится коррект�
               id={1}
               offerInfo={
                 Object {
-                  "coordinates": Array [
-                    52.3909553943508,
-                    4.929309666406198,
-                  ],
                   "description": "From this penthouse room guests have a breathtaking view of the city. When you wake up Amsterdam is happening all around you. We guarantee you maximum sleeping comfort with our quality Tempur mattresses.",
                   "host": "Tio Leo",
                   "id": 3,
+                  "isPremium": true,
+                  "location": Object {
+                    "city": "Amsterdam",
+                    "coordinates": Array [
+                      52.3909553943508,
+                      4.929309666406198,
+                    ],
+                  },
                   "photos": Array [
                     Object {
                       "src": "img/room.jpg",
