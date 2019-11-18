@@ -8,7 +8,7 @@ it(`PropertyDetails компонент рендерится корректно`,
 
   renderer.render(
       <PropertyDetails
-        currentCityCoords={[42, 45]}
+        currentCityCoords={[52.38333, 4.9]}
         offer={offers[0]}
         neighboringOffers={[offers[1], offers[2]]}
       />);
