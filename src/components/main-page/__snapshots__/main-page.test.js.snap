@@ -8,7 +8,34 @@ exports[`MainPage компонент рендерится корректно 1`]
   <main
     className="page__main page__main--index"
   >
-    <Menu />
+    <Menu
+      cities={
+        Array [
+          Object {
+            "coordinates": Array [
+              52.38333,
+              4.9,
+            ],
+            "title": "Amsterdam",
+          },
+          Object {
+            "coordinates": Array [
+              52.52,
+              13.405,
+            ],
+            "title": "Berlin",
+          },
+          Object {
+            "coordinates": Array [
+              40.7128,
+              -74.006,
+            ],
+            "title": "New York",
+          },
+        ]
+      }
+      onCityClick={[MockFunction]}
+    />
     <div
       className="cities"
     >
@@ -26,20 +53,26 @@ exports[`MainPage компонент рендерится корректно 1`]
           <b
             className="places__found"
           >
-            312 places to stay in Amsterdam
+            7
+             places to stay in 
+            Amsterdam
           </b>
           <Sorting />
           <Properties
             items={
               Array [
                 Object {
-                  "coordinates": Array [
-                    52.3909553943508,
-                    4.85309666406198,
-                  ],
                   "description": "In onze eigen achtertuin hebben we de oude sauna omgebouwd tot gastenverblijf met eigen badkamer en toilet. Er is geen kook mogelijkheid, maar wel een koelkast en wastafel. Wij wonen in een rustige buurt welke goed bereikbaar is met het openbaar vervoer en/of eigen vervoer. Grote steden als haarlem, amsterdam en alkmaar zijn vlakbij. Het strand is ca. 10 minuten met de auto. Houd u van rust en wilt u toch dichtbij de grote steden zijn dan is dit de ideale plek om te verblijven!",
                   "host": "Maria",
                   "id": 1,
+                  "isPremium": true,
+                  "location": Object {
+                    "city": "Amsterdam",
+                    "coordinates": Array [
+                      52.3909553943508,
+                      4.85309666406198,
+                    ],
+                  },
                   "photos": Array [
                     Object {
                       "src": "img/apartment-01.jpg",
@@ -53,13 +86,17 @@ exports[`MainPage компонент рендерится корректно 1`]
                   "type": "House",
                 },
                 Object {
-                  "coordinates": Array [
-                    52.369553943508,
-                    4.85309666406198,
-                  ],
                   "description": "Sparkling clean, comfy and private room close to the city center. The place is super sweet with coffee & tea available.",
                   "host": "Giovanni",
                   "id": 2,
+                  "isPremium": false,
+                  "location": Object {
+                    "city": "Amsterdam",
+                    "coordinates": Array [
+                      52.369553943508,
+                      4.85309666406198,
+                    ],
+                  },
                   "photos": Array [
                     Object {
                       "src": "img/apartment-02.jpg",
@@ -76,13 +113,17 @@ exports[`MainPage компонент рендерится корректно 1`]
                   "type": "Room",
                 },
                 Object {
-                  "coordinates": Array [
-                    52.3909553943508,
-                    4.929309666406198,
-                  ],
                   "description": "From this penthouse room guests have a breathtaking view of the city. When you wake up Amsterdam is happening all around you. We guarantee you maximum sleeping comfort with our quality Tempur mattresses.",
                   "host": "Tio Leo",
                   "id": 3,
+                  "isPremium": true,
+                  "location": Object {
+                    "city": "Amsterdam",
+                    "coordinates": Array [
+                      52.3909553943508,
+                      4.929309666406198,
+                    ],
+                  },
                   "photos": Array [
                     Object {
                       "src": "img/room.jpg",
@@ -96,13 +137,17 @@ exports[`MainPage компонент рендерится корректно 1`]
                   "type": "Room",
                 },
                 Object {
-                  "coordinates": Array [
-                    52.3809553943508,
-                    4.939309666406198,
-                  ],
                   "description": "This compact guesthouse/design studio is very suitable for both working and relaxing. Plenty of working space, kitchenette with microwave and fridge, a cosy fire place (gas) and upstairs a large lounge bed. The 'in between' sized lounge bed (120 cm wide) is very comfortable for one person, but it could also sleep a couple. The stairs in this guesthouse studio are pretty steep, but safe. Comfortable floor heating downstairs.",
                   "host": "Rebekka",
                   "id": 4,
+                  "isPremium": true,
+                  "location": Object {
+                    "city": "Amsterdam",
+                    "coordinates": Array [
+                      52.3809553943508,
+                      4.939309666406198,
+                    ],
+                  },
                   "photos": Array [
                     Object {
                       "src": "img/apartment-03.jpg",
@@ -114,6 +159,87 @@ exports[`MainPage компонент рендерится корректно 1`]
                   "price": 1520,
                   "title": "Huge Tinyhouse in the green, between sea and city",
                   "type": "House",
+                },
+                Object {
+                  "description": "Das großzügige helle Zimmer, ruhig gelegen in einer schönen großen Altbauwohnung, lädt ein zum Ausruhen, denn ganz in der Nähe gibt es fast unerschöpfliche Möglichkeiten die Berliner Geschichte und neueste Entwicklungen in Kunst und Kultur zu erleben. Prenzlauer Berg liegt sehr zentral( 10 Minuten zum Alexanderplatz)und ist reich an Cafes und Restaurants, es gibt auch viele Einkaufsmöglichkeiten und eine gute Anbindung ans öffentliche Verkehrsnetz.",
+                  "host": "Rebekka",
+                  "id": 5,
+                  "isPremium": false,
+                  "location": Object {
+                    "city": "Berlin",
+                    "coordinates": Array [
+                      52.520008,
+                      13.404954,
+                    ],
+                  },
+                  "photos": Array [
+                    Object {
+                      "src": "img/berlin-room1.jpg",
+                    },
+                    Object {
+                      "src": "img/amsterdam.jpg",
+                    },
+                  ],
+                  "price": 26,
+                  "title": "Beautiful & cozy room in Prenzlauer Berg",
+                  "type": "Room",
+                },
+                Object {
+                  "description": "Super Close to Central City West berlin <br/>Close to Super market 24 H</br>Close to Bus , Metro</br>Close to Shopping Area</br>Close to Cafe Bar and Restaurants",
+                  "host": "Philip",
+                  "id": 6,
+                  "isPremium": false,
+                  "location": Object {
+                    "city": "Berlin",
+                    "coordinates": Array [
+                      52.524438,
+                      13.4074166,
+                    ],
+                  },
+                  "photos": Array [
+                    Object {
+                      "src": "img/berlin-apartment-1.jpg",
+                    },
+                    Object {
+                      "src": "img/berlin-apartment-2.jpg",
+                    },
+                  ],
+                  "price": 54,
+                  "title": "Apartment Close West Berlin",
+                  "type": "Apartment",
+                },
+                Object {
+                  "description": "This is an updated ultra modern unit. All the rooms are equipped with wifi and 32 inc smart t.v. This unit has a Jacuzzi bath tub to relax and zen out in There is a nice front porch garden to have a glass of wine or your morning coffee. We are one block away from palisade ave to catch the express bus to time sq. </br>Please note all guest are to be on the ticket prior to check-in. This is a shared space so no guest are allowed to have Visitors over.",
+                  "host": "Chris",
+                  "id": 7,
+                  "isPremium": false,
+                  "location": Object {
+                    "city": "New York",
+                    "coordinates": Array [
+                      40.752239,
+                      -73.9766287,
+                    ],
+                  },
+                  "photos": Array [
+                    Object {
+                      "src": "img/new-york-hotel-1.jpg",
+                    },
+                    Object {
+                      "src": "img/new-york-hotel-2.jpg",
+                    },
+                    Object {
+                      "src": "img/new-york-hotel-3.jpg",
+                    },
+                    Object {
+                      "src": "img/new-york-hotel-4.jpg",
+                    },
+                    Object {
+                      "src": "img/new-york-hotel-5.jpg",
+                    },
+                  ],
+                  "price": 34,
+                  "title": "Jersey City Serviced Apartment 80",
+                  "type": "Hotel",
                 },
               ]
             }
@@ -144,6 +270,24 @@ exports[`MainPage компонент рендерится корректно 1`]
                     52.3809553943508,
                     4.939309666406198,
                   ],
+                  Array [
+                    52.520008,
+                    13.404954,
+                  ],
+                  Array [
+                    52.524438,
+                    13.4074166,
+                  ],
+                  Array [
+                    40.752239,
+                    -73.9766287,
+                  ],
+                ]
+              }
+              currentCityCoords={
+                Array [
+                  0,
+                  0,
                 ]
               }
             />

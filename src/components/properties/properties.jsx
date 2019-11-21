@@ -33,6 +33,10 @@ Properties.propTypes = {
   items: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
+        location: PropTypes.shape({
+          city: PropTypes.string.isRequired,
+          coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+        }).isRequired,
         title: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
@@ -42,7 +46,6 @@ Properties.propTypes = {
               src: PropTypes.string,
             })
         ),
-        coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
         host: PropTypes.string.isRequired,
       }).isRequired
   ),

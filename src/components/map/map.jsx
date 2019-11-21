@@ -6,33 +6,21 @@ class Map extends PureComponent {
   constructor(props) {
     super(props);
 
+    this._map = null;
+    this._zoom = 12;
   }
 
-  render() {
+  /* set newMap(map) {
+    this._map = map;
+  } */
 
-    return (
-      <div id="map" style={{width: `100%`, height: `100%`}} ></div>
-    );
-  }
-
-  componentDidMount() {
-    const {coordinatesArray} = this.props;
-
-    const city = [52.38333, 4.9];
-
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
-    });
-
-    const zoom = 12;
+  _initMap(zoom, currentCityCoords) {
     const map = leaflet.map(`map`, {
-      center: city,
+      center: currentCityCoords,
       zoom,
       zoomControl: false,
       marker: true
     });
-    map.setView(city, zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -40,6 +28,16 @@ class Map extends PureComponent {
       })
       .addTo(map);
 
+    return (map);
+  }
+
+  _renderMap(map, zoom, currentCityCoords, coordinatesArray) {
+    const icon = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+
+    map.setView(currentCityCoords, zoom);
     coordinatesArray.forEach((offerCoord) => {
       leaflet
           .marker(offerCoord, {icon})
@@ -48,13 +46,36 @@ class Map extends PureComponent {
 
   }
 
+  render() {
+    return (
+      <div id="map" style={{width: `100%`, height: `100%`}} ></div>
+    );
+  }
+
+  componentDidMount() {
+    const {currentCityCoords, coordinatesArray} = this.props;
+
+    this._map = this._initMap(this._zoom, currentCityCoords);
+    this._renderMap(this._map, this._zoom, currentCityCoords, coordinatesArray);
+
+  }
+
+  componentDidUpdate() {
+    const {currentCityCoords, coordinatesArray} = this.props;
+    this._renderMap(this._map, this._zoom, currentCityCoords, coordinatesArray);
+  }
+
 }
 
-
 Map.propTypes = {
+  currentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
   coordinatesArray: PropTypes.arrayOf(
       PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired
   ),
+};
+
+Map.defaultProps = {
+  currentCityCoords: [52.38333, 4.9]
 };
 
 export {Map};

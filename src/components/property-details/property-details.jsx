@@ -6,7 +6,7 @@ import {Map} from '../map/map.jsx';
 import {PropertyCard} from '../property-card/property-card.jsx';
 
 const PropertyDetails = (props) => {
-  const {offer, neighboringOffers} = props;
+  const {currentCityCoords, offer, neighboringOffers} = props;
 
   return (
     <React.Fragment>
@@ -123,7 +123,9 @@ const PropertyDetails = (props) => {
             </div>
           </div>
           <section className="property__map map">
-            <Map coordinatesArray={(neighboringOffers.map((neibOffer) => neibOffer.coordinates)).concat([offer.coordinates])}/>
+            <Map
+              currentCityCoords={currentCityCoords}
+              coordinatesArray={(neighboringOffers.map((neibOffer) => neibOffer.location.coordinates)).concat([offer.location.coordinates])}/>
           </section>
         </section>
         <div className="container">
@@ -144,8 +146,13 @@ const PropertyDetails = (props) => {
 };
 
 PropertyDetails.propTypes = {
+  currentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
+    location: PropTypes.shape({
+      city: PropTypes.string,
+      coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+    }).isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -155,12 +162,15 @@ PropertyDetails.propTypes = {
           src: PropTypes.string,
         })
     ),
-    coordinates: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
     host: PropTypes.string.isRequired,
   }),
   neighboringOffers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
+        location: PropTypes.shape({
+          city: PropTypes.string,
+          coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+        }).isRequired,
         title: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
@@ -170,7 +180,6 @@ PropertyDetails.propTypes = {
               src: PropTypes.string,
             })
         ),
-        coordinates: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
         host: PropTypes.string.isRequired,
       })
   ),
