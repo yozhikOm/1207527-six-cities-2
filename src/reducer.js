@@ -4,11 +4,6 @@ import {citiesCoordinates} from './mocks/cities-coordinates';
 const getOffers = (city, allOffers) =>
   allOffers.filter((offer) => offer.location.city === city.title);
 
-/* const getAllCities = (allOffers) =>
-  allOffers.every((it, i) => it === (
-    question.answers[i].genre === question.genre
-  ));*/
-
 const getCities = (allOffers) => {
   const cities = [...new Set(allOffers.map((offer) => offer.location.city))];
   const citiesCoords = [];
@@ -18,9 +13,6 @@ const getCities = (allOffers) => {
   });
   return citiesCoords;
 };
-// const getCities = (allOffers) =>
-//  cities = Array.from(allOffers, offer => offer.location.city);
-// .filter((x, i, a) => a.indexOf(x) == i)
 
 const ActionCreator = {
 
@@ -41,6 +33,7 @@ const ActionCreator = {
 };
 
 const initialState = {
+  allCitiesOffers: offers,
   currentCity: citiesCoordinates[0],
   offers: getOffers(citiesCoordinates[0], offers),
   cities: getCities(offers),
