@@ -8,6 +8,7 @@ class Map extends PureComponent {
 
     this._map = null;
     this._zoom = 12;
+    this._markersGroup = null;
   }
 
   _initMap(zoom, currentCityCoords) {
@@ -41,7 +42,7 @@ class Map extends PureComponent {
     offersArray.forEach((offer) => {
       leaflet
           .marker(offer.coordinates, offer.id === activeItemID ? activeIcon : {icon})
-          .addTo(map);
+          .addTo(this._markersGroup);
     });
 
   }
@@ -56,12 +57,14 @@ class Map extends PureComponent {
     const {currentCityCoords, offersArray, activeItemID} = this.props;
 
     this._map = this._initMap(this._zoom, currentCityCoords);
+    this._markersGroup = leaflet.layerGroup().addTo(this._map);
     this._renderMap(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
 
   }
 
   componentDidUpdate() {
     const {currentCityCoords, offersArray, activeItemID} = this.props;
+    this._markersGroup.clearLayers();
     this._renderMap(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
   }
 

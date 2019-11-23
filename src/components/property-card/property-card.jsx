@@ -9,6 +9,10 @@ const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
     cardMouseEnterHandler(cardId);
   };
 
+  const onCardMouseLeave = () => {
+    cardMouseEnterHandler(-1);
+  };
+
   const onCardTitleClick = (evt) => {
     console.log(`'` + evt.target.textContent + `' has just been clicked`);
     console.log(id + `: '` + title + `' has just been clicked`);
@@ -16,7 +20,10 @@ const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
   };
 
   return (
-    <article className="cities__place-card place-card" id={id} onMouseEnter={onCardMouseEnter}>
+    <article className="cities__place-card place-card" id={id} 
+      onMouseEnter={onCardMouseEnter}
+      onMouseLeave={onCardMouseLeave}>
+      >
       {isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>
