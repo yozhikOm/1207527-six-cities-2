@@ -95,7 +95,7 @@ exports[`Properties компонент рендерится корректно 1
   </article>
   <article
     className="cities__place-card place-card"
-    id={2}
+    id={22}
     onMouseEnter={[Function]}
   >
     <div

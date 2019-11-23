@@ -88,7 +88,7 @@ exports[`MainPage компонент рендерится корректно 1`]
                 Object {
                   "description": "Sparkling clean, comfy and private room close to the city center. The place is super sweet with coffee & tea available.",
                   "host": "Giovanni",
-                  "id": 2,
+                  "id": 22,
                   "isPremium": false,
                   "location": Object {
                     "city": "Amsterdam",
@@ -251,43 +251,64 @@ exports[`MainPage компонент рендерится корректно 1`]
           <section
             className="cities__map map"
           >
-            <Map
-              coordinatesArray={
-                Array [
-                  Array [
-                    52.3909553943508,
-                    4.85309666406198,
-                  ],
-                  Array [
-                    52.369553943508,
-                    4.85309666406198,
-                  ],
-                  Array [
-                    52.3909553943508,
-                    4.929309666406198,
-                  ],
-                  Array [
-                    52.3809553943508,
-                    4.939309666406198,
-                  ],
-                  Array [
-                    52.520008,
-                    13.404954,
-                  ],
-                  Array [
-                    52.524438,
-                    13.4074166,
-                  ],
-                  Array [
-                    40.752239,
-                    -73.9766287,
-                  ],
-                ]
-              }
+            <WithActiveItem
               currentCityCoords={
                 Array [
                   0,
                   0,
+                ]
+              }
+              offersArray={
+                Array [
+                  Object {
+                    "coordinates": Array [
+                      52.3909553943508,
+                      4.85309666406198,
+                    ],
+                    "id": 1,
+                  },
+                  Object {
+                    "coordinates": Array [
+                      52.369553943508,
+                      4.85309666406198,
+                    ],
+                    "id": 22,
+                  },
+                  Object {
+                    "coordinates": Array [
+                      52.3909553943508,
+                      4.929309666406198,
+                    ],
+                    "id": 3,
+                  },
+                  Object {
+                    "coordinates": Array [
+                      52.3809553943508,
+                      4.939309666406198,
+                    ],
+                    "id": 4,
+                  },
+                  Object {
+                    "coordinates": Array [
+                      52.520008,
+                      13.404954,
+                    ],
+                    "id": 5,
+                  },
+                  Object {
+                    "coordinates": Array [
+                      52.524438,
+                      13.4074166,
+                    ],
+                    "id": 6,
+                  },
+                  Object {
+                    "coordinates": Array [
+                      40.752239,
+                      -73.9766287,
+                    ],
+                    "id": 7,
+                  },
                 ]
               }
             />

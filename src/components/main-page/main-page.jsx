@@ -8,6 +8,7 @@ import {Properties} from '../properties/properties.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 
 const PropertiesWrapped = withActiveItem(Properties);
+const MapWrapped = withActiveItem(Map);
 
 class MainPage extends PureComponent {
   constructor(props) {
@@ -22,7 +23,11 @@ class MainPage extends PureComponent {
       onCityClick,
     } = this.props;
 
-    const coordinatesArray = offers.map((offer) => offer.location.coordinates);
+    const offersArrayForMap = offers.map((offer) => (
+      {
+        id: offer.id,
+        coordinates: offer.location.coordinates
+      }));
 
     return (
       <div className="page page--gray page--main">
@@ -39,7 +44,8 @@ class MainPage extends PureComponent {
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map currentCityCoords={currentCity.coordinates} coordinatesArray={coordinatesArray}/>
+                  <MapWrapped currentCityCoords={currentCity.coordinates}
+                    offersArray={offersArrayForMap}/>
                 </section>
               </div>
             </div>

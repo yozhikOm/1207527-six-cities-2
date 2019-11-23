@@ -21,7 +21,7 @@ export const offers = [
     "host": `Maria`,
   },
   {
-    "id": 2,
+    "id": 22,
     "location": {
       "city": `Amsterdam`,
       "coordinates": [52.369553943508, 4.85309666406198],

@@ -304,7 +304,7 @@ exports[`PropertyDetails компонент рендерится коррект�
                 Object {
                   "description": "Sparkling clean, comfy and private room close to the city center. The place is super sweet with coffee & tea available.",
                   "host": "Giovanni",
-                  "id": 2,
+                  "id": 22,
                   "isPremium": false,
                   "location": Object {
                     "city": "Amsterdam",
