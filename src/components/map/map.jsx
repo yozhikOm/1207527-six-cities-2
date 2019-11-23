@@ -72,17 +72,16 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   currentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
-  offersArray: PropTypes.shape({
+  offersArray: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    coordinates: PropTypes.arrayOf(
-        PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired
-    ),
-  }),
-  activeItemID: PropTypes.number,
+    coordinates: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
+  })),
+  activeItemID: PropTypes.number.isRequired,
 };
 
 Map.defaultProps = {
-  currentCityCoords: [52.38333, 4.9]
+  currentCityCoords: [52.38333, 4.9],
+  activeItemID: -1,
 };
 
 export {Map};

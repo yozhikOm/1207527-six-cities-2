@@ -255,6 +255,7 @@ exports[`PropertyDetails компонент рендерится коррект�
         className="property__map map"
       >
         <Map
+          activeItemID={-1}
           coordinatesArray={
             Array [
               Array [

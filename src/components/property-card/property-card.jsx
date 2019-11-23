@@ -20,10 +20,11 @@ const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
   };
 
   return (
-    <article className="cities__place-card place-card" id={id} 
+    <article className="cities__place-card place-card"
+      id={id}
       onMouseEnter={onCardMouseEnter}
-      onMouseLeave={onCardMouseLeave}>
-      >
+      onMouseLeave={onCardMouseLeave}
+    >
       {isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>

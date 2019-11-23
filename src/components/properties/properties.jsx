@@ -20,8 +20,6 @@ const Properties = (props) => {
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offers.length} places to stay in {currentCity.title}</b>
           <Sorting />
-
-
           <div className="cities__places-list places__list tabs__content">
             {offers.map((item) => (
               <React.Fragment key={item.id}>
@@ -29,13 +27,13 @@ const Properties = (props) => {
               </React.Fragment>
             ))}
           </div>
-
-
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">
-            <Map currentCityCoords={currentCity.coordinates}
-              offersArray={offersArrayForMap} activeItemID={activeItemID}/>
+            <Map
+              currentCityCoords={currentCity.coordinates}
+              offersArray={offersArrayForMap}
+              activeItemID={activeItemID}/>
           </section>
         </div>
       </div>
@@ -66,7 +64,7 @@ Properties.propTypes = {
   currentCity: PropTypes.shape({
     title: PropTypes.string.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
-  }),
+  }).isRequired,
   activeItemID: PropTypes.number,
   setActiveItem: PropTypes.func.isRequired,
 };

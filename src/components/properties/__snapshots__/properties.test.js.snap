@@ -313,6 +313,7 @@ exports[`Properties компонент рендерится корректно 1
         className="cities__map map"
       >
         <Map
+          activeItemID={-1}
           currentCityCoords={
             Array [
               52.38333,
