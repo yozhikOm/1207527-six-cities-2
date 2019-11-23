@@ -5,7 +5,7 @@ const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
   const {id, title, type, price, isPremium, photos} = offerInfo;
 
   const onCardMouseEnter = (evt) => {
-    const cardId = evt.currentTarget.id;
+    const cardId = Number(evt.currentTarget.id);
     cardMouseEnterHandler(cardId);
   };
 

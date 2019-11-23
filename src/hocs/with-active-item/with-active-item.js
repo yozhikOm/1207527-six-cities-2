@@ -19,7 +19,7 @@ const withActiveItem = (Component) => {
     render() {
       const {activeItemID} = this.state;
       return <Component {...this.props}
-        activeItem={activeItemID}
+        activeItemID={activeItemID}
         setActiveItem={this._setActiveItem}
       />;
     }
