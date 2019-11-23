@@ -58,7 +58,7 @@ exports[`MainPage компонент рендерится корректно 1`]
             Amsterdam
           </b>
           <Sorting />
-          <Properties
+          <WithActiveItem
             items={
               Array [
                 Object {

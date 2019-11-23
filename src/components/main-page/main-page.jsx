@@ -5,6 +5,9 @@ import {Menu} from '../menu/menu.jsx';
 import {Sorting} from '../sorting/sorting.jsx';
 import {Map} from '../map/map.jsx';
 import {Properties} from '../properties/properties.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+
+const PropertiesWrapped = withActiveItem(Properties);
 
 class MainPage extends PureComponent {
   constructor(props) {
@@ -32,7 +35,7 @@ class MainPage extends PureComponent {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offers.length} places to stay in {currentCity.title}</b>
                 <Sorting />
-                <Properties items={offers} />
+                <PropertiesWrapped items={offers} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">

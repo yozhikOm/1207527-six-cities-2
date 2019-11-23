@@ -1,33 +1,19 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import {PropertyCard} from "../property-card/property-card.jsx";
 
-class Properties extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      hoveredCardID: -1
-    };
-    this._cardMouseEnterHandler = this._cardMouseEnterHandler.bind(this);
-  }
-
-  render() {
-    return (
-      <div className="cities__places-list places__list tabs__content">
-        {this.props.items.map((item) => (
-          <React.Fragment key={item.id}>
-            <PropertyCard offerInfo={item} cardMouseEnterHandler={this._cardMouseEnterHandler} />
-          </React.Fragment>
-        ))}
-      </div>
-    );
-  }
-
-  _cardMouseEnterHandler(id) {
-    this.setState({hoveredCardID: id});
-  }
-}
+const Properties = (props) => {
+  const {items, setActiveItem} = props;
+  return (
+    <div className="cities__places-list places__list tabs__content">
+      {items.map((item) => (
+        <React.Fragment key={item.id}>
+          <PropertyCard offerInfo={item} cardMouseEnterHandler={setActiveItem} />
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
 
 Properties.propTypes = {
   items: PropTypes.arrayOf(
@@ -49,6 +35,7 @@ Properties.propTypes = {
         host: PropTypes.string.isRequired,
       }).isRequired
   ),
+  setActiveItem: PropTypes.func.isRequired,
 };
 
 export {Properties};
