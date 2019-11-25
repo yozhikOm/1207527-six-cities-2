@@ -2,9 +2,10 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Header} from '../header/header.jsx';
 import {Menu} from '../menu/menu.jsx';
-import {Sorting} from '../sorting/sorting.jsx';
-import {Map} from '../map/map.jsx';
 import {Properties} from '../properties/properties.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+
+const PropertiesWrapped = withActiveItem(Properties);
 
 class MainPage extends PureComponent {
   constructor(props) {
@@ -19,28 +20,15 @@ class MainPage extends PureComponent {
       onCityClick,
     } = this.props;
 
-    const coordinatesArray = offers.map((offer) => offer.location.coordinates);
 
     return (
       <div className="page page--gray page--main">
         <Header />
         <main className="page__main page__main--index">
           <Menu cities={cities} onCityClick={onCityClick}/>
-          <div className="cities">
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offers.length} places to stay in {currentCity.title}</b>
-                <Sorting />
-                <Properties items={offers} />
-              </section>
-              <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map currentCityCoords={currentCity.coordinates} coordinatesArray={coordinatesArray}/>
-                </section>
-              </div>
-            </div>
-          </div>
+
+          <PropertiesWrapped offers={offers} currentCity={currentCity}/>
+
         </main>
       </div>
     );

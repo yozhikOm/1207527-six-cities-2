@@ -8,11 +8,8 @@ class Map extends PureComponent {
 
     this._map = null;
     this._zoom = 12;
+    this._markersGroup = null;
   }
-
-  /* set newMap(map) {
-    this._map = map;
-  } */
 
   _initMap(zoom, currentCityCoords) {
     const map = leaflet.map(`map`, {
@@ -31,17 +28,21 @@ class Map extends PureComponent {
     return (map);
   }
 
-  _renderMap(map, zoom, currentCityCoords, coordinatesArray) {
+  _renderMap(map, zoom, currentCityCoords, offersArray, activeItemID) {
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
+    const activeIcon = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
 
     map.setView(currentCityCoords, zoom);
-    coordinatesArray.forEach((offerCoord) => {
+    offersArray.forEach((offer) => {
       leaflet
-          .marker(offerCoord, {icon})
-          .addTo(map);
+          .marker(offer.coordinates, offer.id === activeItemID ? activeIcon : {icon})
+          .addTo(this._markersGroup);
     });
 
   }
@@ -53,29 +54,34 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const {currentCityCoords, coordinatesArray} = this.props;
+    const {currentCityCoords, offersArray, activeItemID} = this.props;
 
     this._map = this._initMap(this._zoom, currentCityCoords);
-    this._renderMap(this._map, this._zoom, currentCityCoords, coordinatesArray);
+    this._markersGroup = leaflet.layerGroup().addTo(this._map);
+    this._renderMap(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
 
   }
 
   componentDidUpdate() {
-    const {currentCityCoords, coordinatesArray} = this.props;
-    this._renderMap(this._map, this._zoom, currentCityCoords, coordinatesArray);
+    const {currentCityCoords, offersArray, activeItemID} = this.props;
+    this._markersGroup.clearLayers();
+    this._renderMap(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
   }
 
 }
 
 Map.propTypes = {
   currentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
-  coordinatesArray: PropTypes.arrayOf(
-      PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired
-  ),
+  offersArray: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    coordinates: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
+  })),
+  activeItemID: PropTypes.number.isRequired,
 };
 
 Map.defaultProps = {
-  currentCityCoords: [52.38333, 4.9]
+  currentCityCoords: [52.38333, 4.9],
+  activeItemID: -1,
 };
 
 export {Map};

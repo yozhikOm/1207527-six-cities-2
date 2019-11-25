@@ -12,7 +12,13 @@ describe(`Enzyme тест наведения мыши на карточку жи
 
     const mockHandler = jest.fn();
 
-    const wrapper = shallow(<PropertyCard offerInfo={mockProperty} cardMouseEnterHandler={mockHandler}/>);
+    const wrapper = shallow(
+        <PropertyCard
+          offerInfo={mockProperty}
+          cardMouseEnterHandler={mockHandler}
+          activeItemID={-1}
+        />
+    );
 
     const propertyCard = wrapper.find(`.cities__place-card`).first();
     const evt = {
@@ -22,6 +28,6 @@ describe(`Enzyme тест наведения мыши на карточку жи
     };
 
     propertyCard.simulate(`mouseenter`, evt);
-    expect(mockHandler).toHaveBeenCalledWith(evt.currentTarget.id);
+    expect(mockHandler).toHaveBeenCalledWith(Number(evt.currentTarget.id));
   });
 });
