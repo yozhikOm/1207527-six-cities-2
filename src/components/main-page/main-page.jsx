@@ -20,7 +20,6 @@ class MainPage extends PureComponent {
       onCityClick,
     } = this.props;
 
-
     return (
       <div className="page page--gray page--main">
         <Header />
