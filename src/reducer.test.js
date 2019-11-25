@@ -1,8 +1,30 @@
-import {reducer, ActionCreator} from './reducer.js';
+import MockAdapter from 'axios-mock-adapter';
+import api from './api';
+import {reducer, Operation, ActionCreator} from './reducer.js';
 import {offers} from './mocks/offers.js';
 // import {citiesCoordinates} from './mocks/cities-coordinates.js';
 
 describe(`Action creators work correctly`, () => {
+  it(`Should make a correct API call to /getAllOffers`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const allOffersLoader = Operation.loadAllOffers();
+
+    apiMock
+      .onGet(`/getAllOffers`)
+      .reply(200, [{fake: true}]);
+
+    // api.get(`/getAllOffers`);
+    return allOffersLoader(dispatch)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: `LOAD_ALL_OFFERS`,
+          payload: [{fake: true}],
+        });
+      });
+  });
+
   it(`Action creator for changing step returns correct action`, () => {
     expect(ActionCreator.changeCity(`Moscow`)).toEqual({
       type: `CHANGE_CITY`,

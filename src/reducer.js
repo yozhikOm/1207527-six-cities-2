@@ -1,5 +1,13 @@
-import {offers} from './mocks/offers';
+import api from './api.js';
+// import {offers} from './mocks/offers';
 import {citiesCoordinates} from './mocks/cities-coordinates';
+
+const initialState = {
+  allOffers: [],
+  currentCity: citiesCoordinates[0],
+  offers: getOffers(citiesCoordinates[0], initialState.allOffers),
+  cities: getCities(initialState.allOffers),
+};
 
 const getOffers = (city, allOffers) =>
   allOffers.filter((offer) => offer.location.city === city.title);
@@ -15,6 +23,10 @@ const getCities = (allOffers) => {
 };
 
 const ActionCreator = {
+  loadAllOffers: (allOffers) => ({
+    type: `LOAD_ALL_OFFERS`,
+    payload: allOffers
+  }),
 
   changeCity: (city) => ({
     type: `CHANGE_CITY`,
@@ -32,13 +44,6 @@ const ActionCreator = {
   }),
 };
 
-const initialState = {
-  allCitiesOffers: offers,
-  currentCity: citiesCoordinates[0],
-  offers: getOffers(citiesCoordinates[0], offers),
-  cities: getCities(offers),
-};
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case `CHANGE_CITY`: return Object.assign({}, state, {
@@ -52,8 +57,33 @@ const reducer = (state = initialState, action) => {
     case `GET_CITIES_LIST`: return Object.assign({}, state, {
       cities: action.payload
     });
+
+    case `LOAD_ALL_OFFERS`:
+      return Object.assign({}, state, {
+        allOffers: action.payload
+      });
   }
   return state;
+};
+
+const Operation = {
+  loadAllOffers: () => (dispatch) => {
+    return api.get(`/getAllOffers`)
+      .then((response) => {
+        dispatch(ActionCreator.loadAllOffers(response.data));
+      });
+    /* ruturn fetch(`/api/getAllOffers`)
+      .then((response) => response.json())
+      .then((allOffers) => {
+        dispatch(ActionCreator.loadAllOffers(allOffers))
+      });*/
+  },
+
+  /* authorize: () => (dispatch) => {
+    return fetch(`/api/login`)
+      .then();
+  }*/
+
 };
 
 export {
@@ -61,4 +91,5 @@ export {
   getCities,
   getOffers,
   reducer,
+  Operation,
 };
