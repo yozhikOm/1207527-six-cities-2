@@ -1,24 +1,22 @@
 import axios from 'axios';
 import {ActionCreator} from './reducer.js';
 
-const createAPI = (dispatch) => {
+export const createAPI = (dispatch) => {
   const api = axios.create({
-    baseURL: `https://htmlacademy-react-2.appspot.com/six-cities`,
-    timeout: 5000,
+    baseURL: `https://es31-server.appspot.com/six-cities`,
+    timeout: 1000 * 5,
     withCredentials: true,
   });
 
   const onSuccess = (response) => response;
-
   const onFail = (err) => {
     if (err.response.status === 403) {
-      dispatch(ActionCreator.requireAuthorization());
+      dispatch(ActionCreator.requireAuthorization(true));
     }
-
     return err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);
-};
 
-export default createAPI;
+  return api;
+};

@@ -1,24 +1,27 @@
-import {offers} from './mocks/offers';
-import {citiesCoordinates} from './mocks/cities-coordinates';
+// import {offers} from './mocks/offers';
+// import {citiesCoordinates} from './mocks/cities-coordinates';
 
 const getOffers = (city, allOffers) =>
   allOffers.filter((offer) => offer.location.city === city.title);
 
 const getCities = (allOffers) => {
-  const cities = [...new Set(allOffers.map((offer) => offer.location.city))];
-  const citiesCoords = [];
-  cities.map((city) => {
-    const coords = citiesCoordinates.find((item) => item.title === city);
-    citiesCoords.push(coords);
-  });
-  return citiesCoords;
+  const cities =  Array.from(new Set(allOffers.map((offer) => offer.city.name)))
+    .map(name => {
+      let item = allOffers.find(o => o.city.name === name);
+      return{
+        title: name, 
+        coordinates: [item.city.location.latitude, item.city.location.longitude]
+      }
+    });
+
+  return cities;
 };
 
 const initialState = {
   allOffers: [],
-  currentCity: citiesCoordinates[0],
-  offers: getOffers(citiesCoordinates[0], offers),
-  cities: getCities(offers),
+  currentCity: null,
+  offers: [],// getOffers(citiesCoordinates[0], offers),
+  cities: [],// getCities(offers),
   isAuthorizationRequired: false,
 };
 
@@ -88,21 +91,17 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   loadAllOffers: () => (dispatch, _, api) => {
     return api.get(`/hotels`)
-      .then((response) => {
-        dispatch(ActionCreator.loadAllOffers(response.data));
+      .then(({data}) => {
+        
+        dispatch(ActionCreator.loadAllOffers(data));
+        dispatch(ActionCreator.getCitiesList(data));
+        let city = data[0].city;
+        dispatch(ActionCreator.getOffersList(city, data));
+
       });
-    /* ruturn fetch(`/api/getAllOffers`)
-      .then((response) => response.json())
-      .then((allOffers) => {
-        dispatch(ActionCreator.loadAllOffers(allOffers))
-      });*/
   },
 
-  /* authorize: () => (dispatch) => {
-    return fetch(`/api/login`)
-      .then();
-  }*/
-
+  
 };
 
 export {

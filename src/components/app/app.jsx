@@ -8,7 +8,7 @@ const App = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  allOffers: state.allCitiesOffers,
+  allOffers: state.allOffers,
   currentCity: state.currentCity,
   offers: state.offers,
   cities: state.cities,
