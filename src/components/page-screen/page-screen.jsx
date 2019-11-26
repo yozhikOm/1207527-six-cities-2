@@ -2,11 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {MainPage} from '../main-page/main-page.jsx';
 import {PropertyDetails} from '../property-details/property-details.jsx';
+import {AuthorizationScreen} from '../authorization-screen/authorization-screen.jsx';
 
 const PageScreen = (props) => {
-  const {allOffers, currentCity, cities, offers, onCityClick} = props;
+  const {allOffers, currentCity, cities, offers, onCityClick, isAuthorizationRequired} = props;
   switch (location.pathname) {
     case `/`:
+      if (isAuthorizationRequired) {
+        return <AuthorizationScreen />;
+      }
       return <MainPage
         currentCity={currentCity}
         cities={cities}
@@ -15,6 +19,8 @@ const PageScreen = (props) => {
           onCityClick(city, allOffers);
         }}
       />;
+    case `/login`:
+      return <AuthorizationScreen />;
     case `/offer`:
       const id = 6;
 
@@ -88,6 +94,7 @@ PageScreen.propTypes = {
       }).isRequired
   ),
   onCityClick: PropTypes.func,
+  isAuthorizationRequired: PropTypes.bool,
 };
 
 export {PageScreen};

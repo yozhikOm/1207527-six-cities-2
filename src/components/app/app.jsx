@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   allOffers: state.allCitiesOffers,
   currentCity: state.currentCity,
   offers: state.offers,
-  cities: state.cities
+  cities: state.cities,
+  isAuthorizationRequired: state.isAuthorizationRequired,
 });
 
 const mapDispatchToProps = (dispatch) => ({

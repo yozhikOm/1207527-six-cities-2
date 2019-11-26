@@ -11,7 +11,7 @@ describe(`Action creators work correctly`, () => {
     const allOffersLoader = Operation.loadAllOffers();
 
     apiMock
-      .onGet(`/getAllOffers`)
+      .onGet(`/hotels`)
       .reply(200, [{fake: true}]);
 
     // api.get(`/getAllOffers`);
