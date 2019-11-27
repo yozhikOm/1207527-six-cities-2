@@ -42,7 +42,7 @@ const Properties = (props) => {
 };
 
 Properties.propTypes = {
-  offers: PropTypes.arrayOf(
+  offers: PropTypes.array, /* PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         location: PropTypes.shape({
@@ -60,7 +60,7 @@ Properties.propTypes = {
         ),
         host: PropTypes.string.isRequired,
       }).isRequired
-  ),
+  ),*/
   currentCity: PropTypes.shape({
     title: PropTypes.string.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,

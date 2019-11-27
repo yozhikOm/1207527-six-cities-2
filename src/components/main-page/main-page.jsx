@@ -45,7 +45,7 @@ MainPage.propTypes = {
         coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
       })
   ),
-  offers: PropTypes.arrayOf(
+  offers: PropTypes.array, /* PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         location: PropTypes.shape({
@@ -63,7 +63,7 @@ MainPage.propTypes = {
         ),
         host: PropTypes.string.isRequired,
       })
-  ),
+  ),*/
   onCityClick: PropTypes.func.isRequired,
 };
 

@@ -1,26 +1,46 @@
 import MockAdapter from 'axios-mock-adapter';
-import api from './api';
+// import api from './api.js';
+// import {createAPI} from './api';
+import axios from 'axios';
 import {reducer, Operation, ActionCreator} from './reducer.js';
 import {offers} from './mocks/offers.js';
 // import {citiesCoordinates} from './mocks/cities-coordinates.js';
 
 describe(`Action creators work correctly`, () => {
-  it(`Should make a correct API call to /getAllOffers`, () => {
-    const apiMock = new MockAdapter(api);
+  it(`Should make a correct API call to /hotels`, () => {
+    // const api = createAPI((...args) => store.dispatch(...args));
+    // const api = createAPI((...args) => jest.fn(...args));
+
+    // const apiMock = new MockAdapter(api);
+    const apiMock = new MockAdapter(axios);
+
     const dispatch = jest.fn();
     const allOffersLoader = Operation.loadAllOffers();
 
+    const mockData = [
+      {
+        city: {
+          name: `Amsterdam`,
+          location: {
+            latitude: 52.38333,
+            longitude: 4.9
+          }
+
+        }
+      }
+
+    ];
+
     apiMock
       .onGet(`/hotels`)
-      .reply(200, [{fake: true}]);
+      .reply(200, mockData);
 
-    // api.get(`/getAllOffers`);
     return allOffersLoader(dispatch)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: `LOAD_ALL_OFFERS`,
-          payload: [{fake: true}],
+          payload: mockData,
         });
       });
   });

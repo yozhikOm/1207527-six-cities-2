@@ -50,7 +50,7 @@ function getNeighboringOffers(offer, cityOffers) {
 }
 
 PageScreen.propTypes = {
-  allOffers: PropTypes.arrayOf(
+  allOffers: PropTypes.array, /* PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         location: PropTypes.shape({
@@ -68,13 +68,13 @@ PageScreen.propTypes = {
         ),
         host: PropTypes.string.isRequired,
       }).isRequired
-  ),
+  ), */
   currentCity: PropTypes.shape({
     title: PropTypes.string.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
   }),
   cities: PropTypes.array,
-  offers: PropTypes.arrayOf(
+  offers: PropTypes.array, /*PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         location: PropTypes.shape({
@@ -92,7 +92,7 @@ PageScreen.propTypes = {
         ),
         host: PropTypes.string.isRequired,
       }).isRequired
-  ),
+  ),*/
   onCityClick: PropTypes.func,
   isAuthorizationRequired: PropTypes.bool,
 };
