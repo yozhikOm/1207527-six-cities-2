@@ -74,7 +74,7 @@ Map.propTypes = {
   currentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
   offersArray: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    coordinates: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired),
   })),
   activeItemID: PropTypes.number.isRequired,
 };

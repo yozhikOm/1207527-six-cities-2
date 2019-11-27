@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
 import {compose} from 'recompose';
 import App from './components/app/app.jsx';
-import {createAPI} from './api';
+import createAPI from './api';
 import {reducer, Operation} from "./reducer.js";
 
 

@@ -4,6 +4,6 @@ import renderer from 'react-test-renderer';
 import {offers} from '../../mocks/offers.js';
 
 it(`PropertyCard компонент рендерится корректно`, () => {
-  const propertyCardComponent = renderer.create(<PropertyCard offerInfo={offers[0]}/>).toJSON();
+  const propertyCardComponent = renderer.create(<PropertyCard offer={offers[0]}/>).toJSON();
   expect(propertyCardComponent).toMatchSnapshot();
 });

@@ -1,6 +1,3 @@
-// import {offers} from './mocks/offers';
-// import {citiesCoordinates} from './mocks/cities-coordinates';
-
 const getOffersByCity = (city, allOffers) =>
   allOffers.filter((offer) => offer.city.name === city.title);
 
@@ -62,8 +59,8 @@ const initialState = {
   allOffers: [],
   isOffersLoading: true,
   currentCity: null,
-  offers: [], // getOffers(citiesCoordinates[0], offers),
-  cities: [], // getCities(offers),
+  offers: [],
+  cities: [],
   isAuthorizationRequired: false,
 };
 
@@ -163,7 +160,8 @@ export {
   ActionCreator,
   ActionType,
   getCities,
-  getOffersByCity as getOffers,
+  getOffersByCity,
+  prepareData,
   reducer,
   Operation,
 };
