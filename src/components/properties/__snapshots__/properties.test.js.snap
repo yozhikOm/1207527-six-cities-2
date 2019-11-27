@@ -29,10 +29,7 @@ exports[`Properties компонент рендерится корректно 1
         <React.Fragment>
           <PropertyCard
             cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
+            offer={
               Object {
                 "description": "In onze eigen achtertuin hebben we de oude sauna omgebouwd tot gastenverblijf met eigen badkamer en toilet. Er is geen kook mogelijkheid, maar wel een koelkast en wastafel. Wij wonen in een rustige buurt welke goed bereikbaar is met het openbaar vervoer en/of eigen vervoer. Grote steden als haarlem, amsterdam en alkmaar zijn vlakbij. Het strand is ca. 10 minuten met de auto. Houd u van rust en wilt u toch dichtbij de grote steden zijn dan is dit de ideale plek om te verblijven!",
                 "host": "Maria",
@@ -58,19 +55,12 @@ exports[`Properties компонент рендерится корректно 1
                 "type": "House",
               }
             }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
           />
         </React.Fragment>
         <React.Fragment>
           <PropertyCard
             cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
+            offer={
               Object {
                 "description": "Sparkling clean, comfy and private room close to the city center. The place is super sweet with coffee & tea available.",
                 "host": "Giovanni",
@@ -99,19 +89,12 @@ exports[`Properties компонент рендерится корректно 1
                 "type": "Room",
               }
             }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
           />
         </React.Fragment>
         <React.Fragment>
           <PropertyCard
             cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
+            offer={
               Object {
                 "description": "From this penthouse room guests have a breathtaking view of the city. When you wake up Amsterdam is happening all around you. We guarantee you maximum sleeping comfort with our quality Tempur mattresses.",
                 "host": "Tio Leo",
@@ -137,19 +120,12 @@ exports[`Properties компонент рендерится корректно 1
                 "type": "Room",
               }
             }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
           />
         </React.Fragment>
         <React.Fragment>
           <PropertyCard
             cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
+            offer={
               Object {
                 "description": "This compact guesthouse/design studio is very suitable for both working and relaxing. Plenty of working space, kitchenette with microwave and fridge, a cosy fire place (gas) and upstairs a large lounge bed. The 'in between' sized lounge bed (120 cm wide) is very comfortable for one person, but it could also sleep a couple. The stairs in this guesthouse studio are pretty steep, but safe. Comfortable floor heating downstairs.",
                 "host": "Rebekka",
@@ -175,19 +151,12 @@ exports[`Properties компонент рендерится корректно 1
                 "type": "House",
               }
             }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
           />
         </React.Fragment>
         <React.Fragment>
           <PropertyCard
             cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
+            offer={
               Object {
                 "description": "Das großzügige helle Zimmer, ruhig gelegen in einer schönen großen Altbauwohnung, lädt ein zum Ausruhen, denn ganz in der Nähe gibt es fast unerschöpfliche Möglichkeiten die Berliner Geschichte und neueste Entwicklungen in Kunst und Kultur zu erleben. Prenzlauer Berg liegt sehr zentral( 10 Minuten zum Alexanderplatz)und ist reich an Cafes und Restaurants, es gibt auch viele Einkaufsmöglichkeiten und eine gute Anbindung ans öffentliche Verkehrsnetz.",
                 "host": "Rebekka",
@@ -213,19 +182,12 @@ exports[`Properties компонент рендерится корректно 1
                 "type": "Room",
               }
             }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
           />
         </React.Fragment>
         <React.Fragment>
           <PropertyCard
             cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
+            offer={
               Object {
                 "description": "Super Close to Central City West berlin <br/>Close to Super market 24 H</br>Close to Bus , Metro</br>Close to Shopping Area</br>Close to Cafe Bar and Restaurants",
                 "host": "Philip",
@@ -251,19 +213,12 @@ exports[`Properties компонент рендерится корректно 1
                 "type": "Apartment",
               }
             }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
           />
         </React.Fragment>
         <React.Fragment>
           <PropertyCard
             cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
+            offer={
               Object {
                 "description": "This is an updated ultra modern unit. All the rooms are equipped with wifi and 32 inc smart t.v. This unit has a Jacuzzi bath tub to relax and zen out in There is a nice front porch garden to have a glass of wine or your morning coffee. We are one block away from palisade ave to catch the express bus to time sq. </br>Please note all guest are to be on the ticket prior to check-in. This is a shared space so no guest are allowed to have Visitors over.",
                 "host": "Chris",
@@ -298,10 +253,6 @@ exports[`Properties компонент рендерится корректно 1
                 "type": "Hotel",
               }
             }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
           />
         </React.Fragment>
       </div>
@@ -324,50 +275,50 @@ exports[`Properties компонент рендерится корректно 1
             Array [
               Object {
                 "coordinates": Array [
-                  52.3909553943508,
-                  4.85309666406198,
+                  undefined,
+                  undefined,
                 ],
                 "id": 1,
               },
               Object {
                 "coordinates": Array [
-                  52.369553943508,
-                  4.85309666406198,
+                  undefined,
+                  undefined,
                 ],
                 "id": 22,
               },
               Object {
                 "coordinates": Array [
-                  52.3909553943508,
-                  4.929309666406198,
+                  undefined,
+                  undefined,
                 ],
                 "id": 3,
               },
               Object {
                 "coordinates": Array [
-                  52.3809553943508,
-                  4.939309666406198,
+                  undefined,
+                  undefined,
                 ],
                 "id": 4,
               },
               Object {
                 "coordinates": Array [
-                  52.520008,
-                  13.404954,
+                  undefined,
+                  undefined,
                 ],
                 "id": 5,
               },
               Object {
                 "coordinates": Array [
-                  52.524438,
-                  13.4074166,
+                  undefined,
+                  undefined,
                 ],
                 "id": 6,
               },
               Object {
                 "coordinates": Array [
-                  40.752239,
-                  -73.9766287,
+                  undefined,
+                  undefined,
                 ],
                 "id": 7,
               },

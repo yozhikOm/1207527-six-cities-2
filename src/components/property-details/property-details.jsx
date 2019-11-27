@@ -6,7 +6,16 @@ import {Map} from '../map/map.jsx';
 import {PropertyCard} from '../property-card/property-card.jsx';
 
 const PropertyDetails = (props) => {
-  const {currentCityCoords, offer, neighboringOffers} = props;
+  const {currentCityCoords, offer, neighboringOffers, activeItemID, setActiveItem} = props;
+
+  const offersArrayForMap = neighboringOffers.map((neibOffer) => (
+    {
+      id: neibOffer.id,
+      coordinates: [neibOffer.location.latitude, neibOffer.location.longitude],
+    })).concat([{
+    id: offer.id,
+    coordinates: [offer.location.latitude, offer.location.longitude],
+  }]);
 
   return (
     <React.Fragment>
@@ -15,10 +24,10 @@ const PropertyDetails = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {offer.photos.map((it, i) => {
+              {offer.images.map((it, i) => {
                 return (
                   <div key={`photo-${i}`} className="property__image-wrapper">
-                    <img className="property__image" src={it.src} alt="Photo studio" />
+                    <img className="property__image" src={it} alt="Photo studio" />
                   </div>
                 );
               })}
@@ -26,9 +35,12 @@ const PropertyDetails = (props) => {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              <div className="property__mark">
-                <span>Premium</span>
-              </div>
+              {offer.isPremium ?
+                <div className="place-card__mark">
+                  <span>Premium</span>
+                </div> :
+                <React.Fragment/>
+              }
               <div className="property__name-wrapper">
                 <h1 className="property__name">
                   {offer.title}
@@ -45,17 +57,17 @@ const PropertyDetails = (props) => {
                   <span style={{width: `96%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <span className="property__rating-value rating__value">{offer.rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
                   Entire place
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  3 Bedrooms
+                  {offer.bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max 4 adults
+                  Max {offer.maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
@@ -65,57 +77,35 @@ const PropertyDetails = (props) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  <li className="property__inside-item">
-                    Wi-Fi
-                  </li>
-                  <li className="property__inside-item">
-                    Washing machine
-                  </li>
-                  <li className="property__inside-item">
-                    Towels
-                  </li>
-                  <li className="property__inside-item">
-                    Heating
-                  </li>
-                  <li className="property__inside-item">
-                    Coffee machine
-                  </li>
-                  <li className="property__inside-item">
-                    Baby seat
-                  </li>
-                  <li className="property__inside-item">
-                    Kitchen
-                  </li>
-                  <li className="property__inside-item">
-                    Dishwasher
-                  </li>
-                  <li className="property__inside-item">
-                    Cabel TV
-                  </li>
-                  <li className="property__inside-item">
-                    Fridge
-                  </li>
+                  {offer.goods.map((it, i) => {
+                    return (
+                      <li key={`goods-${i}`} className="property__inside-item">
+                        {it}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                    <img className="property__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    {offer.host}
+                    {offer.host.name}
                   </span>
-                  <span className="property__user-status">
-                    Pro
-                  </span>
+                  {offer.host.isPro ?
+                    <span className="property__user-status">
+                      Pro
+                    </span> :
+                    <React.Fragment/>
+                  }
+
                 </div>
                 <div className="property__description">
                   <p className="property__text">
                     {offer.description}
-                  </p>
-                  <p className="property__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
                   </p>
                 </div>
               </div>
@@ -125,7 +115,9 @@ const PropertyDetails = (props) => {
           <section className="property__map map">
             <Map
               currentCityCoords={currentCityCoords}
-              coordinatesArray={(neighboringOffers.map((neibOffer) => neibOffer.location.coordinates)).concat([offer.location.coordinates])}/>
+              offersArray={offersArrayForMap}
+              activeItemID={activeItemID === -1 ? offer.id : activeItemID}
+            />
           </section>
         </section>
         <div className="container">
@@ -134,7 +126,7 @@ const PropertyDetails = (props) => {
             <div className="near-places__list places__list">
               {neighboringOffers.map((item) => (
                 <React.Fragment key={item.id}>
-                  <PropertyCard offerInfo={item} cardMouseEnterHandler={() => {}} />
+                  <PropertyCard offer={item} cardMouseEnterHandler={setActiveItem} />
                 </React.Fragment>
               ))}
             </div>
@@ -149,40 +141,74 @@ PropertyDetails.propTypes = {
   currentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    location: PropTypes.shape({
-      city: PropTypes.string,
-      coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string,
+      location: PropTypes.shape({
+        latitude: PropTypes.number,
+        longitude: PropTypes.number,
+        zoom: PropTypes.number,
+      }),
     }).isRequired,
+    previewImage: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
     title: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool,
+    isPremium: PropTypes.bool,
+    rating: PropTypes.number,
     type: PropTypes.string.isRequired,
+    bedrooms: PropTypes.number,
+    maxAdults: PropTypes.number,
     price: PropTypes.number.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string),
+    host: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      isPro: PropTypes.bool,
+      avatarUrl: PropTypes.string,
+    }),
     description: PropTypes.string.isRequired,
-    photos: PropTypes.arrayOf(
-        PropTypes.shape({
-          src: PropTypes.string,
-        })
-    ),
-    host: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      zoom: PropTypes.number,
+    }),
   }),
-  neighboringOffers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        location: PropTypes.shape({
-          city: PropTypes.string,
-          coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
-        }).isRequired,
-        title: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
-        photos: PropTypes.arrayOf(
-            PropTypes.shape({
-              src: PropTypes.string,
-            })
-        ),
-        host: PropTypes.string.isRequired,
-      })
-  ),
+  neighboringOffers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string,
+      location: PropTypes.shape({
+        latitude: PropTypes.number,
+        longitude: PropTypes.number,
+        zoom: PropTypes.number,
+      }),
+    }).isRequired,
+    previewImage: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool,
+    isPremium: PropTypes.bool,
+    rating: PropTypes.number,
+    type: PropTypes.string.isRequired,
+    bedrooms: PropTypes.number,
+    maxAdults: PropTypes.number,
+    price: PropTypes.number.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string),
+    host: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      isPro: PropTypes.bool,
+      avatarUrl: PropTypes.string,
+    }),
+    description: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      zoom: PropTypes.number,
+    }),
+  })),
+  activeItemID: PropTypes.number,
+  setActiveItem: PropTypes.func,
 };
 
 export {PropertyDetails};

@@ -8,13 +8,6 @@ exports[`PropertyCard компонент рендерится корректно
   onMouseLeave={[Function]}
 >
   <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
-  <div
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
@@ -24,7 +17,6 @@ exports[`PropertyCard компонент рендерится корректно
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
         width="260"
       />
     </a>
@@ -42,7 +34,7 @@ exports[`PropertyCard компонент рендерится корректно
           className="place-card__price-value"
         >
           €
-          650
+          88
         </b>
         <span
           className="place-card__price-text"
@@ -68,6 +60,13 @@ exports[`PropertyCard компонент рендерится корректно
         className="place-card__stars rating__stars"
       >
         <span
+          style={
+            Object {
+              "width": "93%",
+            }
+          }
+        />
+        <span
           className="visually-hidden"
         >
           Rating
@@ -81,13 +80,13 @@ exports[`PropertyCard компонент рендерится корректно
       <a
         href="#"
       >
-        Cozy house amsterdam
+        Some title
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      House
+      Room
     </p>
   </div>
 </article>

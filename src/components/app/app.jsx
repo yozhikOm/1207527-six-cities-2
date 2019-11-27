@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from "../../reducer.js";
 import {PageScreen} from '../page-screen/page-screen.jsx';
 
 const App = (props) => {
-  if(props.isOffersLoading){
+  if (props.isOffersLoading) {
     return null;
   }
   return <PageScreen {...props}/>;
@@ -26,6 +27,10 @@ const mapDispatchToProps = (dispatch) => ({
   }
 
 });
+
+App.propTypes = {
+  isOffersLoading: PropTypes.bool,
+};
 
 export {App};
 

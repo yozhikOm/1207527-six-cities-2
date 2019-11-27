@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
-  const {id, title, type, price, isPremium, photos} = offerInfo;
+const PropertyCard = ({offer, cardMouseEnterHandler}) => {
+  // const {id, title, type, price, isPremium, photos} = offerInfo;
 
   const onCardMouseEnter = (evt) => {
     const cardId = Number(evt.currentTarget.id);
@@ -15,17 +15,17 @@ const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
 
   const onCardTitleClick = (evt) => {
     console.log(`'` + evt.target.textContent + `' has just been clicked`);
-    console.log(id + `: '` + title + `' has just been clicked`);
-    window.location.assign(`/offer/` + id);
+    console.log(offer.id + `: '` + offer.title + `' has just been clicked`);
+    window.location.assign(`/offer/` + offer.id);
   };
 
   return (
     <article className="cities__place-card place-card"
-      id={id}
+      id={offer.id}
       onMouseEnter={onCardMouseEnter}
       onMouseLeave={onCardMouseLeave}
     >
-      {isPremium ?
+      {offer.isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>
         </div> :
@@ -33,13 +33,13 @@ const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={photos[0].src} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{price}</b>
+            <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
@@ -48,48 +48,64 @@ const PropertyCard = ({offerInfo, cardMouseEnterHandler}) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
+            <span style={{width: `93%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name" onClick={onCardTitleClick}>
-          <a href="#">{title}</a>
+          <a href="#">{offer.title}</a>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
   );
 };
 
 PropertyCard.propTypes = {
-  offerInfo: PropTypes.shape({
+  offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    location: PropTypes.shape({
-      city: PropTypes.string,
-      coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string,
+      location: PropTypes.shape({
+        latitude: PropTypes.number,
+        longitude: PropTypes.number,
+        zoom: PropTypes.number,
+      }),
     }).isRequired,
+    previewImage: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
     title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool,
     isPremium: PropTypes.bool,
+    rating: PropTypes.number,
+    type: PropTypes.string.isRequired,
+    bedrooms: PropTypes.number,
+    maxAdults: PropTypes.number,
+    price: PropTypes.number.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string),
+    host: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      isPro: PropTypes.bool,
+      avatarUrl: PropTypes.string,
+    }),
     description: PropTypes.string.isRequired,
-    photos: PropTypes.arrayOf(
-        PropTypes.shape({
-          src: PropTypes.string,
-        })
-    ),
-    host: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      zoom: PropTypes.number,
+    }),
   }),
   cardMouseEnterHandler: PropTypes.func,
 };
 
-PropertyCard.defaultProps = {
+/* PropertyCard.defaultProps = {
   id: 1,
   title: `Some title`,
   type: `Room`,
   price: 88,
   description: ``,
-  photos: [],
   host: ``
-};
+}; */
 
 export {PropertyCard};
