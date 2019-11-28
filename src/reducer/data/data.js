@@ -103,13 +103,15 @@ const Operation = {
     return api.get(`/hotels`)
         .then(({data}) => {
           const preparedData = prepareData(data);
+          dispatch(ActionCreator.loadAllOffers(preparedData));
+
           let initialCity = preparedData[0].city;
           let currentCity = {
             title: initialCity.name,
             coordinates: [initialCity.location.latitude, initialCity.location.longitude]
           };
           dispatch(ActionCreator.changeCity(currentCity));
-          dispatch(ActionCreator.loadAllOffers(preparedData));
+
           dispatch(ActionCreator.getCitiesList(preparedData));
           dispatch(ActionCreator.getOffersList(currentCity, preparedData));
           dispatch(ActionCreator.changeLoadingState(false));
@@ -148,5 +150,6 @@ export {
   ActionType,
   reducer,
   Operation,
+  prepareData,
 };
 
