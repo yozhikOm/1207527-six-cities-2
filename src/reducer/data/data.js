@@ -1,11 +1,17 @@
 const initialState = {
   allOffers: [],
   isOffersLoading: true,
+  currentCity: null,
+  offers: [],
+  cities: [],
 };
 
 const ActionType = {
   LOAD_ALL_OFFERS: `LOAD_ALL_OFFERS`,
-  CHANGE_LOADING_STATE: `CHANGE_LOADING_STATE`
+  CHANGE_LOADING_STATE: `CHANGE_LOADING_STATE`,
+  CHANGE_CITY: `CHANGE_CITY`,
+  GET_OFFERS_LIST: `GET_OFFERS_LIST`,
+  GET_CITIES_LIST: `GET_CITIES_LIST`,
 };
 
 const ActionCreator = {
@@ -17,7 +23,22 @@ const ActionCreator = {
   changeLoadingState: (isLoading) => ({
     type: ActionType.CHANGE_LOADING_STATE,
     payload: isLoading
-  })
+  }),
+
+  changeCity: (city) => ({
+    type: ActionType.CHANGE_CITY,
+    payload: city
+  }),
+
+  getOffersList: (city, allOffers) => ({
+    type: ActionType.GET_OFFERS_LIST,
+    payload: getOffersByCity(city, allOffers),
+  }),
+
+  getCitiesList: (allOffers) => ({
+    type: ActionType.GET_CITIES_LIST,
+    payload: getCities(allOffers),
+  }),
 };
 
 const prepareData = (allOffers) => {
@@ -61,20 +82,36 @@ const prepareData = (allOffers) => {
   return preparedData;
 };
 
+const getOffersByCity = (city, allOffers) =>
+  allOffers.filter((offer) => offer.city.name === city.title);
+
+const getCities = (allOffers) => {
+  const cities = Array.from(new Set(allOffers.map((offer) => offer.city.name)))
+    .map((name) => {
+      let item = allOffers.find((o) => o.city.name === name);
+      return {
+        title: name,
+        coordinates: [item.city.location.latitude, item.city.location.longitude]
+      };
+    });
+
+  return cities;
+};
+
 const Operation = {
   loadAllOffers: () => (dispatch, _, api) => {
     return api.get(`/hotels`)
         .then(({data}) => {
           const preparedData = prepareData(data);
           dispatch(ActionCreator.loadAllOffers(preparedData));
-          //   dispatch(ActionCreator.getCitiesList(preparedData));
-          //   let initialCity = preparedData[0].city;
-          //   let currentCity = {
-          //     title: initialCity.name,
-          //     coordinates: [initialCity.location.latitude, initialCity.location.longitude]
-          //   };
-          //   dispatch(ActionCreator.changeCity(currentCity));
-          //   dispatch(ActionCreator.getOffersList(currentCity, preparedData));
+          dispatch(ActionCreator.getCitiesList(preparedData));
+          let initialCity = preparedData[0].city;
+          let currentCity = {
+            title: initialCity.name,
+            coordinates: [initialCity.location.latitude, initialCity.location.longitude]
+          };
+          dispatch(ActionCreator.changeCity(currentCity));
+          dispatch(ActionCreator.getOffersList(currentCity, preparedData));
           dispatch(ActionCreator.changeLoadingState(false));
         });
   },
@@ -89,6 +126,18 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_LOADING_STATE: return Object.assign({}, state, {
       isOffersLoading: action.payload
     });
+
+    case ActionType.CHANGE_CITY: return Object.assign({}, state, {
+      currentCity: action.payload
+    });
+
+    case ActionType.GET_OFFERS_LIST: return Object.assign({}, state, {
+      offers: action.payload
+    });
+
+    case ActionType.GET_CITIES_LIST: return Object.assign({}, state, {
+      cities: action.payload
+    });
   }
 
   return state;
@@ -97,9 +146,10 @@ const reducer = (state = initialState, action) => {
 export {
   ActionCreator,
   ActionType,
-  // getCities,
-  // getOffersByCity,
+  getCities,
+  getOffersByCity,
   prepareData,
   reducer,
   Operation,
 };
+

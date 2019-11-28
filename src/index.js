@@ -9,14 +9,14 @@ import createAPI from './api';
 // import {reducer, Operation} from "./reducer.js";
 // import {Operation} from "./reducer/data/data.js";
 // import user from "./store/reducers/user/user.js";
-
-import combineReducers from './reducer/index.js';
+import {Operation} from './reducer/data/data.js';
+import reducer from './reducer';
 
 
 const init = () => {
   const api = createAPI((...args) => store.dispatch(...args));
   const store = createStore(
-      combineReducers.reducer,
+      reducer,
       compose(
           applyMiddleware(thunk.withExtraArgument(api)),
           window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
@@ -31,7 +31,7 @@ const init = () => {
       )
   );*/
 
-  store.dispatch(combineReducers.Operation.loadAllOffers());
+  store.dispatch(Operation.loadAllOffers());
 
   ReactDOM.render(
       <Provider store={store}>
