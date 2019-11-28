@@ -1,6 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 import createAPI from '../../api.js';
-import {ActionType, Operation, prepareData} from "./data.js";
+import {ActionType, ActionCreator, Operation, prepareData} from "./data.js";
+import {offers} from '../../mocks/offers.js';
 
 describe(`Reducer works correctly`, () => {
   it(`Should make a correct API call to /hotels`, function () {
@@ -49,31 +50,6 @@ describe(`Reducer works correctly`, () => {
           coordinates: [51.225402, 6.776314],
         },
       ],
-    });
-  });
-
-  it(`Reducer should set given value as city`, () => {
-    expect(reducer({
-      currentCity: `NewYork`,
-      offers: [{
-        id: 1,
-        location: {
-          city: `NewYork`,
-        },
-      }],
-      cities: [``],
-    }, {
-      type: `CHANGE_CITY`,
-      payload: `Montreal`
-    })).toEqual({
-      currentCity: `Montreal`,
-      offers: [{
-        id: 1,
-        location: {
-          city: `NewYork`,
-        },
-      }],
-      cities: [``],
     });
   });
 
