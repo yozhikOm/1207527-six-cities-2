@@ -8,7 +8,4 @@ it(`App компонент рендерится корректно`, () => {
 
   const result = renderer.getRenderOutput();
   expect(result).toMatchSnapshot();
-
-  // const appComponent = renderer.create(<App {...appProps} />).toJSON();
-  // expect(appComponent).toMatchSnapshot();
 });

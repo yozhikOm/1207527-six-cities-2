@@ -6,12 +6,8 @@ import thunk from 'redux-thunk';
 import {compose} from 'recompose';
 import App from './components/app/app.jsx';
 import createAPI from './api';
-// import {reducer, Operation} from "./reducer.js";
-// import {Operation} from "./reducer/data/data.js";
-// import user from "./store/reducers/user/user.js";
 import {Operation} from './reducer/data/data.js';
 import reducer from './reducer';
-
 
 const init = () => {
   const api = createAPI((...args) => store.dispatch(...args));
@@ -22,14 +18,6 @@ const init = () => {
           window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
       )
   );
-
-  /* const store = createStore(
-      reducer,
-      compose(
-          applyMiddleware(thunk.withExtraArgument(api)),
-          window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
-      )
-  );*/
 
   store.dispatch(Operation.loadAllOffers());
 
