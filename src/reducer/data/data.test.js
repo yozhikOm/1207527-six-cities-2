@@ -2,7 +2,8 @@ import MockAdapter from 'axios-mock-adapter';
 import createAPI from '../../api.js';
 import {ActionType} from './action-type.js';
 import {ActionCreator} from './action-creator.js';
-import {Operation, prepareData} from "./data.js";
+import {Operation} from "./data.js";
+import {prepareData} from './selectors.js';
 import {offers} from '../../mocks/offers.js';
 
 describe(`Reducer works correctly`, () => {
