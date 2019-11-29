@@ -40,8 +40,9 @@ class Map extends PureComponent {
 
     map.setView(currentCityCoords, zoom);
     offersArray.forEach((offer) => {
+      let currentIcon = offer.id === activeItemID ? activeIcon : icon;
       leaflet
-          .marker(offer.coordinates, offer.id === activeItemID ? activeIcon : {icon})
+          .marker(offer.coordinates, {icon: currentIcon})
           .addTo(this._markersGroup);
     });
 
