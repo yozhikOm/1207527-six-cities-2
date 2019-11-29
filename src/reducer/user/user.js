@@ -1,4 +1,6 @@
-import NameSpace from "../name-spaces";
+import {ActionType} from './action-type.js';
+import {ActionCreator} from './action-creator.js';
+import NameSpace from '../name-spaces';
 const NAME_SPACE = NameSpace.USER;
 
 const initialState = {
@@ -6,34 +8,6 @@ const initialState = {
   email: ``,
   password: ``,
   userInfo: null,
-};
-
-const ActionType = {
-  REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
-  SIGN_IN: `SIGN_IN`,
-  SET_USER_INFO: `SET_USER_INFO`,
-};
-
-const ActionCreator = {
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRE_AUTHORIZATION,
-    payload: status,
-  }),
-
-  signIn: (email, password) => ({
-    type: ActionType.SIGN_IN,
-    payload: {email, password},
-  }),
-
-  setUserInfo: (userInfo) => ({
-    type: ActionType.SET_USER_INFO,
-    payload: {
-      userId: userInfo.id,
-      userName: userInfo.name,
-      userAvatarUrl: userInfo.avatar_url,
-      isUserPro: userInfo.is_pro
-    },
-  }),
 };
 
 const reducer = (state = initialState, action) => {
@@ -72,9 +46,4 @@ const Operation = {
   },
 };
 
-export {
-  ActionCreator,
-  ActionType,
-  reducer,
-  Operation,
-};
+export {reducer, Operation};

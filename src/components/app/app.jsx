@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator as ActionCreatorData} from '../../reducer/data/data.js';
+import {ActionCreator as ActionCreatorData} from '../../reducer/data/action-creator';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 import {getAllOffers, getIsOffersLoading, getCurrentCity, getOffers, getCitiesState} from '../../reducer/data/selectors';
 import {getIsAuthorizationRequired, getUserInfo} from '../../reducer/user/selectors';
