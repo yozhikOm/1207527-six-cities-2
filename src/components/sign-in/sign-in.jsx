@@ -7,11 +7,28 @@ const SignIn = (props) => {
   let loginInput = ``;
   const {authenticateUser} = props;
 
+  const isEmptyField = (field) => {
+    if (field === undefined ||
+      field === null) {
+      console.warn(`Field is undefined or null`);
+      return true;
+    }
+    if (field.value === null ||
+      field.value.trim() === ``) {
+      return true;
+    }
+    return false;
+  };
+
   const onSubmitHandler = (evt) => {
     if (evt) {
       evt.preventDefault();
     }
-    authenticateUser(emailInput.value, loginInput.value);
+    if (!isEmptyField(emailInput) && !isEmptyField(loginInput)) {
+      authenticateUser(emailInput.value, loginInput.value);
+    } else {
+      alert(`Вы забыли ввести логин и/или пароль. Пожалуйста, попробуйте еще раз`);
+    }
   };
   return (
     <div className="page page--gray page--login">

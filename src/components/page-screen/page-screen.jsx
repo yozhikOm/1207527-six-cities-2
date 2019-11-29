@@ -39,6 +39,8 @@ const PageScreen = (props) => {
         currentCityCoords={currentCity.coordinates}
         offer={currOffer}
         neighboringOffers={neighboringOffers}
+        isAuthorizationRequired={isAuthorizationRequired}
+        userInfo={userInfo}
       />;
   }
   return null;
