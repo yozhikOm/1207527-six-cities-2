@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from '../header/header.jsx';
 
-const AuthorizationScreen = () => {
+const SignIn = () => {
   return (
     <div className="page page--gray page--login">
       <Header />
@@ -34,4 +34,4 @@ const AuthorizationScreen = () => {
   );
 };
 
-export {AuthorizationScreen};
+export {SignIn};

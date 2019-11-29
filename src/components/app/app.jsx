@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/data/data.js';
-import {getAllOffers, getIsOffersLoading, getCurrentCity, getOffers, getCities, getIsAuthorizationRequired} from "../../reducer/data/selectors";
+import {getAllOffers, getIsOffersLoading, getCurrentCity, getOffers, getCities} from '../../reducer/data/selectors';
+import {getIsAuthorizationRequired} from '../../reducer/user/selectors';
 import {PageScreen} from '../page-screen/page-screen.jsx';
 
 const App = (props) => {

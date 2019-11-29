@@ -22,6 +22,3 @@ export const getCities = (state) => {
   return state[NAME_SPACE].cities;
 };
 
-export const getIsAuthorizationRequired = (state) => {
-  return state[NAME_SPACE].isAuthorizationRequired;
-};

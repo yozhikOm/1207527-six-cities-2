@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {MainPage} from '../main-page/main-page.jsx';
 import {PropertyDetails} from '../property-details/property-details.jsx';
-import {AuthorizationScreen} from '../authorization-screen/authorization-screen.jsx';
+import {SignIn} from '../sign-in/sign-in.jsx';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 
@@ -13,7 +13,7 @@ const PageScreen = (props) => {
   switch (location.pathname) {
     case `/`:
       if (isAuthorizationRequired) {
-        return <AuthorizationScreen />;
+        return <SignIn />;
       }
       return <MainPage
         currentCity={currentCity}
@@ -24,7 +24,7 @@ const PageScreen = (props) => {
         }}
       />;
     case `/login`:
-      return <AuthorizationScreen />;
+      return <SignIn />;
     case `/offer`:
       const id = 1;
 
