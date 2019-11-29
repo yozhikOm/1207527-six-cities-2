@@ -1,3 +1,7 @@
+import {ActionType} from './action-type.js';
+import {ActionCreator} from './action-creator.js';
+import {prepareData} from './selectors.js';
+
 const initialState = {
   allOffers: [],
   isOffersLoading: true,
@@ -6,116 +10,24 @@ const initialState = {
   cities: [],
 };
 
-const ActionType = {
-  LOAD_ALL_OFFERS: `LOAD_ALL_OFFERS`,
-  CHANGE_LOADING_STATE: `CHANGE_LOADING_STATE`,
-  CHANGE_CITY: `CHANGE_CITY`,
-  GET_OFFERS_LIST: `GET_OFFERS_LIST`,
-  GET_CITIES_LIST: `GET_CITIES_LIST`,
-};
-
-const ActionCreator = {
-  loadAllOffers: (allOffers) => ({
-    type: ActionType.LOAD_ALL_OFFERS,
-    payload: allOffers
-  }),
-
-  changeLoadingState: (isLoading) => ({
-    type: ActionType.CHANGE_LOADING_STATE,
-    payload: isLoading
-  }),
-
-  changeCity: (city) => ({
-    type: ActionType.CHANGE_CITY,
-    payload: city
-  }),
-
-  getOffersList: (city, allOffers) => ({
-    type: ActionType.GET_OFFERS_LIST,
-    payload: getOffersByCity(city, allOffers),
-  }),
-
-  getCitiesList: (allOffers) => ({
-    type: ActionType.GET_CITIES_LIST,
-    payload: getCities(allOffers),
-  }),
-};
-
-const prepareData = (allOffers) => {
-  const preparedData = allOffers.map((offer) => {
-    return {
-      id: offer.id,
-      city: {
-        name: offer.city.name,
-        location: {
-          latitude: offer.city.location.latitude,
-          longitude: offer.city.location.longitude,
-          zoom: offer.city.location.zoom,
-        }
-      },
-      previewImage: offer.preview_image,
-      images: offer.images,
-      title: offer.title,
-      isFavorite: offer.is_favorite,
-      isPremium: offer.is_premium,
-      rating: offer.rating,
-      type: offer.type,
-      bedrooms: offer.bedrooms,
-      maxAdults: offer.max_adults,
-      price: offer.price,
-      goods: offer.goods,
-      host: {
-        id: offer.host.id,
-        name: offer.host.name,
-        isPro: offer.host.is_pro,
-        avatarUrl: offer.host.avatar_url,
-      },
-      description: offer.description,
-      location: {
-        latitude: offer.location.latitude,
-        longitude: offer.location.longitude,
-        zoom: offer.location.zoom,
-      },
-    };
-  });
-
-  return preparedData;
-};
-
-const getOffersByCity = (city, allOffers) =>
-  allOffers.filter((offer) => offer.city.name === city.title);
-
-const getCities = (allOffers) => {
-  const cities = Array.from(new Set(allOffers.map((offer) => offer.city.name)))
-    .map((name) => {
-      let item = allOffers.find((o) => o.city.name === name);
-      return {
-        title: name,
-        coordinates: [item.city.location.latitude, item.city.location.longitude]
-      };
-    });
-
-  return cities;
-};
-
 const Operation = {
   loadAllOffers: () => (dispatch, _, api) => {
     return api.get(`/hotels`)
-        .then(({data}) => {
-          const preparedData = prepareData(data);
-          dispatch(ActionCreator.loadAllOffers(preparedData));
+    .then(({data}) => {
+      const preparedData = prepareData(data);
+      dispatch(ActionCreator.loadAllOffers(preparedData));
 
-          let initialCity = preparedData[0].city;
-          let currentCity = {
-            title: initialCity.name,
-            coordinates: [initialCity.location.latitude, initialCity.location.longitude]
-          };
-          dispatch(ActionCreator.changeCity(currentCity));
+      let initialCity = preparedData[0].city;
+      let currentCity = {
+        title: initialCity.name,
+        coordinates: [initialCity.location.latitude, initialCity.location.longitude]
+      };
+      dispatch(ActionCreator.changeCity(currentCity));
 
-          dispatch(ActionCreator.getCitiesList(preparedData));
-          dispatch(ActionCreator.getOffersList(currentCity, preparedData));
-          dispatch(ActionCreator.changeLoadingState(false));
-        });
+      dispatch(ActionCreator.getCitiesList(preparedData));
+      dispatch(ActionCreator.getOffersList(currentCity, preparedData));
+      dispatch(ActionCreator.changeLoadingState(false));
+    });
   },
 };
 
@@ -145,11 +57,5 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {
-  ActionCreator,
-  ActionType,
-  reducer,
-  Operation,
-  prepareData,
-};
+export {reducer, Operation};
 

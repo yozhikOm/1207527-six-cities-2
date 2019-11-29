@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator as ActionCreatorData} from '../../reducer/data/data.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
-import {getAllOffers, getIsOffersLoading, getCurrentCity, getOffers, getCities} from '../../reducer/data/selectors';
+import {getAllOffers, getIsOffersLoading, getCurrentCity, getOffers, getCitiesState} from '../../reducer/data/selectors';
 import {getIsAuthorizationRequired, getUserInfo} from '../../reducer/user/selectors';
 import {SignIn} from '../sign-in/sign-in.jsx';
 import {PageScreen} from '../page-screen/page-screen.jsx';
@@ -24,7 +24,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   isOffersLoading: getIsOffersLoading(state),
   currentCity: getCurrentCity(state),
   offers: getOffers(state),
-  cities: getCities(state),
+  cities: getCitiesState(state),
   isAuthorizationRequired: getIsAuthorizationRequired(state),
   userInfo: getUserInfo(state),
 });
