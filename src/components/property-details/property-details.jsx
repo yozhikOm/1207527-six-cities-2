@@ -6,7 +6,7 @@ import {Map} from '../map/map.jsx';
 import {PropertyCard} from '../property-card/property-card.jsx';
 
 const PropertyDetails = (props) => {
-  const {currentCityCoords, offer, neighboringOffers, activeItemID, setActiveItem} = props;
+  const {currentCityCoords, offer, neighboringOffers, activeItemID, setActiveItem, isAuthorizationRequired, userInfo} = props;
 
   const offersArrayForMap = neighboringOffers.map((neibOffer) => (
     {
@@ -19,7 +19,7 @@ const PropertyDetails = (props) => {
 
   return (
     <React.Fragment>
-      <Header/>
+      <Header isAuthorizationRequired={isAuthorizationRequired} userInfo={userInfo}/>
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -209,6 +209,13 @@ PropertyDetails.propTypes = {
   })),
   activeItemID: PropTypes.number,
   setActiveItem: PropTypes.func,
+  isAuthorizationRequired: PropTypes.bool,
+  userInfo: PropTypes.shape({
+    id: PropTypes.id,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    isPro: PropTypes.bool
+  }),
 };
 
 export {PropertyDetails};

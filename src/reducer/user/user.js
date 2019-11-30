@@ -1,16 +1,13 @@
+import {ActionType} from './action-type.js';
+import {ActionCreator} from './action-creator.js';
+// import NameSpace from '../name-spaces';
+// const NAME_SPACE = NameSpace.USER;
+
 const initialState = {
-  isAuthorizationRequired: false,
-};
-
-const ActionType = {
-  REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
-};
-
-const ActionCreator = {
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRE_AUTHORIZATION,
-    payload: status,
-  }),
+  isAuthorizationRequired: true,
+  email: ``,
+  password: ``,
+  userInfo: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,13 +15,49 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRE_AUTHORIZATION: return Object.assign({}, state, {
       isAuthorizationRequired: action.payload
     });
+
+    case ActionType.SIGN_IN: return Object.assign({}, state, {
+      email: action.payload.email,
+      password: action.payload.password,
+    });
+
+    case ActionType.SET_USER_INFO: return Object.assign({}, state, {
+      userInfo: {
+        id: action.payload.userId,
+        name: action.payload.userName,
+        avatarUrl: action.payload.userAvatarUrl,
+        isPro: action.payload.isUserPro
+      }
+    });
   }
 
   return state;
 };
 
-export {
-  ActionCreator,
-  ActionType,
-  reducer,
+const Operation = {
+  authenticateUser: (email, password) => (dispatch, _, api) => {
+    dispatch(ActionCreator.signIn(email, password));
+
+    return api.post(`/login`, {email, password})
+        .then(({data}) => {
+          dispatch(ActionCreator.setUserInfo(data));
+          dispatch(ActionCreator.requireAuthorization(false));
+        });
+  },
+
+//   authorization: (email, password) => (dispatch, _, api) => {
+//     return api.post(`/login`, {
+//       email,
+//       password
+//     })
+//       .then((response) => {
+//         if (response.status === 200) {
+//           dispatch(ActionCreator.saveUserData(response.data));
+//           dispatch(ActionCreator.authorization(true));
+//         }
+//       });
+//   }
+// };
 };
+
+export {reducer, Operation};

@@ -19,11 +19,13 @@ class MainPage extends PureComponent {
       cities,
       offers,
       onCityClick,
+      isAuthorizationRequired,
+      userInfo
     } = this.props;
 
     return (
       <div className="page page--gray page--main">
-        <Header />
+        <Header isAuthorizationRequired={isAuthorizationRequired} userInfo={userInfo} />
         <main className="page__main page__main--index">
           <Menu cities={cities} onCityClick={onCityClick}/>
 
@@ -47,26 +49,15 @@ MainPage.propTypes = {
         coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
       })
   ),
-  offers: PropTypes.array, /* PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        location: PropTypes.shape({
-          city: PropTypes.string.isRequired,
-          coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
-        }).isRequired,
-        title: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
-        photos: PropTypes.arrayOf(
-            PropTypes.shape({
-              src: PropTypes.string,
-            })
-        ),
-        host: PropTypes.string.isRequired,
-      })
-  ),*/
+  offers: PropTypes.array,
   onCityClick: PropTypes.func.isRequired,
+  isAuthorizationRequired: PropTypes.bool,
+  userInfo: PropTypes.shape({
+    id: PropTypes.id,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    isPro: PropTypes.bool
+  }),
 };
 
 export {MainPage};
