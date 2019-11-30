@@ -14,7 +14,7 @@ describe(`Enzyme тест наведения мыши на карточку жи
 
     const wrapper = shallow(
         <PropertyCard
-          offerInfo={mockProperty}
+          offer={mockProperty}
           cardMouseEnterHandler={mockHandler}
           activeItemID={-1}
         />

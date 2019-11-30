@@ -18,9 +18,9 @@ exports[`Properties компонент рендерится корректно 1
       <b
         className="places__found"
       >
-        7
+        3
          places to stay in 
-        Amsterdam
+        Cologne
       </b>
       <Sorting />
       <div
@@ -29,279 +29,170 @@ exports[`Properties компонент рендерится корректно 1
         <React.Fragment>
           <PropertyCard
             cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
+            offer={
               Object {
-                "description": "In onze eigen achtertuin hebben we de oude sauna omgebouwd tot gastenverblijf met eigen badkamer en toilet. Er is geen kook mogelijkheid, maar wel een koelkast en wastafel. Wij wonen in een rustige buurt welke goed bereikbaar is met het openbaar vervoer en/of eigen vervoer. Grote steden als haarlem, amsterdam en alkmaar zijn vlakbij. Het strand is ca. 10 minuten met de auto. Houd u van rust en wilt u toch dichtbij de grote steden zijn dan is dit de ideale plek om te verblijven!",
-                "host": "Maria",
+                "bedrooms": 3,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 50.938361,
+                    "longitude": 6.959974,
+                    "zoom": 13,
+                  },
+                  "name": "Cologne",
+                },
+                "description": "I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.",
+                "goods": Array [
+                  "Baby seat",
+                  "Fridge",
+                  "Towels",
+                ],
+                "host": Object {
+                  "avatarUrl": "img/avatar-angelina.jpg",
+                  "id": 25,
+                  "isPro": true,
+                  "name": "Angelina",
+                },
                 "id": 1,
-                "isPremium": true,
-                "location": Object {
-                  "city": "Amsterdam",
-                  "coordinates": Array [
-                    52.3909553943508,
-                    4.85309666406198,
-                  ],
-                },
-                "photos": Array [
-                  Object {
-                    "src": "img/apartment-01.jpg",
-                  },
-                  Object {
-                    "src": "img/amsterdam.jpg",
-                  },
+                "images": Array [
+                  "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
                 ],
-                "price": 650,
-                "title": "Cozy house amsterdam",
-                "type": "House",
-              }
-            }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
-          />
-        </React.Fragment>
-        <React.Fragment>
-          <PropertyCard
-            cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
-              Object {
-                "description": "Sparkling clean, comfy and private room close to the city center. The place is super sweet with coffee & tea available.",
-                "host": "Giovanni",
-                "id": 22,
+                "isFavorite": false,
                 "isPremium": false,
                 "location": Object {
-                  "city": "Amsterdam",
-                  "coordinates": Array [
-                    52.369553943508,
-                    4.85309666406198,
-                  ],
+                  "latitude": 50.957361,
+                  "longitude": 6.9509739999999995,
+                  "zoom": 16,
                 },
-                "photos": Array [
-                  Object {
-                    "src": "img/apartment-02.jpg",
-                  },
-                  Object {
-                    "src": "img/room-2.jpg",
-                  },
-                  Object {
-                    "src": "img/amsterdam.jpg",
-                  },
-                ],
-                "price": 45,
-                "title": "Cosy room in spacious apartment",
-                "type": "Room",
+                "maxAdults": 5,
+                "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                "price": 459,
+                "rating": 3.6,
+                "title": "Penthouse, 4-5 rooms + 5 balconies",
+                "type": "apartment",
               }
             }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
           />
         </React.Fragment>
         <React.Fragment>
           <PropertyCard
             cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
+            offer={
               Object {
-                "description": "From this penthouse room guests have a breathtaking view of the city. When you wake up Amsterdam is happening all around you. We guarantee you maximum sleeping comfort with our quality Tempur mattresses.",
-                "host": "Tio Leo",
+                "bedrooms": 5,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 50.846557,
+                    "longitude": 4.351697,
+                    "zoom": 13,
+                  },
+                  "name": "Brussels",
+                },
+                "description": "Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.",
+                "goods": Array [
+                  "Laptop friendly workspace",
+                ],
+                "host": Object {
+                  "avatarUrl": "img/avatar-angelina.jpg",
+                  "id": 25,
+                  "isPro": true,
+                  "name": "Angelina",
+                },
+                "id": 2,
+                "images": Array [
+                  "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/16.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/10.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/13.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/6.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/3.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/18.jpg",
+                ],
+                "isFavorite": false,
+                "isPremium": false,
+                "location": Object {
+                  "latitude": 50.869557,
+                  "longitude": 4.332697,
+                  "zoom": 16,
+                },
+                "maxAdults": 10,
+                "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/13.jpg",
+                "price": 474,
+                "rating": 2.5,
+                "title": "Waterfront with extraordinary view",
+                "type": "house",
+              }
+            }
+          />
+        </React.Fragment>
+        <React.Fragment>
+          <PropertyCard
+            cardMouseEnterHandler={[MockFunction]}
+            offer={
+              Object {
+                "bedrooms": 3,
+                "city": Object {
+                  "location": Object {
+                    "latitude": 51.225402,
+                    "longitude": 6.776314,
+                    "zoom": 13,
+                  },
+                  "name": "Dusseldorf",
+                },
+                "description": "Design interior in most sympathetic area! Complitely renovated, well-equipped, cosy studio in idyllic, over 100 years old wooden house. Calm street, fast connection to center and airport.",
+                "goods": Array [
+                  "Towels",
+                  "Laptop friendly workspace",
+                  "Baby seat",
+                  "Washer",
+                  "Air conditioning",
+                  "Breakfast",
+                ],
+                "host": Object {
+                  "avatarUrl": "img/avatar-angelina.jpg",
+                  "id": 25,
+                  "isPro": true,
+                  "name": "Angelina",
+                },
                 "id": 3,
-                "isPremium": true,
-                "location": Object {
-                  "city": "Amsterdam",
-                  "coordinates": Array [
-                    52.3909553943508,
-                    4.929309666406198,
-                  ],
-                },
-                "photos": Array [
-                  Object {
-                    "src": "img/room.jpg",
-                  },
-                  Object {
-                    "src": "img/amsterdam.jpg",
-                  },
+                "images": Array [
+                  "https://es31-server.appspot.com/six-cities/static/hotel/10.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/1.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/13.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/8.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/20.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/12.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/5.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/7.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/9.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/17.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/2.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/11.jpg",
+                  "https://es31-server.appspot.com/six-cities/static/hotel/15.jpg",
                 ],
-                "price": 128,
-                "title": "Elegant private room in stylish house",
-                "type": "Room",
-              }
-            }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
-          />
-        </React.Fragment>
-        <React.Fragment>
-          <PropertyCard
-            cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
-              Object {
-                "description": "This compact guesthouse/design studio is very suitable for both working and relaxing. Plenty of working space, kitchenette with microwave and fridge, a cosy fire place (gas) and upstairs a large lounge bed. The 'in between' sized lounge bed (120 cm wide) is very comfortable for one person, but it could also sleep a couple. The stairs in this guesthouse studio are pretty steep, but safe. Comfortable floor heating downstairs.",
-                "host": "Rebekka",
-                "id": 4,
-                "isPremium": true,
-                "location": Object {
-                  "city": "Amsterdam",
-                  "coordinates": Array [
-                    52.3809553943508,
-                    4.939309666406198,
-                  ],
-                },
-                "photos": Array [
-                  Object {
-                    "src": "img/apartment-03.jpg",
-                  },
-                  Object {
-                    "src": "img/amsterdam.jpg",
-                  },
-                ],
-                "price": 1520,
-                "title": "Huge Tinyhouse in the green, between sea and city",
-                "type": "House",
-              }
-            }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
-          />
-        </React.Fragment>
-        <React.Fragment>
-          <PropertyCard
-            cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
-              Object {
-                "description": "Das großzügige helle Zimmer, ruhig gelegen in einer schönen großen Altbauwohnung, lädt ein zum Ausruhen, denn ganz in der Nähe gibt es fast unerschöpfliche Möglichkeiten die Berliner Geschichte und neueste Entwicklungen in Kunst und Kultur zu erleben. Prenzlauer Berg liegt sehr zentral( 10 Minuten zum Alexanderplatz)und ist reich an Cafes und Restaurants, es gibt auch viele Einkaufsmöglichkeiten und eine gute Anbindung ans öffentliche Verkehrsnetz.",
-                "host": "Rebekka",
-                "id": 5,
+                "isFavorite": false,
                 "isPremium": false,
                 "location": Object {
-                  "city": "Berlin",
-                  "coordinates": Array [
-                    52.520008,
-                    13.404954,
-                  ],
+                  "latitude": 51.216402,
+                  "longitude": 6.758314,
+                  "zoom": 16,
                 },
-                "photos": Array [
-                  Object {
-                    "src": "img/berlin-room1.jpg",
-                  },
-                  Object {
-                    "src": "img/amsterdam.jpg",
-                  },
-                ],
-                "price": 26,
-                "title": "Beautiful & cozy room in Prenzlauer Berg",
-                "type": "Room",
+                "maxAdults": 5,
+                "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/16.jpg",
+                "price": 474,
+                "rating": 2.4,
+                "title": "Waterfront with extraordinary view",
+                "type": "hotel",
               }
             }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
-          />
-        </React.Fragment>
-        <React.Fragment>
-          <PropertyCard
-            cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
-              Object {
-                "description": "Super Close to Central City West berlin <br/>Close to Super market 24 H</br>Close to Bus , Metro</br>Close to Shopping Area</br>Close to Cafe Bar and Restaurants",
-                "host": "Philip",
-                "id": 6,
-                "isPremium": false,
-                "location": Object {
-                  "city": "Berlin",
-                  "coordinates": Array [
-                    52.524438,
-                    13.4074166,
-                  ],
-                },
-                "photos": Array [
-                  Object {
-                    "src": "img/berlin-apartment-1.jpg",
-                  },
-                  Object {
-                    "src": "img/berlin-apartment-2.jpg",
-                  },
-                ],
-                "price": 54,
-                "title": "Apartment Close West Berlin",
-                "type": "Apartment",
-              }
-            }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
-          />
-        </React.Fragment>
-        <React.Fragment>
-          <PropertyCard
-            cardMouseEnterHandler={[MockFunction]}
-            description=""
-            host=""
-            id={1}
-            offerInfo={
-              Object {
-                "description": "This is an updated ultra modern unit. All the rooms are equipped with wifi and 32 inc smart t.v. This unit has a Jacuzzi bath tub to relax and zen out in There is a nice front porch garden to have a glass of wine or your morning coffee. We are one block away from palisade ave to catch the express bus to time sq. </br>Please note all guest are to be on the ticket prior to check-in. This is a shared space so no guest are allowed to have Visitors over.",
-                "host": "Chris",
-                "id": 7,
-                "isPremium": false,
-                "location": Object {
-                  "city": "New York",
-                  "coordinates": Array [
-                    40.752239,
-                    -73.9766287,
-                  ],
-                },
-                "photos": Array [
-                  Object {
-                    "src": "img/new-york-hotel-1.jpg",
-                  },
-                  Object {
-                    "src": "img/new-york-hotel-2.jpg",
-                  },
-                  Object {
-                    "src": "img/new-york-hotel-3.jpg",
-                  },
-                  Object {
-                    "src": "img/new-york-hotel-4.jpg",
-                  },
-                  Object {
-                    "src": "img/new-york-hotel-5.jpg",
-                  },
-                ],
-                "price": 34,
-                "title": "Jersey City Serviced Apartment 80",
-                "type": "Hotel",
-              }
-            }
-            photos={Array []}
-            price={88}
-            title="Some title"
-            type="Room"
           />
         </React.Fragment>
       </div>
@@ -316,60 +207,32 @@ exports[`Properties компонент рендерится корректно 1
           activeItemID={-1}
           currentCityCoords={
             Array [
-              52.38333,
-              4.9,
+              50.938361,
+              6.959974,
             ]
           }
           offersArray={
             Array [
               Object {
                 "coordinates": Array [
-                  52.3909553943508,
-                  4.85309666406198,
+                  50.957361,
+                  6.9509739999999995,
                 ],
                 "id": 1,
               },
               Object {
                 "coordinates": Array [
-                  52.369553943508,
-                  4.85309666406198,
+                  50.869557,
+                  4.332697,
                 ],
-                "id": 22,
+                "id": 2,
               },
               Object {
                 "coordinates": Array [
-                  52.3909553943508,
-                  4.929309666406198,
+                  51.216402,
+                  6.758314,
                 ],
                 "id": 3,
-              },
-              Object {
-                "coordinates": Array [
-                  52.3809553943508,
-                  4.939309666406198,
-                ],
-                "id": 4,
-              },
-              Object {
-                "coordinates": Array [
-                  52.520008,
-                  13.404954,
-                ],
-                "id": 5,
-              },
-              Object {
-                "coordinates": Array [
-                  52.524438,
-                  13.4074166,
-                ],
-                "id": 6,
-              },
-              Object {
-                "coordinates": Array [
-                  40.752239,
-                  -73.9766287,
-                ],
-                "id": 7,
               },
             ]
           }

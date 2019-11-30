@@ -1,17 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from '../../reducer/data/action-creator.js';
+import {getAllOffers, getIsOffersLoading, getCurrentCity, getOffers, getCitiesState} from '../../reducer/data/selectors';
+import {getIsAuthorizationRequired} from '../../reducer/user/selectors';
 import {PageScreen} from '../page-screen/page-screen.jsx';
 
 const App = (props) => {
+  if (props.isOffersLoading) {
+    return null;
+  }
   return <PageScreen {...props}/>;
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  allOffers: state.allCitiesOffers,
-  currentCity: state.currentCity,
-  offers: state.offers,
-  cities: state.cities
+  allOffers: getAllOffers(state),
+  isOffersLoading: getIsOffersLoading(state),
+  currentCity: getCurrentCity(state),
+  offers: getOffers(state),
+  cities: getCitiesState(state),
+  isAuthorizationRequired: getIsAuthorizationRequired(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,8 +27,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeCity(currentCity));
     dispatch(ActionCreator.getOffersList(currentCity, allOffers));
   }
-
 });
+
+App.propTypes = {
+  isOffersLoading: PropTypes.bool,
+};
 
 export {App};
 

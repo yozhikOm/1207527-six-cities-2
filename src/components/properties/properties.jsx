@@ -10,7 +10,7 @@ const Properties = (props) => {
   const offersArrayForMap = offers.map((offer) => (
     {
       id: offer.id,
-      coordinates: offer.location.coordinates
+      coordinates: [offer.location.latitude, offer.location.longitude],
     }));
 
   return (
@@ -23,7 +23,7 @@ const Properties = (props) => {
           <div className="cities__places-list places__list tabs__content">
             {offers.map((item) => (
               <React.Fragment key={item.id}>
-                <PropertyCard offerInfo={item} cardMouseEnterHandler={setActiveItem} />
+                <PropertyCard offer={item} cardMouseEnterHandler={setActiveItem} />
               </React.Fragment>
             ))}
           </div>
@@ -42,25 +42,7 @@ const Properties = (props) => {
 };
 
 Properties.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        location: PropTypes.shape({
-          city: PropTypes.string.isRequired,
-          coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
-        }).isRequired,
-        title: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
-        photos: PropTypes.arrayOf(
-            PropTypes.shape({
-              src: PropTypes.string,
-            })
-        ),
-        host: PropTypes.string.isRequired,
-      }).isRequired
-  ),
+  offers: PropTypes.array,
   currentCity: PropTypes.shape({
     title: PropTypes.string.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,

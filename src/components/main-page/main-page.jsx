@@ -4,6 +4,7 @@ import {Header} from '../header/header.jsx';
 import {Menu} from '../menu/menu.jsx';
 import {Properties} from '../properties/properties.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import {NoProperties} from '../no-properties/no-properties.jsx';
 
 const PropertiesWrapped = withActiveItem(Properties);
 
@@ -26,8 +27,9 @@ class MainPage extends PureComponent {
         <main className="page__main page__main--index">
           <Menu cities={cities} onCityClick={onCityClick}/>
 
-          <PropertiesWrapped offers={offers} currentCity={currentCity}/>
-
+          {offers.length === 0 ? <NoProperties {...currentCity}/> :
+            <PropertiesWrapped offers={offers} currentCity={currentCity}/>
+          }
         </main>
       </div>
     );
@@ -45,7 +47,7 @@ MainPage.propTypes = {
         coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
       })
   ),
-  offers: PropTypes.arrayOf(
+  offers: PropTypes.array, /* PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         location: PropTypes.shape({
@@ -63,7 +65,7 @@ MainPage.propTypes = {
         ),
         host: PropTypes.string.isRequired,
       })
-  ),
+  ),*/
   onCityClick: PropTypes.func.isRequired,
 };
 

@@ -2,11 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {MainPage} from '../main-page/main-page.jsx';
 import {PropertyDetails} from '../property-details/property-details.jsx';
+import {SignIn} from '../sign-in/sign-in.jsx';
+
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+
+const PropertyDetailsWrapped = withActiveItem(PropertyDetails);
 
 const PageScreen = (props) => {
-  const {allOffers, currentCity, cities, offers, onCityClick} = props;
+  const {allOffers, currentCity, cities, offers, onCityClick, isAuthorizationRequired} = props;
   switch (location.pathname) {
     case `/`:
+      if (isAuthorizationRequired) {
+        return <SignIn />;
+      }
       return <MainPage
         currentCity={currentCity}
         cities={cities}
@@ -15,19 +23,21 @@ const PageScreen = (props) => {
           onCityClick(city, allOffers);
         }}
       />;
+    case `/login`:
+      return <SignIn />;
     case `/offer`:
-      const id = 6;
+      const id = 1;
 
       // !!! не понимаю, как переключить текущий город на новый
       //
       const currOffer = allOffers.find((item) => item.id === id);
-      let cityName = currOffer.location.city;
+      let cityName = currOffer.city.name;
       let currCity = cities.find((c) => c.title === cityName);
-      const currCityOffers = allOffers.filter((it) => it.location.city === currCity.title);
+      const currCityOffers = allOffers.filter((it) => it.city.name === currCity.title);
       // ///////////////////////////////////////////////////////
 
       const neighboringOffers = getNeighboringOffers(currOffer, currCityOffers);
-      return <PropertyDetails
+      return <PropertyDetailsWrapped
         currentCityCoords={currentCity.coordinates}
         offer={currOffer}
         neighboringOffers={neighboringOffers}
@@ -44,50 +54,15 @@ function getNeighboringOffers(offer, cityOffers) {
 }
 
 PageScreen.propTypes = {
-  allOffers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        location: PropTypes.shape({
-          city: PropTypes.string.isRequired,
-          coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
-        }).isRequired,
-        title: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
-        photos: PropTypes.arrayOf(
-            PropTypes.shape({
-              src: PropTypes.string,
-            })
-        ),
-        host: PropTypes.string.isRequired,
-      }).isRequired
-  ),
+  allOffers: PropTypes.array,
   currentCity: PropTypes.shape({
     title: PropTypes.string.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
   }),
   cities: PropTypes.array,
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        location: PropTypes.shape({
-          city: PropTypes.string.isRequired,
-          coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
-        }).isRequired,
-        title: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
-        photos: PropTypes.arrayOf(
-            PropTypes.shape({
-              src: PropTypes.string,
-            })
-        ),
-        host: PropTypes.string.isRequired,
-      }).isRequired
-  ),
+  offers: PropTypes.array,
   onCityClick: PropTypes.func,
+  isAuthorizationRequired: PropTypes.bool,
 };
 
 export {PageScreen};
