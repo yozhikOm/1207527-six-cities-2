@@ -1,7 +1,7 @@
 import {ActionType} from './action-type.js';
 import {ActionCreator} from './action-creator.js';
-import NameSpace from '../name-spaces';
-const NAME_SPACE = NameSpace.USER;
+// import NameSpace from '../name-spaces';
+// const NAME_SPACE = NameSpace.USER;
 
 const initialState = {
   isAuthorizationRequired: true,
@@ -35,15 +35,29 @@ const reducer = (state = initialState, action) => {
 };
 
 const Operation = {
-  authenticateUser: (email, password) => (dispatch, state, api) => {
+  authenticateUser: (email, password) => (dispatch, _, api) => {
     dispatch(ActionCreator.signIn(email, password));
 
-    return api.post(`/login`, {email: state()[NAME_SPACE].email, password: state()[NAME_SPACE].password})
+    return api.post(`/login`, {email, password})
         .then(({data}) => {
           dispatch(ActionCreator.setUserInfo(data));
           dispatch(ActionCreator.requireAuthorization(false));
         });
   },
+
+//   authorization: (email, password) => (dispatch, _, api) => {
+//     return api.post(`/login`, {
+//       email,
+//       password
+//     })
+//       .then((response) => {
+//         if (response.status === 200) {
+//           dispatch(ActionCreator.saveUserData(response.data));
+//           dispatch(ActionCreator.authorization(true));
+//         }
+//       });
+//   }
+// };
 };
 
 export {reducer, Operation};
