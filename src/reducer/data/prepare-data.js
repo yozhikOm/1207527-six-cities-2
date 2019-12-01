@@ -1,5 +1,6 @@
 
 export const prepareOffers = (allOffers) => {
+
   const preparedData = allOffers.map((offer) => {
     return {
       id: offer.id,
@@ -37,5 +38,24 @@ export const prepareOffers = (allOffers) => {
     };
   });
 
+  return preparedData;
+};
+
+export const prepareReviews = (reviews) => {
+
+  const preparedData = reviews.map((review) => {
+    return {
+      id: review.id,
+      user: {
+        id: review.user.id,
+        isPro: review.user.is_pro,
+        name: review.user.name,
+        avatarUrl: review.user.avatar_url
+      },
+      rating: review.rating,
+      comment: review.comment,
+      date: review.date,
+    };
+  });
   return preparedData;
 };

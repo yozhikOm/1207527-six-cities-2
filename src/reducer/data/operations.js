@@ -1,5 +1,5 @@
 import * as ActionCreator from './action-creator.js';
-import {prepareOffers} from './prepare-data.js';
+import {prepareOffers, prepareReviews} from './prepare-data.js';
 
 export const loadAllOffers = () => (dispatch, _, api) => {
   return api.get(`/hotels`)
@@ -22,8 +22,8 @@ export const loadAllOffers = () => (dispatch, _, api) => {
 export const loadOfferReviews = (id) => (dispatch, _, api) => {
   return api.get(`/comments/` + id)
       .then(({data}) => {
-        // const preparedData = prepareData(data);
-        dispatch(ActionCreator.loadOfferReviews(data));
+        const preparedData = prepareReviews(data);
+        dispatch(ActionCreator.loadOfferReviews(preparedData));
       });
 };
 

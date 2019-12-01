@@ -8,9 +8,17 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 const PropertyDetailsWrapped = withActiveItem(PropertyDetails);
 
 const PageScreen = (props) => {
-  const {allOffers, currentCity, cities, offers, onCityClick, isAuthorizationRequired, userInfo} = props;
+  const {
+    allOffers, currentCity, cities, onCityClick,
+    offers, reviews, loadOfferReviews,
+    isAuthorizationRequired, userInfo,
+  } = props;
+
   switch (location.pathname) {
     case `/`:
+      if (isAuthorizationRequired) {
+        // return <SignIn isAuthorizationRequired={isAuthorizationRequired} authenticateUser={authenticateUser}/>;
+      }
       return <MainPage
         currentCity={currentCity}
         cities={cities}
@@ -38,9 +46,11 @@ const PageScreen = (props) => {
       return <PropertyDetailsWrapped
         currentCityCoords={currentCity.coordinates}
         offer={currOffer}
+        reviews={reviews}
         neighboringOffers={neighboringOffers}
         isAuthorizationRequired={isAuthorizationRequired}
         userInfo={userInfo}
+        loadOfferReviews={loadOfferReviews}
       />;
   }
   return null;
@@ -69,6 +79,8 @@ PageScreen.propTypes = {
     avatarUrl: PropTypes.string,
     isPro: PropTypes.bool
   }),
+  loadOfferReviews: PropTypes.func,
+  reviews: PropTypes.array,
 };
 
 export {PageScreen};
