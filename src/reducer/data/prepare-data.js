@@ -17,7 +17,7 @@ export const prepareOffers = (allOffers) => {
       title: offer.title,
       isFavorite: offer.is_favorite,
       isPremium: offer.is_premium,
-      rating: offer.rating,
+      rating: prepareRating(offer.rating),
       type: offer.type,
       bedrooms: offer.bedrooms,
       maxAdults: offer.max_adults,
@@ -52,10 +52,25 @@ export const prepareReviews = (reviews) => {
         name: review.user.name,
         avatarUrl: review.user.avatar_url
       },
-      rating: review.rating,
+      rating: prepareRating(review.rating),
       comment: review.comment,
-      date: review.date,
+      date: prepareDate(review.date),
     };
   });
   return preparedData;
+};
+
+const prepareRating = (rating) => {
+  return rating / 5 * 100;
+};
+
+const prepareDate = (dateStr) => {
+  const date = new Date(dateStr);
+  const month = capitalizeFirstLetter(date.toLocaleString(`default`, {month: `long`}));
+  const year = date.getFullYear();
+  return month + ` ` + year;
+};
+
+const capitalizeFirstLetter = (word) => {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 };

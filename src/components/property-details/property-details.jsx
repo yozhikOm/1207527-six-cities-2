@@ -73,10 +73,10 @@ class PropertyDetails extends Component {
                   </div>
                   <div className="property__rating rating">
                     <div className="property__stars rating__stars">
-                      <span style={{width: `96%`}}></span>
+                      <span style={{width: `${offer.rating}%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
-                    <span className="property__rating-value rating__value">{offer.rating}</span>
+                    <span className="property__rating-value rating__value">{offer.rating * 5 / 100}</span>
                   </div>
                   <ul className="property__features">
                     <li className="property__feature property__feature--entire">

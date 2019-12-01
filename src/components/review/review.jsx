@@ -17,7 +17,7 @@ const Review = (props) => {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: `94%`}}></span>
+            <span style={{width: `${review.rating}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
