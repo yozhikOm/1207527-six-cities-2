@@ -78,6 +78,7 @@ PageScreen.propTypes = {
   offers: PropTypes.array,
   onCityClick: PropTypes.func,
   isAuthorizationRequired: PropTypes.bool,
+  authenticateUser: PropTypes.func,
   userInfo: PropTypes.shape({
     id: PropTypes.id,
     name: PropTypes.string,
