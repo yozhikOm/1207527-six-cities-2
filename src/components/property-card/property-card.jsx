@@ -48,7 +48,7 @@ const PropertyCard = ({offer, cardMouseEnterHandler}) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `93%`}}></span>
+            <span style={{width: `${offer.rating}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

@@ -63,7 +63,7 @@ exports[`PropertyCard компонент рендерится корректно
         <span
           style={
             Object {
-              "width": "93%",
+              "width": "3.6%",
             }
           }
         />

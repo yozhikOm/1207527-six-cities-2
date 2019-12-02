@@ -1,141 +1,168 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+// import {connect} from 'react-redux';
+// import {ActionCreator as ActionCreatorData} from '../../reducer/data/action-creator';
+// import {Operation as DataOperation} from '../../reducer/data/data.js';
+
 import {Header} from '../header/header.jsx';
 import {ReviewsList} from '../reviews-list/reviews-list.jsx';
 import {Map} from '../map/map.jsx';
 import {PropertyCard} from '../property-card/property-card.jsx';
 
-const PropertyDetails = (props) => {
-  const {currentCityCoords, offer, neighboringOffers, activeItemID, setActiveItem, isAuthorizationRequired, userInfo} = props;
+class PropertyDetails extends Component {
 
-  const offersArrayForMap = neighboringOffers.map((neibOffer) => (
-    {
-      id: neibOffer.id,
-      coordinates: [neibOffer.location.latitude, neibOffer.location.longitude],
-    })).concat([{
-    id: offer.id,
-    coordinates: [offer.location.latitude, offer.location.longitude],
-  }]);
+  componentDidMount() {
+    const {offer, loadOfferReviews} = this.props;
+    loadOfferReviews(offer.id);
+  }
 
-  return (
-    <React.Fragment>
-      <Header isAuthorizationRequired={isAuthorizationRequired} userInfo={userInfo}/>
-      <main className="page__main page__main--property">
-        <section className="property">
-          <div className="property__gallery-container container">
-            <div className="property__gallery">
-              {offer.images.map((it, i) => {
-                return (
-                  <div key={`photo-${i}`} className="property__image-wrapper">
-                    <img className="property__image" src={it} alt="Photo studio" />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="property__container container">
-            <div className="property__wrapper">
-              {offer.isPremium ?
-                <div className="place-card__mark">
-                  <span>Premium</span>
-                </div> :
-                <React.Fragment/>
-              }
-              <div className="property__name-wrapper">
-                <h1 className="property__name">
-                  {offer.title}
-                </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
-              </div>
-              <div className="property__rating rating">
-                <div className="property__stars rating__stars">
-                  <span style={{width: `96%`}}></span>
-                  <span className="visually-hidden">Rating</span>
-                </div>
-                <span className="property__rating-value rating__value">{offer.rating}</span>
-              </div>
-              <ul className="property__features">
-                <li className="property__feature property__feature--entire">
-                  Entire place
-                </li>
-                <li className="property__feature property__feature--bedrooms">
-                  {offer.bedrooms} Bedrooms
-                </li>
-                <li className="property__feature property__feature--adults">
-                  Max {offer.maxAdults} adults
-                </li>
-              </ul>
-              <div className="property__price">
-                <b className="property__price-value">&euro;{offer.price}</b>
-                <span className="property__price-text">&nbsp;night</span>
-              </div>
-              <div className="property__inside">
-                <h2 className="property__inside-title">What&apos;s inside</h2>
-                <ul className="property__inside-list">
-                  {offer.goods.map((it, i) => {
+  render() {
+    const {currentCityCoords, offer, neighboringOffers,
+      activeItemID, setActiveItem,
+      reviews, postReview,
+      isAuthorizationRequired, userInfo
+    } = this.props;
+
+    if (!reviews) {
+      return (
+        <div>Loading...</div>
+      );
+    } else {
+      const offersArrayForMap = neighboringOffers.map((neibOffer) => (
+        {
+          id: neibOffer.id,
+          coordinates: [neibOffer.location.latitude, neibOffer.location.longitude],
+        })).concat([{
+        id: offer.id,
+        coordinates: [offer.location.latitude, offer.location.longitude],
+      }]);
+
+      return (
+        <React.Fragment>
+          <Header isAuthorizationRequired={isAuthorizationRequired} userInfo={userInfo}/>
+          <main className="page__main page__main--property">
+            <section className="property">
+              <div className="property__gallery-container container">
+                <div className="property__gallery">
+                  {offer.images.map((it, i) => {
                     return (
-                      <li key={`goods-${i}`} className="property__inside-item">
-                        {it}
-                      </li>
+                      <div key={`photo-${i}`} className="property__image-wrapper">
+                        <img className="property__image" src={it} alt="Photo studio" />
+                      </div>
                     );
                   })}
-                </ul>
+                </div>
               </div>
-              <div className="property__host">
-                <h2 className="property__host-title">Meet the host</h2>
-                <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74" alt="Host avatar" />
-                  </div>
-                  <span className="property__user-name">
-                    {offer.host.name}
-                  </span>
-                  {offer.host.isPro ?
-                    <span className="property__user-status">
-                      Pro
-                    </span> :
+              <div className="property__container container">
+                <div className="property__wrapper">
+                  {offer.isPremium ?
+                    <div className="place-card__mark">
+                      <span>Premium</span>
+                    </div> :
                     <React.Fragment/>
                   }
+                  <div className="property__name-wrapper">
+                    <h1 className="property__name">
+                      {offer.title}
+                    </h1>
+                    <button className="property__bookmark-button button" type="button">
+                      <svg className="property__bookmark-icon" width="31" height="33">
+                        <use xlinkHref="#icon-bookmark"></use>
+                      </svg>
+                      <span className="visually-hidden">To bookmarks</span>
+                    </button>
+                  </div>
+                  <div className="property__rating rating">
+                    <div className="property__stars rating__stars">
+                      <span style={{width: `${offer.rating}%`}}></span>
+                      <span className="visually-hidden">Rating</span>
+                    </div>
+                    <span className="property__rating-value rating__value">{offer.rating * 5 / 100}</span>
+                  </div>
+                  <ul className="property__features">
+                    <li className="property__feature property__feature--entire">
+                  Entire place
+                    </li>
+                    <li className="property__feature property__feature--bedrooms">
+                      {offer.bedrooms} Bedrooms
+                    </li>
+                    <li className="property__feature property__feature--adults">
+                  Max {offer.maxAdults} adults
+                    </li>
+                  </ul>
+                  <div className="property__price">
+                    <b className="property__price-value">&euro;{offer.price}</b>
+                    <span className="property__price-text">&nbsp;night</span>
+                  </div>
+                  <div className="property__inside">
+                    <h2 className="property__inside-title">What&apos;s inside</h2>
+                    <ul className="property__inside-list">
+                      {offer.goods.map((it, i) => {
+                        return (
+                          <li key={`goods-${i}`} className="property__inside-item">
+                            {it}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                  <div className="property__host">
+                    <h2 className="property__host-title">Meet the host</h2>
+                    <div className="property__host-user user">
+                      <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
+                        <img className="property__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74" alt="Host avatar" />
+                      </div>
+                      <span className="property__user-name">
+                        {offer.host.name}
+                      </span>
+                      {offer.host.isPro ?
+                        <span className="property__user-status">
+                      Pro
+                        </span> :
+                        <React.Fragment/>
+                      }
 
-                </div>
-                <div className="property__description">
-                  <p className="property__text">
-                    {offer.description}
-                  </p>
+                    </div>
+                    <div className="property__description">
+                      <p className="property__text">
+                        {offer.description}
+                      </p>
+                    </div>
+                  </div>
+                  <ReviewsList
+                    isAuthorizationRequired={isAuthorizationRequired}
+                    offerId={offer.id}
+                    reviews={reviews}
+                    postReview={postReview}
+                  />
                 </div>
               </div>
-              <ReviewsList offerId={offer.id} />
+              <section className="property__map map">
+                <Map
+                  currentCityCoords={currentCityCoords}
+                  offersArray={offersArrayForMap}
+                  activeItemID={activeItemID === -1 ? offer.id : activeItemID}
+                />
+              </section>
+            </section>
+            <div className="container">
+              <section className="near-places places">
+                <h2 className="near-places__title">Other places in the neighbourhood</h2>
+                <div className="near-places__list places__list">
+                  {neighboringOffers.map((item) => (
+                    <React.Fragment key={item.id}>
+                      <PropertyCard offer={item} cardMouseEnterHandler={setActiveItem} />
+                    </React.Fragment>
+                  ))}
+                </div>
+              </section>
             </div>
-          </div>
-          <section className="property__map map">
-            <Map
-              currentCityCoords={currentCityCoords}
-              offersArray={offersArrayForMap}
-              activeItemID={activeItemID === -1 ? offer.id : activeItemID}
-            />
-          </section>
-        </section>
-        <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              {neighboringOffers.map((item) => (
-                <React.Fragment key={item.id}>
-                  <PropertyCard offer={item} cardMouseEnterHandler={setActiveItem} />
-                </React.Fragment>
-              ))}
-            </div>
-          </section>
-        </div>
-      </main>
-    </React.Fragment>
-  );
-};
+          </main>
+        </React.Fragment>
+      );
+    }
+  }
+}
 
 PropertyDetails.propTypes = {
   currentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
@@ -216,6 +243,22 @@ PropertyDetails.propTypes = {
     avatarUrl: PropTypes.string,
     isPro: PropTypes.bool
   }),
+  loadOfferReviews: PropTypes.func,
+  reviews: PropTypes.array,
+  postReview: PropTypes.func,
 };
 
+// const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+// });
+
+// const mapDispatchToProps = (dispatch) => ({
+//   offerClickHandler: (id) => {
+//     dispatch(Operation.loadReviews(id));
+//     dispatch(ActionCreator.setActivePin(id));
+//     window.scrollTo(0, 0);
+//   },
+// });
+
 export {PropertyDetails};
+
+// export default connect(mapStateToProps, mapDispatchToProps)(PropertyDetails);

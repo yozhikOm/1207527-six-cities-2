@@ -8,21 +8,21 @@ const Review = (props) => {
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={review.userAvatar} width="54" height="54" alt="Reviews avatar" />
+          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
-          {review.author}
+          {review.user.name}
         </span>
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: `94%`}}></span>
+            <span style={{width: `${review.rating}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <p className="reviews__text">
-          {review.description}
+          {review.comment}
         </p>
         <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
       </div>
@@ -34,12 +34,16 @@ const Review = (props) => {
 Review.propTypes = {
   review: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    offerId: PropTypes.number.isRequired,
-    author: PropTypes.string.isRequired,
-    userAvatar: PropTypes.string,
-    date: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      isPro: PropTypes.bool,
+      name: PropTypes.string,
+      avatarUrl: PropTypes.string,
+    }),
     rating: PropTypes.number.isRequired,
+    comment: PropTypes.string,
+    date: PropTypes.date,
+
   }).isRequired
 };
 
