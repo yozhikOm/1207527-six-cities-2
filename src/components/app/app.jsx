@@ -45,7 +45,6 @@ const mapDispatchToProps = (dispatch) => ({
   loadAllOffers: () => dispatch(DataOperation.loadAllOffers()),
 
   authenticateUser: (email, password) => {
-    // dispatch(ActionCreatorUser.authenticateUser(email, password));
     dispatch(UserOperation.authenticateUser(email, password));
   },
   onCityClick: (currentCity, allOffers) => {
@@ -54,7 +53,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   loadOfferReviews: (id) => {
     dispatch(DataOperation.loadOfferReviews(id));
-  }
+  },
+  postReview: (offerId, rating, comment) => {
+    dispatch(DataOperation.postReview(offerId, rating, comment));
+  },
 });
 
 App.propTypes = {

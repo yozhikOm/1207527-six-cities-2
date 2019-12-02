@@ -17,8 +17,9 @@ class PropertyDetails extends Component {
   }
 
   render() {
-    const {currentCityCoords, offer, reviews, neighboringOffers,
+    const {currentCityCoords, offer, neighboringOffers,
       activeItemID, setActiveItem,
+      reviews, postReview,
       isAuthorizationRequired, userInfo
     } = this.props;
 
@@ -130,7 +131,9 @@ class PropertyDetails extends Component {
                   </div>
                   <ReviewsList
                     isAuthorizationRequired={isAuthorizationRequired}
+                    offerId={offer.id}
                     reviews={reviews}
+                    postReview={postReview}
                   />
                 </div>
               </div>
@@ -242,6 +245,7 @@ PropertyDetails.propTypes = {
   }),
   loadOfferReviews: PropTypes.func,
   reviews: PropTypes.array,
+  postReview: PropTypes.func,
 };
 
 // const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

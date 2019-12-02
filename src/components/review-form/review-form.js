@@ -1,8 +1,62 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const ReviewForm = () => {
+const ReviewForm = (props) => {
+  let commentTextArea = React.createRef();
+
+  const isTextLengthOK = (text) => {
+    let result = false;
+    if(text.length >= 50 && text.length <=300) {
+      result = true;
+    }
+    return result;
+  };
+
+  const onChangeHandler = (evt) => {
+    evt.preventDefault();
+    const form = evt.target.parent;
+    const ratingInputs = form.querySelectorAll('input');
+    const commentText = commentTextArea.current.value;
+    const button = form.querySelector('button[type="submit"]');
+
+    let rating = -1;
+    ratingInputs.forEach((it) => {
+      if(it.checked) {
+        rating = it.value;
+      }
+    });
+    if(rating !== -1 && isTextLengthOK(commentText)){
+      button.disabled = false;
+    }
+  }
+
+  const onSubmitHandler = (evt) => {
+    evt.preventDefault();
+    const form = evt.target;
+    const ratingInputs = form.querySelectorAll('input');
+    // const commentTextArea = form.querySelector('[name="review"]');
+    const commentText = commentTextArea.current.value;
+    
+    let rating = -1;
+    ratingInputs.forEach((it) => {
+      if(it.checked) {
+        rating = it.value;
+      }
+    });
+    if(rating === -1) {
+      alert(`Вы забыли поставить оценку`);
+    }
+    else if(!isTextLengthOK(commentText)){
+      alert(`Длина отзыва должна быть от 50 до 300 символов`);
+    }
+    else {
+      const {offerId, postReview} = props;
+      postReview(offerId, rating, commentText);
+    }
+  }
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" onSubmit={onSubmitHandler} onChange={onChangeHandler}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
@@ -40,15 +94,20 @@ const ReviewForm = () => {
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+      <textarea ref={commentTextArea} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-                      To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
       </div>
     </form>
   );
+};
+
+ReviewForm.propTypes = {
+  offerId: PropTypes.number,
+  postReview: PropTypes.func,
 };
 
 export {ReviewForm};

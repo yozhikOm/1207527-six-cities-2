@@ -61,7 +61,7 @@ export const prepareReviews = (reviews) => {
 };
 
 const prepareRating = (rating) => {
-  return rating / 5 * 100;
+  return Math.round(rating / 5 * 100);
 };
 
 const prepareDate = (dateStr) => {

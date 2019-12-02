@@ -27,3 +27,13 @@ export const loadOfferReviews = (id) => (dispatch, _, api) => {
       });
 };
 
+export const postReview = (offerId, rating, comment) => (dispatch, _, api) => {
+  dispatch(ActionCreator.postReview(rating, comment));
+
+  return api.post(`/comments/` + offerId, {rating, comment})
+    .then(({data}) => {
+      const preparedData = prepareReviews(data);
+      dispatch(ActionCreator.loadOfferReviews(preparedData));
+    });
+};
+

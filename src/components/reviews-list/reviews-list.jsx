@@ -4,7 +4,7 @@ import {Review} from '../review/review.jsx';
 import {ReviewForm} from '../review-form/review-form.js';
 
 const ReviewsList = (props) => {
-  const {isAuthorizationRequired, reviews} = props;
+  const {isAuthorizationRequired, offerId, reviews, postReview} = props;
   // const reviewsList = reviews.filter((r) => r.offerId === offerId);
 
   return (
@@ -17,7 +17,7 @@ const ReviewsList = (props) => {
           </React.Fragment>
         ))}
       </ul>
-      {isAuthorizationRequired ? <React.Fragment /> : <ReviewForm />}
+      {isAuthorizationRequired ? <React.Fragment /> : <ReviewForm offerId={offerId} postReview={postReview}/>}
     </section>
 
   );
@@ -26,6 +26,8 @@ const ReviewsList = (props) => {
 ReviewsList.propTypes = {
   isAuthorizationRequired: PropTypes.bool,
   reviews: PropTypes.array,
+  offerId: PropTypes.number,
+  postReview: PropTypes.func,
 };
 
 export {ReviewsList};

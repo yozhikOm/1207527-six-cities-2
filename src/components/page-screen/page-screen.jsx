@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {MainPage} from '../main-page/main-page.jsx';
 import {PropertyDetails} from '../property-details/property-details.jsx';
+import {SignIn} from '../sign-in/sign-in.jsx';
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 
@@ -10,14 +11,14 @@ const PropertyDetailsWrapped = withActiveItem(PropertyDetails);
 const PageScreen = (props) => {
   const {
     allOffers, currentCity, cities, onCityClick,
-    offers, reviews, loadOfferReviews,
-    isAuthorizationRequired, userInfo,
+    offers, reviews, loadOfferReviews, postReview,
+    isAuthorizationRequired, authenticateUser, userInfo,
   } = props;
 
   switch (location.pathname) {
     case `/`:
       if (isAuthorizationRequired) {
-        // return <SignIn isAuthorizationRequired={isAuthorizationRequired} authenticateUser={authenticateUser}/>;
+        return <SignIn isAuthorizationRequired={isAuthorizationRequired} authenticateUser={authenticateUser}/>;
       }
       return <MainPage
         currentCity={currentCity}
@@ -32,7 +33,10 @@ const PageScreen = (props) => {
     /* case `/login`:
       return <SignIn />; */
     case `/offer`:
-      const id = 1;
+      if (isAuthorizationRequired) {
+        return <SignIn isAuthorizationRequired={isAuthorizationRequired} authenticateUser={authenticateUser}/>;
+      }
+      const id = 3;
 
       // !!! не понимаю, как переключить текущий город на новый
       //
@@ -51,6 +55,7 @@ const PageScreen = (props) => {
         isAuthorizationRequired={isAuthorizationRequired}
         userInfo={userInfo}
         loadOfferReviews={loadOfferReviews}
+        postReview={postReview}
       />;
   }
   return null;
@@ -81,6 +86,7 @@ PageScreen.propTypes = {
   }),
   loadOfferReviews: PropTypes.func,
   reviews: PropTypes.array,
+  postReview: PropTypes.func,
 };
 
 export {PageScreen};

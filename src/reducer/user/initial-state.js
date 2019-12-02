@@ -1,5 +1,5 @@
 export default {
-  isAuthorizationRequired: false,
+  isAuthorizationRequired: true,
   email: ``,
   password: ``,
   userInfo: null,

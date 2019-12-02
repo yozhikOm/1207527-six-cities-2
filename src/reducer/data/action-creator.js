@@ -31,4 +31,7 @@ export const loadOfferReviews = (reviews) => ({
   payload: reviews,
 });
 
-
+export const postReview = (rating, comment) => ({
+  type: ActionType.POST_REVIEW,
+  payload: {rating, comment}
+});
