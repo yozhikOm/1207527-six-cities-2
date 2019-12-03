@@ -34,7 +34,7 @@ exports[`MainPage компонент рендерится корректно 1`]
           },
         ]
       }
-      onCityClick={[MockFunction]}
+      onCityClick={[Function]}
     />
     <WithActiveItem
       currentCity={

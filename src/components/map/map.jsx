@@ -30,11 +30,11 @@ class Map extends PureComponent {
 
   _renderMap(map, zoom, currentCityCoords, offersArray, activeItemID) {
     const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
+      iconUrl: `/img/pin.svg`,
       iconSize: [30, 30]
     });
     const activeIcon = leaflet.icon({
-      iconUrl: `img/pin-active.svg`,
+      iconUrl: `/img/pin-active.svg`,
       iconSize: [30, 30]
     });
 

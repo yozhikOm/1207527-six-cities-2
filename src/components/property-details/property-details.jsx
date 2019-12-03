@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-// import {connect} from 'react-redux';
-// import {ActionCreator as ActionCreatorData} from '../../reducer/data/action-creator';
-// import {Operation as DataOperation} from '../../reducer/data/data.js';
-
 import {Header} from '../header/header.jsx';
 import {ReviewsList} from '../reviews-list/reviews-list.jsx';
 import {Map} from '../map/map.jsx';
@@ -12,22 +8,46 @@ import {PropertyCard} from '../property-card/property-card.jsx';
 class PropertyDetails extends Component {
 
   componentDidMount() {
-    const {offer, loadOfferReviews} = this.props;
-    loadOfferReviews(offer.id);
+    const {loadOfferReviews, match: {params}} = this.props;
+    const id = parseInt(params.id, 10);
+    loadOfferReviews(id);
+  }
+
+  _getNeighboringOffers(offer, cityOffers) {
+    // здесь должна быть какая-то логика, по которой определяем, что эти предложения по соседству
+    // пока выберем все, кроме текущего
+    const neighboringOffers = cityOffers.filter((it) => it !== offer);
+    return neighboringOffers;
   }
 
   render() {
-    const {currentCityCoords, offer, neighboringOffers,
-      activeItemID, setActiveItem,
-      reviews, postReview,
-      isAuthorizationRequired, userInfo
-    } = this.props;
+    const {reviews} = this.props;
 
     if (!reviews) {
       return (
         <div>Loading...</div>
       );
     } else {
+      const {
+        activeItemID, setActiveItem,
+        allOffers, currentCity, cities,
+        postReview,
+        isAuthorizationRequired, userInfo,
+      } = this.props;
+
+      const {match: {params}} = this.props;
+      const id = parseInt(params.id, 10);
+      // !!! не понимаю, как переключить текущий город на новый
+      //
+      const offer = allOffers.find((item) => item.id === id);
+      let cityName = offer.city.name;
+      let currCity = cities.find((c) => c.title === cityName);
+      const currCityOffers = allOffers.filter((it) => it.city.name === currCity.title);
+      // ///////////////////////////////////////////////////////
+
+      const neighboringOffers = this._getNeighboringOffers(offer, currCityOffers);
+
+
       const offersArrayForMap = neighboringOffers.map((neibOffer) => (
         {
           id: neibOffer.id,
@@ -139,7 +159,7 @@ class PropertyDetails extends Component {
               </div>
               <section className="property__map map">
                 <Map
-                  currentCityCoords={currentCityCoords}
+                  currentCityCoords={currentCity.coordinates}
                   offersArray={offersArrayForMap}
                   activeItemID={activeItemID === -1 ? offer.id : activeItemID}
                 />
@@ -165,7 +185,13 @@ class PropertyDetails extends Component {
 }
 
 PropertyDetails.propTypes = {
-  currentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired,
+  allOffers: PropTypes.array,
+  currentCity: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+  }),
+  cities: PropTypes.array,
+  // currentCityCoordscurrentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired),
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.shape({
@@ -246,6 +272,9 @@ PropertyDetails.propTypes = {
   loadOfferReviews: PropTypes.func,
   reviews: PropTypes.array,
   postReview: PropTypes.func,
+  match: PropTypes.shape({
+    params: PropTypes.any,
+  }),
 };
 
 // const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

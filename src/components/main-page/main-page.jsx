@@ -15,6 +15,7 @@ class MainPage extends PureComponent {
 
   render() {
     const {
+      allOffers,
       currentCity,
       cities,
       offers,
@@ -27,7 +28,9 @@ class MainPage extends PureComponent {
       <div className="page page--gray page--main">
         <Header isAuthorizationRequired={isAuthorizationRequired} userInfo={userInfo} />
         <main className="page__main page__main--index">
-          <Menu cities={cities} onCityClick={onCityClick}/>
+          <Menu cities={cities} onCityClick={(city) => {
+            onCityClick(city, allOffers);
+          }}/>
 
           {offers.length === 0 ? <NoProperties {...currentCity}/> :
             <PropertiesWrapped offers={offers} currentCity={currentCity}/>
@@ -39,6 +42,7 @@ class MainPage extends PureComponent {
 }
 
 MainPage.propTypes = {
+  allOffers: PropTypes.array,
   currentCity: PropTypes.shape({
     title: PropTypes.string.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
