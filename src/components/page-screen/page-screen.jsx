@@ -33,7 +33,9 @@ const PageScreen = (props) => {
       <PropertyDetailsWrapped {...Object.assign({}, routeProps, props)}/>
     }/>
 
-    <Route path='/favorites' exact render={() => <Favorites />
+    <Route path='/favorites' exact render={(routeProps) => 
+      <Favorites {...routeProps} 
+        isAuthorizationRequired={props.isAuthorizationRequired} authenticateUser={props.authenticateUser} />
     }/>
     <Route
       render={() => ( 
