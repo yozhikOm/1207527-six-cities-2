@@ -12,15 +12,15 @@ const PropertyDetailsWrapped = withActiveItem(PropertyDetails);
 
 
 const PageScreen = (props) => {
-  const PrivateRoute = ({component: Favorites, ...rest}) => (
-    <Route {...rest} render={props => props.isAuthorizationRequired ?
-      (<Redirect to="/login" />)
-      :
-      (<Favorites />)
-    } 
-    />
-  );
-  
+
+  // const PrivateRoute = ({component: Favorites, ...rest}) => (
+  //   <Route {...rest} render={props => props.isAuthorizationRequired ?
+  //     (<Redirect to="/login" />)
+  //     :
+  //     (<Favorites />)
+  //   }
+  //   />
+  // );
 
   return <Switch>
     <Route path='/' exact render={() => <MainPage {...props}/>} />
@@ -33,12 +33,13 @@ const PageScreen = (props) => {
       <PropertyDetailsWrapped {...Object.assign({}, routeProps, props)}/>
     }/>
 
-    <Route path='/favorites' exact render={(routeProps) => 
-      <Favorites {...routeProps} 
+    <Route path='/favorites' exact render={(routeProps) =>
+      <Favorites {...routeProps}
         isAuthorizationRequired={props.isAuthorizationRequired} authenticateUser={props.authenticateUser} />
     }/>
+
     <Route
-      render={() => ( 
+      render={() => (
         <div style={{textAlign: `center`}}>
           <h1>404
             <br />

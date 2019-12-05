@@ -1,17 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PropertyCard компонент рендерится корректно 1`] = `
-<article
-  className="cities__place-card place-card"
-  id={1}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
+<a
+  href="/offer/1"
+  onClick={[Function]}
 >
-  <div
-    className="cities__image-wrapper place-card__image-wrapper"
+  <article
+    className="cities__place-card place-card"
+    id={1}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
-    <a
-      href="#"
+    <div
+      className="cities__image-wrapper place-card__image-wrapper"
     >
       <img
         alt="Place image"
@@ -20,75 +21,70 @@ exports[`PropertyCard компонент рендерится корректно
         src="https://es31-server.appspot.com/six-cities/static/hotel/2.jpg"
         width="260"
       />
-    </a>
-  </div>
-  <div
-    className="place-card__info"
-  >
-    <div
-      className="place-card__price-wrapper"
-    >
-      <div
-        className="place-card__price"
-      >
-        <b
-          className="place-card__price-value"
-        >
-          €
-          459
-        </b>
-        <span
-          className="place-card__price-text"
-        >
-          / night
-        </span>
-      </div>
-      <button
-        className="place-card__bookmark-button button"
-        type="button"
-      >
-        <span
-          className="visually-hidden"
-        >
-          To bookmarks
-        </span>
-      </button>
     </div>
     <div
-      className="place-card__rating rating"
+      className="place-card__info"
     >
       <div
-        className="place-card__stars rating__stars"
+        className="place-card__price-wrapper"
       >
-        <span
-          style={
-            Object {
-              "width": "3.6%",
+        <div
+          className="place-card__price"
+        >
+          <b
+            className="place-card__price-value"
+          >
+            €
+            459
+          </b>
+          <span
+            className="place-card__price-text"
+          >
+            / night
+          </span>
+        </div>
+        <button
+          className="place-card__bookmark-button button"
+          type="button"
+        >
+          <span
+            className="visually-hidden"
+          >
+            To bookmarks
+          </span>
+        </button>
+      </div>
+      <div
+        className="place-card__rating rating"
+      >
+        <div
+          className="place-card__stars rating__stars"
+        >
+          <span
+            style={
+              Object {
+                "width": "3.6%",
+              }
             }
-          }
-        />
-        <span
-          className="visually-hidden"
-        >
-          Rating
-        </span>
+          />
+          <span
+            className="visually-hidden"
+          >
+            Rating
+          </span>
+        </div>
       </div>
-    </div>
-    <h2
-      className="place-card__name"
-      onClick={[Function]}
-    >
-      <a
-        href="#"
+      <h2
+        className="place-card__name"
       >
         Penthouse, 4-5 rooms + 5 balconies
-      </a>
-    </h2>
-    <p
-      className="place-card__type"
-    >
-      apartment
-    </p>
-  </div>
-</article>
+      </h2>
+      <p
+        className="place-card__type"
+      >
+        apartment
+      </p>
+    </div>
+  </article>
+</a>
 `;

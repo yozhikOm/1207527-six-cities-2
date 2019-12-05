@@ -7,10 +7,44 @@ import {PropertyCard} from '../property-card/property-card.jsx';
 
 class PropertyDetails extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this._offer = null;
+    this._currCityOffers = null;
+
+    this._getOffer = this._getOffer.bind(this);
+    this._clickFavoriteHandler = this._clickFavoriteHandler.bind(this);
+    this._onSuccessSetFavorite = this._onSuccessSetFavorite.bind(this);
+  }
+
   componentDidMount() {
     const {loadOfferReviews, match: {params}} = this.props;
+
     const id = parseInt(params.id, 10);
+
     loadOfferReviews(id);
+  }
+
+  _getOffer() {
+    const {allOffers, cities, match: {params}} = this.props;
+    const id = parseInt(params.id, 10);
+    this._offer = allOffers.find((item) => item.id === id);
+    const cityName = this._offer.city.name;
+    const currCity = cities.find((c) => c.title === cityName);
+    this._currCityOffers = allOffers.filter((it) => it.city.name === currCity.title);
+  }
+
+  _clickFavoriteHandler() {
+    const {setFavoriteStatus} = this.props;
+    setFavoriteStatus(this._offer.id, !this._offer.isFavorite | 0, this._onSuccessSetFavorite);
+  }
+
+  _onSuccessSetFavorite() {
+    this._offer.isFavorite = !this._offer.isFavorite;
+    const bookmark = document.querySelector(`.property__bookmark-icon `);
+    let fillCollor = this._offer.isFavorite ? `4481c3` : `none`;
+    bookmark.style.fill = fillCollor;
   }
 
   _getNeighboringOffers(offer, cityOffers) {
@@ -29,32 +63,24 @@ class PropertyDetails extends Component {
       );
     } else {
       const {
-        activeItemID, setActiveItem,
-        allOffers, currentCity, cities,
-        postReview,
+        activeItemID, setActiveItem, currentCity, postReview,
         isAuthorizationRequired, userInfo,
       } = this.props;
 
-      const {match: {params}} = this.props;
-      const id = parseInt(params.id, 10);
-      // !!! не понимаю, как переключить текущий город на новый
-      //
-      const offer = allOffers.find((item) => item.id === id);
-      let cityName = offer.city.name;
-      let currCity = cities.find((c) => c.title === cityName);
-      const currCityOffers = allOffers.filter((it) => it.city.name === currCity.title);
-      // ///////////////////////////////////////////////////////
 
-      const neighboringOffers = this._getNeighboringOffers(offer, currCityOffers);
+      this._getOffer();
 
+      let fillCollor = this._offer.isFavorite ? `4481c3` : `none`;
+
+      const neighboringOffers = this._getNeighboringOffers(this._offer, this._currCityOffers);
 
       const offersArrayForMap = neighboringOffers.map((neibOffer) => (
         {
           id: neibOffer.id,
           coordinates: [neibOffer.location.latitude, neibOffer.location.longitude],
         })).concat([{
-        id: offer.id,
-        coordinates: [offer.location.latitude, offer.location.longitude],
+        id: this._offer.id,
+        coordinates: [this._offer.location.latitude, this._offer.location.longitude],
       }]);
 
       return (
@@ -64,7 +90,7 @@ class PropertyDetails extends Component {
             <section className="property">
               <div className="property__gallery-container container">
                 <div className="property__gallery">
-                  {offer.images.map((it, i) => {
+                  {this._offer.images.map((it, i) => {
                     return (
                       <div key={`photo-${i}`} className="property__image-wrapper">
                         <img className="property__image" src={it} alt="Photo studio" />
@@ -75,7 +101,7 @@ class PropertyDetails extends Component {
               </div>
               <div className="property__container container">
                 <div className="property__wrapper">
-                  {offer.isPremium ?
+                  {this._offer.isPremium ?
                     <div className="place-card__mark">
                       <span>Premium</span>
                     </div> :
@@ -83,10 +109,10 @@ class PropertyDetails extends Component {
                   }
                   <div className="property__name-wrapper">
                     <h1 className="property__name">
-                      {offer.title}
+                      {this._offer.title}
                     </h1>
-                    <button className="property__bookmark-button button" type="button">
-                      <svg className="property__bookmark-icon" width="31" height="33">
+                    <button className="property__bookmark-button button" type="button" onClick={this._clickFavoriteHandler}>
+                      <svg className="property__bookmark-icon" width="31" height="33" style={{fill: `${fillCollor}`}}>
                         <use xlinkHref="#icon-bookmark"></use>
                       </svg>
                       <span className="visually-hidden">To bookmarks</span>
@@ -94,30 +120,30 @@ class PropertyDetails extends Component {
                   </div>
                   <div className="property__rating rating">
                     <div className="property__stars rating__stars">
-                      <span style={{width: `${offer.rating}%`}}></span>
+                      <span style={{width: `${this._offer.rating}%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
-                    <span className="property__rating-value rating__value">{offer.rating * 5 / 100}</span>
+                    <span className="property__rating-value rating__value">{this._offer.rating * 5 / 100}</span>
                   </div>
                   <ul className="property__features">
                     <li className="property__feature property__feature--entire">
                   Entire place
                     </li>
                     <li className="property__feature property__feature--bedrooms">
-                      {offer.bedrooms} Bedrooms
+                      {this._offer.bedrooms} Bedrooms
                     </li>
                     <li className="property__feature property__feature--adults">
-                  Max {offer.maxAdults} adults
+                  Max {this._offer.maxAdults} adults
                     </li>
                   </ul>
                   <div className="property__price">
-                    <b className="property__price-value">&euro;{offer.price}</b>
+                    <b className="property__price-value">&euro;{this._offer.price}</b>
                     <span className="property__price-text">&nbsp;night</span>
                   </div>
                   <div className="property__inside">
                     <h2 className="property__inside-title">What&apos;s inside</h2>
                     <ul className="property__inside-list">
-                      {offer.goods.map((it, i) => {
+                      {this._offer.goods.map((it, i) => {
                         return (
                           <li key={`goods-${i}`} className="property__inside-item">
                             {it}
@@ -130,12 +156,12 @@ class PropertyDetails extends Component {
                     <h2 className="property__host-title">Meet the host</h2>
                     <div className="property__host-user user">
                       <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                        <img className="property__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74" alt="Host avatar" />
+                        <img className="property__avatar user__avatar" src={this._offer.host.avatarUrl} width="74" height="74" alt="Host avatar" />
                       </div>
                       <span className="property__user-name">
-                        {offer.host.name}
+                        {this._offer.host.name}
                       </span>
-                      {offer.host.isPro ?
+                      {this._offer.host.isPro ?
                         <span className="property__user-status">
                       Pro
                         </span> :
@@ -145,13 +171,13 @@ class PropertyDetails extends Component {
                     </div>
                     <div className="property__description">
                       <p className="property__text">
-                        {offer.description}
+                        {this._offer.description}
                       </p>
                     </div>
                   </div>
                   <ReviewsList
                     isAuthorizationRequired={isAuthorizationRequired}
-                    offerId={offer.id}
+                    offerId={this._offer.id}
                     reviews={reviews}
                     postReview={postReview}
                   />
@@ -161,7 +187,7 @@ class PropertyDetails extends Component {
                 <Map
                   currentCityCoords={currentCity.coordinates}
                   offersArray={offersArrayForMap}
-                  activeItemID={activeItemID === -1 ? offer.id : activeItemID}
+                  activeItemID={activeItemID === -1 ? this._offer.id : activeItemID}
                 />
               </section>
             </section>
@@ -275,6 +301,7 @@ PropertyDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.any,
   }),
+  setFavoriteStatus: PropTypes.func,
 };
 
 // const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

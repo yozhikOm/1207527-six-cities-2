@@ -5,7 +5,7 @@ import {Header} from '../header/header.jsx';
 const SignIn = (props) => {
   let emailInput = ``;
   let loginInput = ``;
-  const {authenticateUser, history} = props;
+  const {authenticateUser} = props;
 
   const isEmptyField = (field) => {
     if (field === undefined ||
@@ -23,8 +23,8 @@ const SignIn = (props) => {
   const redirect = () =>{
     const {history} = props;
     history.push(`/`);
-  }
-  
+  };
+
   const onSubmitHandler = (evt) => {
     if (evt) {
       evt.preventDefault();
@@ -73,6 +73,7 @@ const SignIn = (props) => {
 
 SignIn.propTypes = {
   authenticateUser: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export {SignIn};

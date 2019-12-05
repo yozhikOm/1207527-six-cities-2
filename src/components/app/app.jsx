@@ -57,6 +57,12 @@ const mapDispatchToProps = (dispatch) => ({
   postReview: (offerId, rating, comment) => {
     dispatch(DataOperation.postReview(offerId, rating, comment));
   },
+  loadFavorites: () => {
+    dispatch(DataOperation.loadFavorites());
+  },
+  setFavoriteStatus: (offerId, status, onSuccessSetFavorite) => {
+    dispatch(DataOperation.setFavoriteStatus(offerId, status, onSuccessSetFavorite));
+  },
 });
 
 App.propTypes = {

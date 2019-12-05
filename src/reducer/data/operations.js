@@ -37,3 +37,21 @@ export const postReview = (offerId, rating, comment) => (dispatch, _, api) => {
     });
 };
 
+export const loadFavorites = () => (dispatch, _, api) => {
+  return api.get(`/favorite`)
+    .then(({data}) => {
+      const preparedData = prepareOffers(data);
+      dispatch(ActionCreator.loadFavorites(preparedData));
+    });
+};
+
+export const setFavoriteStatus = (offerId, status, _onSuccessSetFavorite) => (dispatch, _, api) => {
+  dispatch(ActionCreator.setFavoriteStatus(offerId, status));
+
+  return api.post(`/favorite/${offerId}/${status}`)
+    .then(({data}) => {
+      _onSuccessSetFavorite();
+      const preparedData = prepareOffers([data]);
+      dispatch(ActionCreator.loadFavorites(preparedData));
+    });
+};
