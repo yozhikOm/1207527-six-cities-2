@@ -44,8 +44,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 const mapDispatchToProps = (dispatch) => ({
   loadAllOffers: () => dispatch(DataOperation.loadAllOffers()),
 
-  authenticateUser: (email, password) => {
-    dispatch(UserOperation.authenticateUser(email, password));
+  authenticateUser: (email, password, redirect) => {
+    dispatch(UserOperation.authenticateUser(email, password, redirect));
   },
   onCityClick: (currentCity, allOffers) => {
     dispatch(ActionCreatorData.changeCity(currentCity));

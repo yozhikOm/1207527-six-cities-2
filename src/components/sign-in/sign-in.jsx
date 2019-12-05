@@ -5,7 +5,7 @@ import {Header} from '../header/header.jsx';
 const SignIn = (props) => {
   let emailInput = ``;
   let loginInput = ``;
-  const {authenticateUser} = props;
+  const {authenticateUser, history} = props;
 
   const isEmptyField = (field) => {
     if (field === undefined ||
@@ -20,12 +20,17 @@ const SignIn = (props) => {
     return false;
   };
 
+  const redirect = () =>{
+    const {history} = props;
+    history.push(`/`);
+  }
+  
   const onSubmitHandler = (evt) => {
     if (evt) {
       evt.preventDefault();
     }
     if (!isEmptyField(emailInput) && !isEmptyField(loginInput)) {
-      authenticateUser(emailInput.value, loginInput.value);
+      authenticateUser(emailInput.value, loginInput.value, redirect);
     } else {
       alert(`Вы забыли ввести логин и/или пароль. Пожалуйста, попробуйте еще раз`);
     }
