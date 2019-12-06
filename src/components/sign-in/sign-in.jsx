@@ -20,12 +20,17 @@ const SignIn = (props) => {
     return false;
   };
 
+  const redirect = () =>{
+    const {history} = props;
+    history.push(`/`);
+  };
+
   const onSubmitHandler = (evt) => {
     if (evt) {
       evt.preventDefault();
     }
     if (!isEmptyField(emailInput) && !isEmptyField(loginInput)) {
-      authenticateUser(emailInput.value, loginInput.value);
+      authenticateUser(emailInput.value, loginInput.value, redirect);
     } else {
       alert(`Вы забыли ввести логин и/или пароль. Пожалуйста, попробуйте еще раз`);
     }
@@ -68,6 +73,7 @@ const SignIn = (props) => {
 
 SignIn.propTypes = {
   authenticateUser: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export {SignIn};

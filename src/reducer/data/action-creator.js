@@ -35,3 +35,13 @@ export const postReview = (rating, comment) => ({
   type: ActionType.POST_REVIEW,
   payload: {rating, comment}
 });
+
+export const loadFavorites = (favorites) => ({
+  type: ActionType.LOAD_FAVORITES,
+  payload: favorites,
+});
+
+export const setFavoriteStatus = (offerId, status) => ({
+  type: ActionType.SET_FAVORITE_STATUS,
+  payload: {offerId, status},
+});

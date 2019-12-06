@@ -5,4 +5,5 @@ export default {
   offers: [],
   cities: [],
   reviews: null,
+  favorites: [],
 };

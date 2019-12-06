@@ -27,7 +27,7 @@ export const prepareOffers = (allOffers) => {
         id: offer.host.id,
         name: offer.host.name,
         isPro: offer.host.is_pro,
-        avatarUrl: offer.host.avatar_url,
+        avatarUrl: `/` + offer.host.avatar_url,
       },
       description: offer.description,
       location: {

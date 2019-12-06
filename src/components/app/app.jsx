@@ -44,8 +44,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 const mapDispatchToProps = (dispatch) => ({
   loadAllOffers: () => dispatch(DataOperation.loadAllOffers()),
 
-  authenticateUser: (email, password) => {
-    dispatch(UserOperation.authenticateUser(email, password));
+  authenticateUser: (email, password, redirect) => {
+    dispatch(UserOperation.authenticateUser(email, password, redirect));
   },
   onCityClick: (currentCity, allOffers) => {
     dispatch(ActionCreatorData.changeCity(currentCity));
@@ -56,6 +56,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   postReview: (offerId, rating, comment) => {
     dispatch(DataOperation.postReview(offerId, rating, comment));
+  },
+  loadFavorites: () => {
+    dispatch(DataOperation.loadFavorites());
+  },
+  setFavoriteStatus: (offerId, status, onSuccessSetFavorite) => {
+    dispatch(DataOperation.setFavoriteStatus(offerId, status, onSuccessSetFavorite));
   },
 });
 
