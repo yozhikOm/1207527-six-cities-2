@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import {MainPage} from '../main-page/main-page.jsx';
 import {PropertyDetails} from '../property-details/property-details.jsx';
 import {SignIn} from '../sign-in/sign-in.jsx';
-
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import {Favorites} from '../favorites/favorites.jsx';
 
-const PropertyDetailsWrapped = withActiveItem(PropertyDetails);
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import withCheckAuthorization from '../../hocs/with-check-authorization/with-check-authorization.js';
 
+const PropertyDetailsWrapped = withActiveItem(PropertyDetails);
+const FavoritesWrapped = withCheckAuthorization(Favorites);
 
 const PageScreen = (props) => {
 
@@ -34,7 +35,7 @@ const PageScreen = (props) => {
     }/>
 
     <Route path='/favorites' exact render={(routeProps) =>
-      <Favorites {...routeProps}
+      <FavoritesWrapped {...routeProps}
         isAuthorizationRequired={props.isAuthorizationRequired} authenticateUser={props.authenticateUser} />
     }/>
 
