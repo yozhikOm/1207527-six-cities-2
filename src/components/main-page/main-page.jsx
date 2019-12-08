@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import {Header} from '../header/header.jsx';
 import {Menu} from '../menu/menu.jsx';
 import {Properties} from '../properties/properties.jsx';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import {NoProperties} from '../no-properties/no-properties.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import withVisibleSorting from '../../hocs/with-visible-sorting/with-visible-sorting.js';
 
-const PropertiesWrapped = withActiveItem(Properties);
+const PropertiesWrapped = withVisibleSorting(withActiveItem(Properties));
 
 class MainPage extends PureComponent {
   constructor(props) {

@@ -6,4 +6,5 @@ export default {
   cities: [],
   reviews: null,
   favorites: [],
+  sortBy: `Popular`,
 };
