@@ -5,6 +5,6 @@ export default {
   offers: [],
   cities: [],
   reviews: null,
-  favorites: [],
+  favorites: null,
   sortBy: `Popular`,
 };

@@ -27,9 +27,14 @@ export const getReviews = (state) => {
   return state[NAME_SPACE].reviews;
 };
 
-/* export const getIsReviewsLoading = (state) => {
-  return state[NAME_SPACE].isReviewsLoading;
-};*/
+export const getFavorites = (state) => {
+  return state[NAME_SPACE].favorites;
+};
+
+export const getSortBy = (state) => {
+  return state[NAME_SPACE].sortBy;
+};
+
 
 export const getOffersByCity = (city, allOffers) =>
   allOffers.filter((offer) => offer.city.name === city.title);

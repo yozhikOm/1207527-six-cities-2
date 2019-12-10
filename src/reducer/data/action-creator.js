@@ -47,7 +47,6 @@ export const setFavoriteStatus = (offerId, status) => ({
 });
 
 export const sortOffers = (sortBy) => ({
-    type: ActionTypes.SORT_OFFERS,
-    payload: sortBy
- 
+  type: ActionType.SORT_OFFERS,
+  payload: sortBy,
 });

@@ -10,7 +10,7 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import withCheckAuthorization from '../../hocs/with-check-authorization/with-check-authorization.js';
 
 const PropertyDetailsWrapped = withActiveItem(PropertyDetails);
-const FavoritesWrapped = withCheckAuthorization(Favorites);
+const FavoritesWrapped = withCheckAuthorization(withActiveItem(Favorites));
 
 const PageScreen = (props) => {
 
@@ -33,10 +33,19 @@ const PageScreen = (props) => {
     <Route path='/offer/:id' exact render={(routeProps) =>
       <PropertyDetailsWrapped {...Object.assign({}, routeProps, props)}/>
     }/>
-
+    {/*
     <Route path='/favorites' exact render={(routeProps) =>
       <FavoritesWrapped {...routeProps}
         isAuthorizationRequired={props.isAuthorizationRequired} authenticateUser={props.authenticateUser} />
+    }/> */}
+    <Route path='/favorites' exact render={(routeProps) =>
+      <FavoritesWrapped {...routeProps}
+        isAuthorizationRequired={props.isAuthorizationRequired}
+        userInfo={props.userInfo}
+        authenticateUser={props.authenticateUser}
+        loadFavorites={props.loadFavorites}
+        favorites={props.favorites}
+      />
     }/>
 
     <Route
@@ -54,5 +63,13 @@ const PageScreen = (props) => {
 PageScreen.propTypes = {
   isAuthorizationRequired: PropTypes.bool,
   authenticateUser: PropTypes.func,
+  favorites: PropTypes.array,
+  loadFavorites: PropTypes.func,
+  userInfo: PropTypes.shape({
+    id: PropTypes.id,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    isPro: PropTypes.bool
+  }),
 };
 export {PageScreen};

@@ -36,7 +36,7 @@ exports[`MainPage компонент рендерится корректно 1`]
       }
       onCityClick={[Function]}
     />
-    <WithActiveItem
+    <WithVisibleSorting
       currentCity={
         Object {
           "coordinates": Array [

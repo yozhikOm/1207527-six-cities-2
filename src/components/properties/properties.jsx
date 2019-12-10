@@ -50,6 +50,8 @@ Properties.propTypes = {
   }).isRequired,
   activeItemID: PropTypes.number,
   setActiveItem: PropTypes.func.isRequired,
+  isSortingVisible: PropTypes.bool,
+  setSortingVisibility: PropTypes.func,
 };
 
 export {Properties};
