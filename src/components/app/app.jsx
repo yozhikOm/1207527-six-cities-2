@@ -65,6 +65,9 @@ const mapDispatchToProps = (dispatch) => ({
   setFavoriteStatus: (offerId, status, onSuccessSetFavorite) => {
     dispatch(DataOperation.setFavoriteStatus(offerId, status, onSuccessSetFavorite));
   },
+  sortOffers: (sortBy) => {
+    dispatch(ActionCreatorData.sortOffers(sortBy));
+  } 
 });
 
 App.propTypes = {

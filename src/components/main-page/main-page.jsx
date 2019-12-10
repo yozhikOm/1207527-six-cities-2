@@ -22,7 +22,9 @@ class MainPage extends PureComponent {
       offers,
       onCityClick,
       isAuthorizationRequired,
-      userInfo
+      userInfo,
+      sortBy,
+      sortOffers,
     } = this.props;
 
     return (
@@ -34,7 +36,11 @@ class MainPage extends PureComponent {
           }}/>
 
           {offers.length === 0 ? <NoProperties {...currentCity}/> :
-            <PropertiesWrapped offers={offers} currentCity={currentCity}/>
+            <PropertiesWrapped
+              offers={offers}
+              currentCity={currentCity}
+              sortBy={sortBy}
+              sortOffers={sortOffers}/>
           }
         </main>
       </div>
@@ -63,6 +69,8 @@ MainPage.propTypes = {
     avatarUrl: PropTypes.string,
     isPro: PropTypes.bool
   }),
+  sortBy: PropTypes.string,
+  sortOffers: PropTypes.func,
 };
 
 export {MainPage};

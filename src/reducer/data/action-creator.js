@@ -1,5 +1,5 @@
 import {ActionType} from './action-type.js';
-import {getCities, getOffersByCity} from './selectors.js';
+import {getCities, getOffersByCity, sortProperties} from './selectors.js';
 
 export const loadAllOffers = (allOffers) => ({
   type: ActionType.LOAD_ALL_OFFERS,
@@ -46,7 +46,7 @@ export const setFavoriteStatus = (offerId, status) => ({
   payload: {offerId, status},
 });
 
-export const sortOffers = (sortBy) => ({
+export const sortOffers = (sortBy, offers) => ({
   type: ActionType.SORT_OFFERS,
-  payload: sortBy,
+  payload: sortProperties(sortBy, offers),
 });

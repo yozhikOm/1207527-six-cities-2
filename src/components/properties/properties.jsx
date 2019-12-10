@@ -6,7 +6,7 @@ import {Map} from '../map/map.jsx';
 
 const Properties = (props) => {
   const {offers, currentCity, activeItemID, setActiveItem,
-    isSortingVisible, setSortingVisibility} = props;
+    isSortingVisible, setSortingVisibility, sortBy, sortOffers} = props;
 
   const offersArrayForMap = offers.map((offer) => (
     {
@@ -20,7 +20,13 @@ const Properties = (props) => {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offers.length} places to stay in {currentCity.title}</b>
-          <Sorting isSortingVisible={isSortingVisible} setSortingVisibility={setSortingVisibility}/>
+          <Sorting
+            isSortingVisible={isSortingVisible}
+            setSortingVisibility={setSortingVisibility}
+            sortBy={sortBy}
+            sortOffers={sortOffers}
+            offers={offers}
+          />
           <div className="cities__places-list places__list tabs__content">
             {offers.map((item) => (
               <React.Fragment key={item.id}>
@@ -52,6 +58,8 @@ Properties.propTypes = {
   setActiveItem: PropTypes.func.isRequired,
   isSortingVisible: PropTypes.bool,
   setSortingVisibility: PropTypes.func,
+  sortBy: PropTypes.string,
+  sortOffers: PropTypes.func,
 };
 
 export {Properties};
