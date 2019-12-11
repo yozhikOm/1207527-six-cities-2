@@ -1,5 +1,5 @@
 import {ActionType} from './action-type.js';
-import {getCities, getOffersByCity, sortProperties} from './selectors.js';
+import {getCities, getOffersByCity} from './selectors.js';
 
 export const loadAllOffers = (allOffers) => ({
   type: ActionType.LOAD_ALL_OFFERS,

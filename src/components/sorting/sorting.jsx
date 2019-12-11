@@ -63,7 +63,8 @@ const mapDispatchToProps = (dispatch) => ({
 Sorting.propTypes = {
   isSortingVisible: PropTypes.bool,
   setSortingVisibility: PropTypes.func,
-  sortBy: PropTypes.string,
+  sortBy: PropTypes.oneOf([SORT_TYPES.POPULAR, SORT_TYPES.CHEAP_FIRST,
+    SORT_TYPES.EXPENSIVE_FIRST, SORT_TYPES.TOP_RATED_FIRST]),
   sortOffers: PropTypes.func,
   allOffers: PropTypes.array,
   currentCity: PropTypes.shape({

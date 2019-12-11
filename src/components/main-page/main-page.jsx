@@ -6,6 +6,7 @@ import {Properties} from '../properties/properties.jsx';
 import {NoProperties} from '../no-properties/no-properties.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import withVisibleSorting from '../../hocs/with-visible-sorting/with-visible-sorting.js';
+import {SORT_TYPES} from '../../constants/constants.js';
 
 const PropertiesWrapped = withVisibleSorting(withActiveItem(Properties));
 
@@ -24,7 +25,6 @@ class MainPage extends PureComponent {
       isAuthorizationRequired,
       userInfo,
       sortBy,
-      sortOffers,
     } = this.props;
 
     return (
@@ -68,6 +68,8 @@ MainPage.propTypes = {
     avatarUrl: PropTypes.string,
     isPro: PropTypes.bool
   }),
+  sortBy: PropTypes.oneOf([SORT_TYPES.POPULAR, SORT_TYPES.CHEAP_FIRST,
+    SORT_TYPES.EXPENSIVE_FIRST, SORT_TYPES.TOP_RATED_FIRST]),
 };
 
 export {MainPage};
