@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {PropertyCard} from "../property-card/property-card.jsx";
-import {Sorting} from '../sorting/sorting.jsx';
+import Sorting from '../sorting/sorting.jsx';
 import {Map} from '../map/map.jsx';
 
 const Properties = (props) => {
   const {offers, currentCity, activeItemID, setActiveItem,
-    isSortingVisible, setSortingVisibility, sortBy, sortOffers} = props;
+    isSortingVisible, setSortingVisibility} = props;
 
   const offersArrayForMap = offers.map((offer) => (
     {
@@ -23,9 +23,6 @@ const Properties = (props) => {
           <Sorting
             isSortingVisible={isSortingVisible}
             setSortingVisibility={setSortingVisibility}
-            sortBy={sortBy}
-            sortOffers={sortOffers}
-            offers={offers}
           />
           <div className="cities__places-list places__list tabs__content">
             {offers.map((item) => (
@@ -58,8 +55,6 @@ Properties.propTypes = {
   setActiveItem: PropTypes.func.isRequired,
   isSortingVisible: PropTypes.bool,
   setSortingVisibility: PropTypes.func,
-  sortBy: PropTypes.string,
-  sortOffers: PropTypes.func,
 };
 
 export {Properties};

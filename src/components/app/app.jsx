@@ -49,9 +49,9 @@ const mapDispatchToProps = (dispatch) => ({
   authenticateUser: (email, password, redirect) => {
     dispatch(UserOperation.authenticateUser(email, password, redirect));
   },
-  onCityClick: (currentCity, allOffers) => {
+  onCityClick: (currentCity, allOffers, sortBy) => {
     dispatch(ActionCreatorData.changeCity(currentCity));
-    dispatch(ActionCreatorData.getOffersList(currentCity, allOffers));
+    dispatch(ActionCreatorData.getOffersList(currentCity, allOffers, sortBy));
   },
   loadOfferReviews: (id) => {
     dispatch(DataOperation.loadOfferReviews(id));
@@ -65,9 +65,13 @@ const mapDispatchToProps = (dispatch) => ({
   setFavoriteStatus: (offerId, status, onSuccessSetFavorite) => {
     dispatch(DataOperation.setFavoriteStatus(offerId, status, onSuccessSetFavorite));
   },
-  sortOffers: (sortBy) => {
-    dispatch(ActionCreatorData.sortOffers(sortBy));
-  } 
+  // sortOffers: (sortBy, offers) => {
+  // sortOffers: (currentCity, allOffers, sortBy) => {
+  //   dispatch(ActionCreatorData.changeSortBy(sortBy));
+  //   // dispatch(ActionCreatorData.sortOffers(sortBy, offers));
+
+  //   dispatch(ActionCreatorData.getOffersList(currentCity, allOffers, sortBy));
+  // }
 });
 
 App.propTypes = {

@@ -1,10 +1,13 @@
 import React from 'react';
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
+import * as ActionCreatorData from '../../reducer/data/action-creator.js';
+import {getAllOffers, getIsOffersLoading, getCurrentCity, getSortBy} from '../../reducer/data/selectors';
 import PropTypes from 'prop-types';
 import {SORT_TYPES} from '../../constants/constants.js';
 
 const Sorting = (props) => {
-  const {isSortingVisible, setSortingVisibility, sortBy, sortOffers, offers} = props;
+  const {isSortingVisible, setSortingVisibility,
+    sortBy, sortOffers, allOffers, currentCity} = props;
 
   let ulElementClassName = `places__options places__options--custom`;
   if (isSortingVisible) {
@@ -18,7 +21,9 @@ const Sorting = (props) => {
   };
 
   const onSortOffersClick = (evt) => {
-    sortOffers(evt.target.textContent, offers);
+    // sortOffers(evt.target.textContent, offers);
+    sortOffers(currentCity, allOffers, evt.target.textContent);
+    setSortingVisibility();
   };
 
   return (
@@ -39,13 +44,20 @@ const Sorting = (props) => {
   );
 };
 
-// const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-//   sortOrder: state.user.sortOrder,
-// });
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  allOffers: getAllOffers(state),
+  isOffersLoading: getIsOffersLoading(state),
+  currentCity: getCurrentCity(state),
+  sortBy: getSortBy(state),
+});
 
-// const mapDispatchToProps = (dispatch) => ({
-//   setSortOrder: (order) => dispatch(ActionCreator.changeSorting(order)),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  sortOffers: (currentCity, allOffers, sortBy) => {
+    dispatch(ActionCreatorData.changeSortBy(sortBy));
+    // dispatch(ActionCreatorData.sortOffers(sortBy, offers));
+    dispatch(ActionCreatorData.getOffersList(currentCity, allOffers, sortBy));
+  }
+});
 
 
 Sorting.propTypes = {
@@ -53,9 +65,12 @@ Sorting.propTypes = {
   setSortingVisibility: PropTypes.func,
   sortBy: PropTypes.string,
   sortOffers: PropTypes.func,
-  offers: PropTypes.array,
+  allOffers: PropTypes.array,
+  currentCity: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+  }).isRequired,
 };
 
 export {Sorting};
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Sorting);
+export default connect(mapStateToProps, mapDispatchToProps)(Sorting);

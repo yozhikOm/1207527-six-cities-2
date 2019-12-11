@@ -37,8 +37,10 @@ export const getSortBy = (state) => {
 };
 
 
-export const getOffersByCity = (city, allOffers) =>
-  allOffers.filter((offer) => offer.city.name === city.title);
+export const getOffersByCity = (city, allOffers, sortBy) => {
+  const offers = allOffers.filter((offer) => offer.city.name === city.title);
+  return sortProperties(offers, sortBy);
+};
 
 export const getCities = (allOffers) => {
   const cities = Array.from(new Set(allOffers.map((offer) => offer.city.name)))
@@ -62,7 +64,7 @@ export const sortProperties = (offers, sortBy) => {
     case SORT_TYPES.EXPENSIVE_FIRST:
       return offers.slice().sort((a, b) => b.price - a.price);
     case SORT_TYPES.TOP_RATED_FIRST:
-      return offers.slice().sort((a, b) => b.rate - a.rate);
+      return offers.slice().sort((a, b) => b.rating - a.rating);
   }
   return offers;
 };

@@ -1,5 +1,6 @@
 import * as ActionCreator from './action-creator.js';
 import {prepareOffers, prepareReviews} from './prepare-data.js';
+import initialState from './initial-state.js';
 
 export const loadAllOffers = () => (dispatch, _, api) => {
   return api.get(`/hotels`)
@@ -14,7 +15,7 @@ export const loadAllOffers = () => (dispatch, _, api) => {
         };
         dispatch(ActionCreator.changeCity(currentCity));
         dispatch(ActionCreator.getCitiesList(preparedData));
-        dispatch(ActionCreator.getOffersList(currentCity, preparedData));
+        dispatch(ActionCreator.getOffersList(currentCity, preparedData, initialState.sortBy));
         dispatch(ActionCreator.changeLoadingState(false));
       });
 };

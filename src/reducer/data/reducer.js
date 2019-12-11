@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
       favorites: action.payload
     });
 
-    case ActionType.SORT_OFFERS: return Object.assign({}, state, {
+    case ActionType.CHANGE_SORT_BY: return Object.assign({}, state, {
       sortBy: action.payload
     });
   }

@@ -32,15 +32,14 @@ class MainPage extends PureComponent {
         <Header isAuthorizationRequired={isAuthorizationRequired} userInfo={userInfo} />
         <main className="page__main page__main--index">
           <Menu cities={cities} onCityClick={(city) => {
-            onCityClick(city, allOffers);
+            onCityClick(city, allOffers, sortBy);
           }}/>
 
           {offers.length === 0 ? <NoProperties {...currentCity}/> :
             <PropertiesWrapped
               offers={offers}
               currentCity={currentCity}
-              sortBy={sortBy}
-              sortOffers={sortOffers}/>
+            />
           }
         </main>
       </div>
@@ -69,8 +68,6 @@ MainPage.propTypes = {
     avatarUrl: PropTypes.string,
     isPro: PropTypes.bool
   }),
-  sortBy: PropTypes.string,
-  sortOffers: PropTypes.func,
 };
 
 export {MainPage};
