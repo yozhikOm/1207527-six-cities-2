@@ -27,29 +27,40 @@ class Favorites extends PureComponent {
 
           <main className="page__main page__main--favorites">
             <div className="page__favorites-container container">
-              <section className="favorites">
-                <h1 className="favorites__title">Saved listing</h1>
-                <ul className="favorites__list">
-                  {cities.map((it, i) => (
-                    <li className="favorites__locations-items" key={`fav-${i}`}>
-                      <div className="favorites__locations locations locations--current">
-                        <div className="locations__item">
-                          <a className="locations__item-link" href="#">
-                            <span>{it.title}</span>
-                          </a>
+              {favorites.length === 0 ?
+                (<section className="favorites favorites--empty">
+                  <h1 className="visually-hidden">Favorites (empty)</h1>
+                  <div className="favorites__status-wrapper">
+                    <b className="favorites__status">Nothing yet saved.</b>
+                    <p className="favorites__status-description">Save properties to narrow down search or plan yor future trips.</p>
+                  </div>
+                </section>)
+                :
+                (<section className="favorites">
+                  <h1 className="favorites__title">Saved listing</h1>
+                  <ul className="favorites__list">
+                    {cities.map((it, i) => (
+                      <li className="favorites__locations-items" key={`fav-${i}`}>
+                        <div className="favorites__locations locations locations--current">
+                          <div className="locations__item">
+                            <a className="locations__item-link" href="#">
+                              <span>{it.title}</span>
+                            </a>
+                          </div>
                         </div>
-                      </div>
-                      <div className="favorites__places">
-                        {favorites.filter((f) => f.city.name === it.title).map((offer) => (
-                          <React.Fragment key={offer.id}>
-                            <PropertyCard offer={offer} cardMouseEnterHandler={setActiveItem}/>
-                          </React.Fragment>
-                        ))}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </section>
+                        <div className="favorites__places">
+                          {favorites.filter((f) => f.city.name === it.title).map((offer) => (
+                            <React.Fragment key={offer.id}>
+                              <PropertyCard offer={offer} cardMouseEnterHandler={setActiveItem}/>
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </section>)
+              }
+
             </div>
           </main>
           <footer className="footer container">
