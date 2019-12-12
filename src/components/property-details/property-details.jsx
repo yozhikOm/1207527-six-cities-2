@@ -4,6 +4,7 @@ import {Header} from '../header/header.jsx';
 import {ReviewsList} from '../reviews-list/reviews-list.jsx';
 import {Map} from '../map/map.jsx';
 import {PropertyCard} from '../property-card/property-card.jsx';
+import {MAX_NEIGHBOURS, MAX_DISTANCE} from '../../constants/constants.js';
 
 class PropertyDetails extends Component {
 
@@ -50,8 +51,19 @@ class PropertyDetails extends Component {
   _getNeighboringOffers(offer, cityOffers) {
     // здесь должна быть какая-то логика, по которой определяем, что эти предложения по соседству
     // пока выберем все, кроме текущего
-    const neighboringOffers = cityOffers.filter((it) => it !== offer);
-    return neighboringOffers;
+    // const neighboringOffers = [];
+    /* const tempArray = cityOffers.filter((it) => it !== offer);
+    while(neighboringOffers.length<3){
+      const tempItem = tempArray[Math.floor((Math.random()*tempArray.length))];
+      if(!neighboringOffers.includes(tempItem)){
+        neighboringOffers.push(tempItem);
+      }
+    }*/
+    const neighboringOffers = cityOffers.filter((it) => it !== offer &&
+            Math.abs(it.location.latitude - offer.location.latitude) <= MAX_DISTANCE &&
+            Math.abs(it.location.longitude - offer.location.longitude) <= MAX_DISTANCE);
+
+    return neighboringOffers.slice(0, MAX_NEIGHBOURS);
   }
 
   render() {

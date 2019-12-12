@@ -6,3 +6,6 @@ export const SORT_TYPES = {
   EXPENSIVE_FIRST: `Price: high to low`,
   TOP_RATED_FIRST: `Top rated first`,
 };
+
+export const MAX_DISTANCE = 0.02;
+export const MAX_NEIGHBOURS = 3;
