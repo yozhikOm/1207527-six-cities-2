@@ -1,3 +1,5 @@
+export const PROPERTY_TYPES = [`apartment`, `room`, `house`, `hotel`];
+
 export const SORT_TYPES = {
   POPULAR: `Popular`,
   CHEAP_FIRST: `Price: low to high`,
