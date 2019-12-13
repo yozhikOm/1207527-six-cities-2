@@ -16,9 +16,9 @@ export const changeCity = (city) => ({
   payload: city
 });
 
-export const getOffersList = (city, allOffers) => ({
+export const getOffersList = (city, allOffers, sortBy) => ({
   type: ActionType.GET_OFFERS_LIST,
-  payload: getOffersByCity(city, allOffers),
+  payload: getOffersByCity(city, allOffers, sortBy),
 });
 
 export const getCitiesList = (allOffers) => ({
@@ -44,4 +44,9 @@ export const loadFavorites = (favorites) => ({
 export const setFavoriteStatus = (offerId, status) => ({
   type: ActionType.SET_FAVORITE_STATUS,
   payload: {offerId, status},
+});
+
+export const changeSortBy = (sortBy) => ({
+  type: ActionType.CHANGE_SORT_BY,
+  payload: sortBy
 });

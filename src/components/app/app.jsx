@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import * as ActionCreatorData from '../../reducer/data/action-creator.js';
 import * as DataOperation from '../../reducer/data/operations.js';
 import * as UserOperation from '../../reducer/user/operations.js';
-import {getAllOffers, getIsOffersLoading, getCurrentCity, getOffers, getCitiesState, getReviews} from '../../reducer/data/selectors';
+import {getAllOffers, getIsOffersLoading, getCurrentCity, getOffers,
+  getCitiesState, getReviews, getFavorites, getSortBy} from '../../reducer/data/selectors';
 import {getIsAuthorizationRequired, getUserInfo} from '../../reducer/user/selectors';
 // import {SignIn} from '../sign-in/sign-in.jsx';
 import {PageScreen} from '../page-screen/page-screen.jsx';
@@ -38,7 +39,8 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   isAuthorizationRequired: getIsAuthorizationRequired(state),
   userInfo: getUserInfo(state),
   reviews: getReviews(state),
-  // isReviewsLoading: getIsReviewsLoading(state),
+  favorites: getFavorites(state),
+  sortBy: getSortBy(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -47,9 +49,9 @@ const mapDispatchToProps = (dispatch) => ({
   authenticateUser: (email, password, redirect) => {
     dispatch(UserOperation.authenticateUser(email, password, redirect));
   },
-  onCityClick: (currentCity, allOffers) => {
+  onCityClick: (currentCity, allOffers, sortBy) => {
     dispatch(ActionCreatorData.changeCity(currentCity));
-    dispatch(ActionCreatorData.getOffersList(currentCity, allOffers));
+    dispatch(ActionCreatorData.getOffersList(currentCity, allOffers, sortBy));
   },
   loadOfferReviews: (id) => {
     dispatch(DataOperation.loadOfferReviews(id));
@@ -63,6 +65,13 @@ const mapDispatchToProps = (dispatch) => ({
   setFavoriteStatus: (offerId, status, onSuccessSetFavorite) => {
     dispatch(DataOperation.setFavoriteStatus(offerId, status, onSuccessSetFavorite));
   },
+  // sortOffers: (sortBy, offers) => {
+  // sortOffers: (currentCity, allOffers, sortBy) => {
+  //   dispatch(ActionCreatorData.changeSortBy(sortBy));
+  //   // dispatch(ActionCreatorData.sortOffers(sortBy, offers));
+
+  //   dispatch(ActionCreatorData.getOffersList(currentCity, allOffers, sortBy));
+  // }
 });
 
 App.propTypes = {

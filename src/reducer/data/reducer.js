@@ -26,6 +26,14 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_OFFER_REVIEWS: return Object.assign({}, state, {
       reviews: action.payload
     });
+
+    case ActionType.LOAD_FAVORITES: return Object.assign({}, state, {
+      favorites: action.payload
+    });
+
+    case ActionType.CHANGE_SORT_BY: return Object.assign({}, state, {
+      sortBy: action.payload
+    });
   }
 
   return state;

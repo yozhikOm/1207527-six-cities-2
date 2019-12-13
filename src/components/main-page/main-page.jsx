@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import {Header} from '../header/header.jsx';
 import {Menu} from '../menu/menu.jsx';
 import {Properties} from '../properties/properties.jsx';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 import {NoProperties} from '../no-properties/no-properties.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import withVisibleSorting from '../../hocs/with-visible-sorting/with-visible-sorting.js';
+import {SORT_TYPES} from '../../constants/constants.js';
 
-const PropertiesWrapped = withActiveItem(Properties);
+const PropertiesWrapped = withVisibleSorting(withActiveItem(Properties));
 
 class MainPage extends PureComponent {
   constructor(props) {
@@ -21,7 +23,8 @@ class MainPage extends PureComponent {
       offers,
       onCityClick,
       isAuthorizationRequired,
-      userInfo
+      userInfo,
+      sortBy,
     } = this.props;
 
     return (
@@ -29,11 +32,14 @@ class MainPage extends PureComponent {
         <Header isAuthorizationRequired={isAuthorizationRequired} userInfo={userInfo} />
         <main className="page__main page__main--index">
           <Menu cities={cities} onCityClick={(city) => {
-            onCityClick(city, allOffers);
+            onCityClick(city, allOffers, sortBy);
           }}/>
 
           {offers.length === 0 ? <NoProperties {...currentCity}/> :
-            <PropertiesWrapped offers={offers} currentCity={currentCity}/>
+            <PropertiesWrapped
+              offers={offers}
+              currentCity={currentCity}
+            />
           }
         </main>
       </div>
@@ -62,6 +68,8 @@ MainPage.propTypes = {
     avatarUrl: PropTypes.string,
     isPro: PropTypes.bool
   }),
+  sortBy: PropTypes.oneOf([SORT_TYPES.POPULAR, SORT_TYPES.CHEAP_FIRST,
+    SORT_TYPES.EXPENSIVE_FIRST, SORT_TYPES.TOP_RATED_FIRST]),
 };
 
 export {MainPage};

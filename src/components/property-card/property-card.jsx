@@ -1,6 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {PROPERTY_TYPES} from '../../constants/constants.js';
+import {Link} from 'react-router-dom';
+
 
 const PropertyCard = ({offer, cardMouseEnterHandler}) => {
   // const {id, title, type, price, isPremium, photos} = offerInfo;
@@ -73,7 +75,7 @@ PropertyCard.propTypes = {
     isFavorite: PropTypes.bool,
     isPremium: PropTypes.bool,
     rating: PropTypes.number,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(PROPERTY_TYPES),
     bedrooms: PropTypes.number,
     maxAdults: PropTypes.number,
     price: PropTypes.number.isRequired,

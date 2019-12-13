@@ -22,7 +22,7 @@ exports[`Properties компонент рендерится корректно 1
          places to stay in 
         Cologne
       </b>
-      <Sorting />
+      <Memo(Connect(Sorting)) />
       <div
         className="cities__places-list places__list tabs__content"
       >
