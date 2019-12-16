@@ -48,18 +48,14 @@ const ReviewForm = (props) => {
       it.checked = false;
     });
     commentTextArea.current.value = ``;
-    const button = form.querySelector(`button[type="submit"]`);
-    button.disabled = true;
   };
 
   const onSubmitHandler = (evt) => {
     evt.preventDefault();
-    const form = evt.target;
-    clearForm(form);
     const {offerId, postReview} = props;
+    const form = evt.target;
     postReview(offerId, rating, commentText);
-    const fieldset = form.parentElement;
-    fieldset.disabled = true;
+    clearForm(form);
   };
 
   return (

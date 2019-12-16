@@ -23,7 +23,8 @@ export const loadAllOffers = () => (dispatch, _, api) => {
 export const loadOfferReviews = (id) => (dispatch, _, api) => {
   return api.get(`/comments/` + id)
       .then(({data}) => {
-        const preparedData = prepareReviews(data);
+        const sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+        const preparedData = prepareReviews(sortedData);
         dispatch(ActionCreator.loadOfferReviews(preparedData));
       });
 };
@@ -33,7 +34,8 @@ export const postReview = (offerId, rating, comment) => (dispatch, _, api) => {
 
   return api.post(`/comments/` + offerId, {rating, comment})
     .then(({data}) => {
-      const preparedData = prepareReviews(data);
+      const sortedData = data.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+      const preparedData = prepareReviews(sortedData);
       dispatch(ActionCreator.loadOfferReviews(preparedData));
     });
 };

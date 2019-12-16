@@ -9,3 +9,5 @@ export const SortType = {
 
 export const MAX_DISTANCE = 0.02;
 export const MAX_NEIGHBOURS = 3;
+
+export const MAX_REVIEWS = 10;
