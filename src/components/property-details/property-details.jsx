@@ -14,9 +14,9 @@ class PropertyDetails extends Component {
     this._offer = null;
     this._currCityOffers = null;
 
-    this._getOffer = this._getOffer.bind(this);
-    this._clickFavoriteHandler = this._clickFavoriteHandler.bind(this);
-    this._onSuccessSetFavorite = this._onSuccessSetFavorite.bind(this);
+    this.handleOfferGet = this.handleOfferGet.bind(this);
+    this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
+    this.handleFavoriteSuccessSet = this.handleFavoriteSuccessSet.bind(this);
   }
 
   componentDidMount() {
@@ -27,7 +27,7 @@ class PropertyDetails extends Component {
     loadOfferReviews(id);
   }
 
-  _getOffer() {
+  handleOfferGet() {
     const {allOffers, cities, match: {params}} = this.props;
     const id = parseInt(params.id, 10);
     this._offer = allOffers.find((item) => item.id === id);
@@ -36,19 +36,19 @@ class PropertyDetails extends Component {
     this._currCityOffers = allOffers.filter((it) => it.city.name === currCity.title);
   }
 
-  _clickFavoriteHandler() {
+  handleFavoriteClick() {
     const {setFavoriteStatus} = this.props;
-    setFavoriteStatus(this._offer.id, !this._offer.isFavorite | 0, this._onSuccessSetFavorite);
+    setFavoriteStatus(this._offer.id, !this._offer.isFavorite | 0, this.handleFavoriteSuccessSet);
   }
 
-  _onSuccessSetFavorite() {
+  handleFavoriteSuccessSet() {
     this._offer.isFavorite = !this._offer.isFavorite;
     const bookmark = document.querySelector(`.property__bookmark-icon `);
     let fillCollor = this._offer.isFavorite ? `4481c3` : `none`;
     bookmark.style.fill = fillCollor;
   }
 
-  _getNeighboringOffers(offer, cityOffers) {
+  handleNeighboringOffersGet(offer, cityOffers) {
     const neighboringOffers = cityOffers.filter((it) => it !== offer &&
             Math.abs(it.location.latitude - offer.location.latitude) <= MAX_DISTANCE &&
             Math.abs(it.location.longitude - offer.location.longitude) <= MAX_DISTANCE);
@@ -70,11 +70,11 @@ class PropertyDetails extends Component {
       } = this.props;
 
 
-      this._getOffer();
+      this.handleOfferGet();
 
       let fillCollor = this._offer.isFavorite ? `4481c3` : `none`;
 
-      const neighboringOffers = this._getNeighboringOffers(this._offer, this._currCityOffers);
+      const neighboringOffers = this.handleNeighboringOffersGet(this._offer, this._currCityOffers);
 
       const offersArrayForMap = neighboringOffers.map((neibOffer) => (
         {
@@ -113,7 +113,7 @@ class PropertyDetails extends Component {
                     <h1 className="property__name">
                       {this._offer.title}
                     </h1>
-                    <button className="property__bookmark-button button" type="button" onClick={this._clickFavoriteHandler}>
+                    <button className="property__bookmark-button button" type="button" onClick={this.handleFavoriteClick}>
                       <svg className="property__bookmark-icon" width="31" height="33" style={{fill: `${fillCollor}`}}>
                         <use xlinkHref="#icon-bookmark"></use>
                       </svg>

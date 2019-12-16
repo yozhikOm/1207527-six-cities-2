@@ -8,10 +8,10 @@ const withVisibleSorting = (Component) => {
       this.state = {
         isSortingVisible: false
       };
-      this._setVisibility = this._setVisibility.bind(this);
+      this.handleVisibilitySet = this.handleVisibilitySet.bind(this);
     }
 
-    _setVisibility() {
+    handleVisibilitySet() {
       this.setState({isSortingVisible: !this.state.isSortingVisible});
     }
 
@@ -19,7 +19,7 @@ const withVisibleSorting = (Component) => {
       const {isSortingVisible} = this.state;
       return <Component {...this.props}
         isSortingVisible={isSortingVisible}
-        onSetSortingVisibility={this._setVisibility}
+        onSetSortingVisibility={this.handleVisibilitySet}
       />;
     }
   }

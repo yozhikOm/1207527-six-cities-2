@@ -11,10 +11,10 @@ const MockComponentWrapped = withActiveItem(MockComponent);
 it(`Тестируем WithActiveItem`, () => {
   const wrapped = mount(<MockComponentWrapped />);
 
-  wrapped.instance()._setActiveItem(1);
+  wrapped.instance().handleActiveItemSet(1);
   expect(wrapped.state().activeItemID).toEqual(1);
 
-  wrapped.instance()._setActiveItem(10);
+  wrapped.instance().handleActiveItemSet(10);
   expect(wrapped.state().activeItemID).toEqual(10);
 
 });

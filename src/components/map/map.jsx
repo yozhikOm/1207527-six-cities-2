@@ -14,19 +14,19 @@ class Map extends PureComponent {
   componentDidMount() {
     const {currentCityCoords, offersArray, activeItemID} = this.props;
 
-    this._map = this._initMap(this._zoom, currentCityCoords);
+    this._map = this.handleMapInit(this._zoom, currentCityCoords);
     this._markersGroup = leaflet.layerGroup().addTo(this._map);
-    this._renderMap(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
+    this.handleMapRender(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
 
   }
 
   componentDidUpdate() {
     const {currentCityCoords, offersArray, activeItemID} = this.props;
     this._markersGroup.clearLayers();
-    this._renderMap(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
+    this.handleMapRender(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
   }
 
-  _initMap(zoom, currentCityCoords) {
+  handleMapInit(zoom, currentCityCoords) {
     const map = leaflet.map(`map`, {
       center: currentCityCoords,
       zoom,
@@ -43,7 +43,7 @@ class Map extends PureComponent {
     return (map);
   }
 
-  _renderMap(map, zoom, currentCityCoords, offersArray, activeItemID) {
+  handleMapRender(map, zoom, currentCityCoords, offersArray, activeItemID) {
     const icon = leaflet.icon({
       iconUrl: `/img/pin.svg`,
       iconSize: [30, 30]

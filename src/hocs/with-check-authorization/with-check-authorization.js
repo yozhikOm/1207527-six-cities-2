@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom";
 const withCheckAuthorization = (Component) => {
   class WithCheckAuthorization extends PureComponent {
 
-    _isAuthenticated() {
+    handleAuthorizationCheck() {
       const {isAuthorizationRequired} = this.props;
       return !isAuthorizationRequired;
     }
@@ -13,7 +13,7 @@ const withCheckAuthorization = (Component) => {
     render() {
       return (
         <div>
-          { this._isAuthenticated() ?
+          { this.handleAuthorizationCheck() ?
             <Component {...this.props} />
             :
             <Redirect to="/login" />

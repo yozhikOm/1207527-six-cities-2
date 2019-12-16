@@ -8,19 +8,18 @@ const withActiveItem = (Component) => {
       this.state = {
         activeItemID: -1
       };
-      this._setActiveItem = this._setActiveItem.bind(this);
+      this.handleActiveItemSet = this.handleActiveItemSet.bind(this);
     }
 
-    _setActiveItem(id) {
+    handleActiveItemSet(id) {
       this.setState({activeItemID: id});
-      console.log(id);
     }
 
     render() {
       const {activeItemID} = this.state;
       return <Component {...this.props}
         activeItemID={activeItemID}
-        onSetActiveItem={this._setActiveItem}
+        onSetActiveItem={this.handleActiveItemSet}
       />;
     }
   }
