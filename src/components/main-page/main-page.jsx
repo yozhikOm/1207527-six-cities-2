@@ -27,7 +27,7 @@ const MainPage = (props) => {
     <div className="page page--gray page--main">
       <Header isAuthorizationRequired={isAuthorizationRequired} userInfo={userInfo} />
       <main className="page__main page__main--index">
-        <Menu cities={cities} onCityClick={(city) => {
+        <Menu currentCity={currentCity} cities={cities} onCityClick={(city) => {
           onCityClick(city, allOffers, sortBy);
         }}/>
 

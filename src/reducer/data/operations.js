@@ -8,7 +8,8 @@ export const loadAllOffers = () => (dispatch, _, api) => {
         const preparedData = prepareOffers(data);
         dispatch(ActionCreator.loadAllOffers(preparedData));
 
-        let initialCity = preparedData[0].city;
+        const initialCity = preparedData[Math.floor((Math.random() * preparedData.length))].city;
+
         let currentCity = {
           title: initialCity.name,
           coordinates: [initialCity.location.latitude, initialCity.location.longitude]

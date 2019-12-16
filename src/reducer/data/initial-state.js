@@ -8,5 +8,5 @@ export default {
   cities: [],
   reviews: null,
   favorites: null,
-  sortBy: SortType.EXPENSIVE_FIRST,
+  sortBy: SortType.POPULAR,
 };

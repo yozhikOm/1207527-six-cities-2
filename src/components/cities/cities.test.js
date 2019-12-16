@@ -7,6 +7,7 @@ it(`Cities компонент рендерится корректно`, () => {
   const renderer = new ShallowRenderer();
 
   renderer.render(<Cities
+    currentCity={cities[0]}
     cities={cities}
     onCityClick={jest.fn()}
   />);
