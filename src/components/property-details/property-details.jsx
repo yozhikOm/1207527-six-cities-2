@@ -259,7 +259,7 @@ PropertyDetails.propTypes = {
         title: PropTypes.string.isRequired,
         coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
       })
-  ).isRequired,
+  ),
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.shape({

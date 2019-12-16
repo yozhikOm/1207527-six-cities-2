@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Review} from '../review/review.jsx';
-import {ReviewForm} from '../review-form/review-form.js';
+import {ReviewForm} from '../review-form/review-form.jsx';
 
 const ReviewsList = (props) => {
   const {isAuthorizationRequired, offerId, reviews, postReview} = props;

@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu компонент рендерится корректно 1`] = `
+<React.Fragment>
+  <h1
+    className="visually-hidden"
+  >
+    Cities
+  </h1>
+  <div
+    className="tabs"
+  >
+    <section
+      className="locations container"
+    >
+      <Cities
+        cities={
+          Array [
+            Object {
+              "coordinates": Array [
+                52.38333,
+                4.9,
+              ],
+              "title": "Amsterdam",
+            },
+            Object {
+              "coordinates": Array [
+                52.52,
+                13.405,
+              ],
+              "title": "Berlin",
+            },
+            Object {
+              "coordinates": Array [
+                40.7128,
+                -74.006,
+              ],
+              "title": "New York",
+            },
+          ]
+        }
+        onCityClick={[MockFunction]}
+      />
+    </section>
+  </div>
+</React.Fragment>
+`;

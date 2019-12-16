@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewsList компонент рендерится корректно 1`] = `
+<section
+  className="property__reviews reviews"
+>
+  <h2
+    className="reviews__title"
+  >
+    Reviews · 
+    <span
+      className="reviews__amount"
+    >
+      1
+    </span>
+  </h2>
+  <ul
+    className="reviews__list"
+  >
+    <React.Fragment>
+      <Review
+        review={
+          Object {
+            "comment": "review comment",
+            "date": "Июль 2018",
+            "id": 1,
+            "rating": 4.6,
+            "user": Object {
+              "avatarUrl": "",
+              "id": 1,
+              "isPro": true,
+              "name": "Erika",
+            },
+          }
+        }
+      />
+    </React.Fragment>
+  </ul>
+  <ReviewForm
+    offerId={1}
+    postReview={[MockFunction]}
+  />
+</section>
+`;
