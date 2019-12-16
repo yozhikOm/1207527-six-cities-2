@@ -1,5 +1,5 @@
 import axios from 'axios';
-import combineReducers from './reducer/index.js';
+import combineReducers from './reducer/reducer.js';
 
 const createAPI = (dispatch) => {
   const api = axios.create({

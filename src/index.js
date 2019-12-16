@@ -7,8 +7,7 @@ import thunk from 'redux-thunk';
 import {compose} from 'recompose';
 import App from './components/app/app.jsx';
 import createAPI from './api';
-// import * as Operation from './reducer/data/operations.js';
-import reducer from './reducer';
+import reducer from './reducer/reducer.js';
 
 const init = () => {
   const api = createAPI((...args) => store.dispatch(...args));
@@ -19,8 +18,6 @@ const init = () => {
           window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
       )
   );
-
-  // store.dispatch(Operation.loadAllOffers());
 
   ReactDOM.render(
       <Provider store={store}>
