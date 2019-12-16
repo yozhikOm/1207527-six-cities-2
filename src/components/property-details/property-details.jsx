@@ -37,8 +37,12 @@ class PropertyDetails extends Component {
   }
 
   handleFavoriteClick() {
-    const {setFavoriteStatus} = this.props;
-    setFavoriteStatus(this._offer.id, !this._offer.isFavorite | 0, this.handleFavoriteSuccessSet);
+    const {isAuthorizationRequired, history, setFavoriteStatus} = this.props;
+    if (isAuthorizationRequired) {
+      history.push(`/login`);
+    } else {
+      setFavoriteStatus(this._offer.id, !this._offer.isFavorite | 0, this.handleFavoriteSuccessSet);
+    }
   }
 
   handleFavoriteSuccessSet() {
@@ -72,7 +76,7 @@ class PropertyDetails extends Component {
 
       this.handleOfferGet();
 
-      let fillCollor = this._offer.isFavorite ? `4481c3` : `none`;
+      let fillCollor = (this._offer.isFavorite && !isAuthorizationRequired) ? `4481c3` : `none`;
 
       const neighboringOffers = this.handleNeighboringOffersGet(this._offer, this._currCityOffers);
 
@@ -355,6 +359,7 @@ PropertyDetails.propTypes = {
     params: PropTypes.any,
   }),
   setFavoriteStatus: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export {PropertyDetails};
