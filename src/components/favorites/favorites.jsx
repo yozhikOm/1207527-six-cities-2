@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {Header} from '../header/header.jsx';
 import {getCities} from '../../reducer/data/selectors.js';
 import {PropertyCard} from '../property-card/property-card.jsx';
@@ -64,9 +65,9 @@ class Favorites extends PureComponent {
             </div>
           </main>
           <footer className="footer container">
-            <a className="footer__logo-link" href="main.html">
+            <Link to={`/`} className="footer__logo-link">
               <img className="footer__logo" src="/img/logo.svg" alt="6 cities logo" width="64" height="33" />
-            </a>
+            </Link>
           </footer>
         </div>
       );
