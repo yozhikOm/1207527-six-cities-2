@@ -10,17 +10,14 @@ const createAPI = (dispatch) => {
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    // Bad request
     if (err.response.status === 400) {
-      // dispatch(combineReducers.ActionCreator.requireAuthorization(true));
+      dispatch(combineReducers.ActionCreator.requireAuthorization(true));
     }
-    // Unauthorized
     if (err.response.status === 401) {
       dispatch(combineReducers.ActionCreator.requireAuthorization(true));
     }
-    // Forbidden
     if (err.response.status === 403) {
-      // dispatch(combineReducers.ActionCreator.requireAuthorization(true));
+      dispatch(combineReducers.ActionCreator.requireAuthorization(true));
     }
     return err;
   };
