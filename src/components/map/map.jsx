@@ -11,6 +11,21 @@ class Map extends PureComponent {
     this._markersGroup = null;
   }
 
+  componentDidMount() {
+    const {currentCityCoords, offersArray, activeItemID} = this.props;
+
+    this._map = this._initMap(this._zoom, currentCityCoords);
+    this._markersGroup = leaflet.layerGroup().addTo(this._map);
+    this._renderMap(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
+
+  }
+
+  componentDidUpdate() {
+    const {currentCityCoords, offersArray, activeItemID} = this.props;
+    this._markersGroup.clearLayers();
+    this._renderMap(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
+  }
+
   _initMap(zoom, currentCityCoords) {
     const map = leaflet.map(`map`, {
       center: currentCityCoords,
@@ -52,21 +67,6 @@ class Map extends PureComponent {
     return (
       <div id="map" style={{width: `100%`, height: `100%`}} ></div>
     );
-  }
-
-  componentDidMount() {
-    const {currentCityCoords, offersArray, activeItemID} = this.props;
-
-    this._map = this._initMap(this._zoom, currentCityCoords);
-    this._markersGroup = leaflet.layerGroup().addTo(this._map);
-    this._renderMap(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
-
-  }
-
-  componentDidUpdate() {
-    const {currentCityCoords, offersArray, activeItemID} = this.props;
-    this._markersGroup.clearLayers();
-    this._renderMap(this._map, this._zoom, currentCityCoords, offersArray, activeItemID);
   }
 
 }
