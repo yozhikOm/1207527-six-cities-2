@@ -21,7 +21,6 @@ const Sorting = (props) => {
   };
 
   const onSortOffersClick = (evt) => {
-    // sortOffers(evt.target.textContent, offers);
     sortOffers(currentCity, allOffers, evt.target.textContent);
     setSortingVisibility();
   };
@@ -54,7 +53,6 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 const mapDispatchToProps = (dispatch) => ({
   sortOffers: (currentCity, allOffers, sortBy) => {
     dispatch(ActionCreatorData.changeSortBy(sortBy));
-    // dispatch(ActionCreatorData.sortOffers(sortBy, offers));
     dispatch(ActionCreatorData.getOffersList(currentCity, allOffers, sortBy));
   }
 });

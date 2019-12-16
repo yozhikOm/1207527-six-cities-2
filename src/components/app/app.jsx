@@ -7,7 +7,6 @@ import * as UserOperation from '../../reducer/user/operations.js';
 import {getAllOffers, getIsOffersLoading, getCurrentCity, getOffers,
   getCitiesState, getReviews, getFavorites, getSortBy} from '../../reducer/data/selectors';
 import {getIsAuthorizationRequired, getUserInfo} from '../../reducer/user/selectors';
-// import {SignIn} from '../sign-in/sign-in.jsx';
 import {PageScreen} from '../page-screen/page-screen.jsx';
 
 class App extends PureComponent {
@@ -22,11 +21,6 @@ class App extends PureComponent {
     }
     return <PageScreen {...this.props}/>;
   }
-  // const {isAuthorizationRequired, authenticateUser} = props;
-  // if (isAuthorizationRequired) {
-  //   return <SignIn isAuthorizationRequired={isAuthorizationRequired} authenticateUser={authenticateUser}/>;
-  // }
-
 }
 
 
@@ -65,13 +59,6 @@ const mapDispatchToProps = (dispatch) => ({
   setFavoriteStatus: (offerId, status, onSuccessSetFavorite) => {
     dispatch(DataOperation.setFavoriteStatus(offerId, status, onSuccessSetFavorite));
   },
-  // sortOffers: (sortBy, offers) => {
-  // sortOffers: (currentCity, allOffers, sortBy) => {
-  //   dispatch(ActionCreatorData.changeSortBy(sortBy));
-  //   // dispatch(ActionCreatorData.sortOffers(sortBy, offers));
-
-  //   dispatch(ActionCreatorData.getOffersList(currentCity, allOffers, sortBy));
-  // }
 });
 
 App.propTypes = {

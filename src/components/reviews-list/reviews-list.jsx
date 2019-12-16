@@ -5,7 +5,6 @@ import {ReviewForm} from '../review-form/review-form.js';
 
 const ReviewsList = (props) => {
   const {isAuthorizationRequired, offerId, reviews, postReview} = props;
-  // const reviewsList = reviews.filter((r) => r.offerId === offerId);
 
   return (
     <section className="property__reviews reviews">

@@ -49,16 +49,6 @@ class PropertyDetails extends Component {
   }
 
   _getNeighboringOffers(offer, cityOffers) {
-    // здесь должна быть какая-то логика, по которой определяем, что эти предложения по соседству
-    // пока выберем все, кроме текущего
-    // const neighboringOffers = [];
-    /* const tempArray = cityOffers.filter((it) => it !== offer);
-    while(neighboringOffers.length<3){
-      const tempItem = tempArray[Math.floor((Math.random()*tempArray.length))];
-      if(!neighboringOffers.includes(tempItem)){
-        neighboringOffers.push(tempItem);
-      }
-    }*/
     const neighboringOffers = cityOffers.filter((it) => it !== offer &&
             Math.abs(it.location.latitude - offer.location.latitude) <= MAX_DISTANCE &&
             Math.abs(it.location.longitude - offer.location.longitude) <= MAX_DISTANCE);
@@ -229,7 +219,6 @@ PropertyDetails.propTypes = {
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
   }),
   cities: PropTypes.array,
-  // currentCityCoordscurrentCityCoords: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired),
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.shape({
@@ -316,17 +305,5 @@ PropertyDetails.propTypes = {
   setFavoriteStatus: PropTypes.func,
 };
 
-// const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   offerClickHandler: (id) => {
-//     dispatch(Operation.loadReviews(id));
-//     dispatch(ActionCreator.setActivePin(id));
-//     window.scrollTo(0, 0);
-//   },
-// });
-
 export {PropertyDetails};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(PropertyDetails);

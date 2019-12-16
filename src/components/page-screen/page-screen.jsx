@@ -14,15 +14,6 @@ const FavoritesWrapped = withCheckAuthorization(withActiveItem(Favorites));
 
 const PageScreen = (props) => {
 
-  // const PrivateRoute = ({component: Favorites, ...rest}) => (
-  //   <Route {...rest} render={props => props.isAuthorizationRequired ?
-  //     (<Redirect to="/login" />)
-  //     :
-  //     (<Favorites />)
-  //   }
-  //   />
-  // );
-
   return <Switch>
     <Route path='/' exact render={() => <MainPage {...props}/>} />
 
@@ -33,11 +24,7 @@ const PageScreen = (props) => {
     <Route path='/offer/:id' exact render={(routeProps) =>
       <PropertyDetailsWrapped {...Object.assign({}, routeProps, props)}/>
     }/>
-    {/*
-    <Route path='/favorites' exact render={(routeProps) =>
-      <FavoritesWrapped {...routeProps}
-        isAuthorizationRequired={props.isAuthorizationRequired} authenticateUser={props.authenticateUser} />
-    }/> */}
+
     <Route path='/favorites' exact render={(routeProps) =>
       <FavoritesWrapped {...routeProps}
         isAuthorizationRequired={props.isAuthorizationRequired}

@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 
 
 const PropertyCard = ({offer, cardMouseEnterHandler}) => {
-  // const {id, title, type, price, isPremium, photos} = offerInfo;
 
   const onCardMouseEnter = (evt) => {
     const cardId = Number(evt.currentTarget.id);
