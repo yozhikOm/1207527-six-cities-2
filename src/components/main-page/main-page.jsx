@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Header} from '../header/header.jsx';
 import {Menu} from '../menu/menu.jsx';
@@ -10,42 +10,37 @@ import {SORT_TYPES} from '../../constants/constants.js';
 
 const PropertiesWrapped = withVisibleSorting(withActiveItem(Properties));
 
-class MainPage extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const MainPage = (props) => {
 
-  render() {
-    const {
-      allOffers,
-      currentCity,
-      cities,
-      offers,
-      onCityClick,
-      isAuthorizationRequired,
-      userInfo,
-      sortBy,
-    } = this.props;
+  const {
+    allOffers,
+    currentCity,
+    cities,
+    offers,
+    onCityClick,
+    isAuthorizationRequired,
+    userInfo,
+    sortBy,
+  } = props;
 
-    return (
-      <div className="page page--gray page--main">
-        <Header isAuthorizationRequired={isAuthorizationRequired} userInfo={userInfo} />
-        <main className="page__main page__main--index">
-          <Menu cities={cities} onCityClick={(city) => {
-            onCityClick(city, allOffers, sortBy);
-          }}/>
+  return (
+    <div className="page page--gray page--main">
+      <Header isAuthorizationRequired={isAuthorizationRequired} userInfo={userInfo} />
+      <main className="page__main page__main--index">
+        <Menu cities={cities} onCityClick={(city) => {
+          onCityClick(city, allOffers, sortBy);
+        }}/>
 
-          {offers.length === 0 ? <NoProperties {...currentCity}/> :
-            <PropertiesWrapped
-              offers={offers}
-              currentCity={currentCity}
-            />
-          }
-        </main>
-      </div>
-    );
-  }
-}
+        {offers.length === 0 ? <NoProperties {...currentCity}/> :
+          <PropertiesWrapped
+            offers={offers}
+            currentCity={currentCity}
+          />
+        }
+      </main>
+    </div>
+  );
+};
 
 MainPage.propTypes = {
   allOffers: PropTypes.arrayOf(PropTypes.shape({
