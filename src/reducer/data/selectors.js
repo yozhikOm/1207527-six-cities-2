@@ -1,6 +1,5 @@
-// import {createSelector} from "reselect";
 import NameSpace from '../name-spaces';
-import {SORT_TYPES} from '../../constants/constants.js';
+import {SortType} from '../../constants/constants.js';
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -57,13 +56,13 @@ export const getCities = (allOffers) => {
 
 export const sortProperties = (offers, sortBy) => {
   switch (sortBy) {
-    case SORT_TYPES.POPULAR:
+    case SortType.POPULAR:
       return offers;
-    case SORT_TYPES.CHEAP_FIRST:
+    case SortType.CHEAP_FIRST:
       return offers.slice().sort((a, b) => a.price - b.price);
-    case SORT_TYPES.EXPENSIVE_FIRST:
+    case SortType.EXPENSIVE_FIRST:
       return offers.slice().sort((a, b) => b.price - a.price);
-    case SORT_TYPES.TOP_RATED_FIRST:
+    case SortType.TOP_RATED_FIRST:
       return offers.slice().sort((a, b) => b.rating - a.rating);
   }
   return offers;

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as ActionCreatorData from '../../reducer/data/action-creator.js';
 import {getAllOffers, getIsOffersLoading, getCurrentCity, getSortBy} from '../../reducer/data/selectors';
 import PropTypes from 'prop-types';
-import {SORT_TYPES} from '../../constants/constants.js';
+import {SortType} from '../../constants/constants.js';
 
 const Sorting = (props) => {
   const {isSortingVisible, onSetSortingVisibility,
@@ -14,7 +14,7 @@ const Sorting = (props) => {
     ulElementClassName += ` places__options--opened`;
   }
 
-  const sortTypes = Object.keys(SORT_TYPES).map((it) => SORT_TYPES[it]);
+  const sortTypes = Object.keys(SortType).map((it) => SortType[it]);
 
   const onSortClick = () => {
     onSetSortingVisibility();
@@ -46,8 +46,8 @@ const Sorting = (props) => {
 Sorting.propTypes = {
   isSortingVisible: PropTypes.bool,
   onSetSortingVisibility: PropTypes.func,
-  sortBy: PropTypes.oneOf([SORT_TYPES.POPULAR, SORT_TYPES.CHEAP_FIRST,
-    SORT_TYPES.EXPENSIVE_FIRST, SORT_TYPES.TOP_RATED_FIRST]),
+  sortBy: PropTypes.oneOf([SortType.POPULAR, SortType.CHEAP_FIRST,
+    SortType.EXPENSIVE_FIRST, SortType.TOP_RATED_FIRST]),
   sortOffers: PropTypes.func,
   allOffers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,

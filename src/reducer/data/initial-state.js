@@ -1,4 +1,4 @@
-import {SORT_TYPES} from '../../constants/constants.js';
+import {SortType} from '../../constants/constants.js';
 
 export default {
   allOffers: [],
@@ -8,5 +8,5 @@ export default {
   cities: [],
   reviews: null,
   favorites: null,
-  sortBy: SORT_TYPES.EXPENSIVE_FIRST,
+  sortBy: SortType.EXPENSIVE_FIRST,
 };
