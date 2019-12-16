@@ -23,6 +23,12 @@ class App extends PureComponent {
   }
 }
 
+App.propTypes = {
+  loadAllOffers: PropTypes.func,
+  isAuthorizationRequired: PropTypes.bool,
+  authenticateUser: PropTypes.func,
+  isOffersLoading: PropTypes.bool,
+};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   allOffers: getAllOffers(state),
@@ -60,13 +66,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataOperation.setFavoriteStatus(offerId, status, onSuccessSetFavorite));
   },
 });
-
-App.propTypes = {
-  loadAllOffers: PropTypes.func,
-  isAuthorizationRequired: PropTypes.bool,
-  authenticateUser: PropTypes.func,
-  isOffersLoading: PropTypes.bool,
-};
 
 export {App};
 

@@ -43,21 +43,6 @@ const Sorting = (props) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  allOffers: getAllOffers(state),
-  isOffersLoading: getIsOffersLoading(state),
-  currentCity: getCurrentCity(state),
-  sortBy: getSortBy(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  sortOffers: (currentCity, allOffers, sortBy) => {
-    dispatch(ActionCreatorData.changeSortBy(sortBy));
-    dispatch(ActionCreatorData.getOffersList(currentCity, allOffers, sortBy));
-  }
-});
-
-
 Sorting.propTypes = {
   isSortingVisible: PropTypes.bool,
   setSortingVisibility: PropTypes.func,
@@ -103,6 +88,20 @@ Sorting.propTypes = {
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
   }).isRequired,
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  allOffers: getAllOffers(state),
+  isOffersLoading: getIsOffersLoading(state),
+  currentCity: getCurrentCity(state),
+  sortBy: getSortBy(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  sortOffers: (currentCity, allOffers, sortBy) => {
+    dispatch(ActionCreatorData.changeSortBy(sortBy));
+    dispatch(ActionCreatorData.getOffersList(currentCity, allOffers, sortBy));
+  }
+});
 
 export {Sorting};
 export default connect(mapStateToProps, mapDispatchToProps)(Sorting);
