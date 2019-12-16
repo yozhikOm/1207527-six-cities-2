@@ -24,7 +24,21 @@ const ReviewsList = (props) => {
 
 ReviewsList.propTypes = {
   isAuthorizationRequired: PropTypes.bool,
-  reviews: PropTypes.array,
+  reviews: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      user: PropTypes.shape({
+        id: PropTypes.number,
+        isPro: PropTypes.bool,
+        name: PropTypes.string,
+        avatarUrl: PropTypes.string,
+      }),
+      rating: PropTypes.number.isRequired,
+      comment: PropTypes.string,
+      date: PropTypes.date,
+  
+    }).isRequired
+  ),
   offerId: PropTypes.number,
   postReview: PropTypes.func,
 };

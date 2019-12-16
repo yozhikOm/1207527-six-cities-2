@@ -213,12 +213,50 @@ class PropertyDetails extends Component {
 }
 
 PropertyDetails.propTypes = {
-  allOffers: PropTypes.array,
+  allOffers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string,
+      location: PropTypes.shape({
+        latitude: PropTypes.number,
+        longitude: PropTypes.number,
+        zoom: PropTypes.number,
+      }),
+    }).isRequired,
+    previewImage: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool,
+    isPremium: PropTypes.bool,
+    rating: PropTypes.number,
+    type: PropTypes.string.isRequired,
+    bedrooms: PropTypes.number,
+    maxAdults: PropTypes.number,
+    price: PropTypes.number.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string),
+    host: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      isPro: PropTypes.bool,
+      avatarUrl: PropTypes.string,
+    }),
+    description: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      zoom: PropTypes.number,
+    }),
+  })),
   currentCity: PropTypes.shape({
     title: PropTypes.string.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
   }),
-  cities: PropTypes.array,
+  cities: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+    })
+).isRequired,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.shape({
@@ -297,7 +335,20 @@ PropertyDetails.propTypes = {
     isPro: PropTypes.bool
   }),
   loadOfferReviews: PropTypes.func,
-  reviews: PropTypes.array,
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      isPro: PropTypes.bool,
+      name: PropTypes.string,
+      avatarUrl: PropTypes.string,
+    }),
+    rating: PropTypes.number.isRequired,
+    comment: PropTypes.string,
+    date: PropTypes.date,
+
+  }).isRequired
+),
   postReview: PropTypes.func,
   match: PropTypes.shape({
     params: PropTypes.any,

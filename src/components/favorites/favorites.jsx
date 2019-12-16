@@ -84,7 +84,40 @@ Favorites.propTypes = {
     isPro: PropTypes.bool
   }),
   loadFavorites: PropTypes.func,
-  favorites: PropTypes.array,
+  favorites: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string,
+      location: PropTypes.shape({
+        latitude: PropTypes.number,
+        longitude: PropTypes.number,
+        zoom: PropTypes.number,
+      }),
+    }).isRequired,
+    previewImage: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool,
+    isPremium: PropTypes.bool,
+    rating: PropTypes.number,
+    type: PropTypes.string.isRequired,
+    bedrooms: PropTypes.number,
+    maxAdults: PropTypes.number,
+    price: PropTypes.number.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string),
+    host: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      isPro: PropTypes.bool,
+      avatarUrl: PropTypes.string,
+    }),
+    description: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      zoom: PropTypes.number,
+    }),
+  })),
   setActiveItem: PropTypes.func,
 };
 
