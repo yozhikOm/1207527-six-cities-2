@@ -65,7 +65,7 @@ class PropertyDetails extends Component {
       );
     } else {
       const {
-        activeItemID, setActiveItem, currentCity, postReview,
+        activeItemID, onSetActiveItem, currentCity, postReview,
         isAuthorizationRequired, userInfo,
       } = this.props;
 
@@ -199,7 +199,7 @@ class PropertyDetails extends Component {
                 <div className="near-places__list places__list">
                   {neighboringOffers.map((item) => (
                     <React.Fragment key={item.id}>
-                      <PropertyCard offer={item} cardMouseEnterHandler={setActiveItem} />
+                      <PropertyCard offer={item} cardMouseEnterHandler={onSetActiveItem} />
                     </React.Fragment>
                   ))}
                 </div>
@@ -249,14 +249,17 @@ PropertyDetails.propTypes = {
   })),
   currentCity: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+    coordinates: PropTypes.arrayOf(
+        PropTypes.number,
+        PropTypes.number
+    ).isRequired,
   }),
   cities: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
-    })
-).isRequired,
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+      })
+  ).isRequired,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     city: PropTypes.shape({
@@ -326,7 +329,7 @@ PropertyDetails.propTypes = {
     }),
   })),
   activeItemID: PropTypes.number,
-  setActiveItem: PropTypes.func,
+  onSetActiveItem: PropTypes.func,
   isAuthorizationRequired: PropTypes.bool,
   userInfo: PropTypes.shape({
     id: PropTypes.id,
@@ -346,9 +349,7 @@ PropertyDetails.propTypes = {
     rating: PropTypes.number.isRequired,
     comment: PropTypes.string,
     date: PropTypes.date,
-
-  }).isRequired
-),
+  })),
   postReview: PropTypes.func,
   match: PropTypes.shape({
     params: PropTypes.any,

@@ -10,7 +10,7 @@ it(`Properties компонент рендерится корректно`, () =
 
   renderer.render(<Properties
     offers={offers}
-    setActiveItem={jest.fn()}
+    onSetActiveItem={jest.fn()}
     currentCity={{
       title: mockCity.name,
       coordinates: [mockCity.location.latitude, mockCity.location.longitude]

@@ -11,7 +11,7 @@ class Favorites extends PureComponent {
   }
 
   render() {
-    const {favorites, isAuthorizationRequired, userInfo, setActiveItem} = this.props;
+    const {favorites, isAuthorizationRequired, userInfo, onSetActiveItem} = this.props;
 
     if (!favorites) {
       return (
@@ -51,7 +51,7 @@ class Favorites extends PureComponent {
                         <div className="favorites__places">
                           {favorites.filter((f) => f.city.name === it.title).map((offer) => (
                             <React.Fragment key={offer.id}>
-                              <PropertyCard offer={offer} cardMouseEnterHandler={setActiveItem}/>
+                              <PropertyCard offer={offer} cardMouseEnterHandler={onSetActiveItem}/>
                             </React.Fragment>
                           ))}
                         </div>
@@ -118,7 +118,7 @@ Favorites.propTypes = {
       zoom: PropTypes.number,
     }),
   })),
-  setActiveItem: PropTypes.func,
+  onSetActiveItem: PropTypes.func,
 };
 
 export {Favorites};

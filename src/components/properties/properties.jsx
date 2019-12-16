@@ -5,8 +5,8 @@ import Sorting from '../sorting/sorting.jsx';
 import {Map} from '../map/map.jsx';
 
 const Properties = (props) => {
-  const {offers, currentCity, activeItemID, setActiveItem,
-    isSortingVisible, setSortingVisibility} = props;
+  const {offers, currentCity, activeItemID, onSetActiveItem,
+    isSortingVisible, onSetSortingVisibility} = props;
 
   const offersArrayForMap = offers.map((offer) => (
     {
@@ -22,12 +22,12 @@ const Properties = (props) => {
           <b className="places__found">{offers.length} places to stay in {currentCity.title}</b>
           <Sorting
             isSortingVisible={isSortingVisible}
-            setSortingVisibility={setSortingVisibility}
+            onSetSortingVisibility={onSetSortingVisibility}
           />
           <div className="cities__places-list places__list tabs__content">
             {offers.map((item) => (
               <React.Fragment key={item.id}>
-                <PropertyCard offer={item} cardMouseEnterHandler={setActiveItem} />
+                <PropertyCard offer={item} cardMouseEnterHandler={onSetActiveItem} />
               </React.Fragment>
             ))}
           </div>
@@ -85,9 +85,9 @@ Properties.propTypes = {
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
   }).isRequired,
   activeItemID: PropTypes.number,
-  setActiveItem: PropTypes.func.isRequired,
+  onSetActiveItem: PropTypes.func.isRequired,
   isSortingVisible: PropTypes.bool,
-  setSortingVisibility: PropTypes.func,
+  onSetSortingVisibility: PropTypes.func,
 };
 
 export {Properties};

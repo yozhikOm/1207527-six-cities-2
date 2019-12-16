@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import {SORT_TYPES} from '../../constants/constants.js';
 
 const Sorting = (props) => {
-  const {isSortingVisible, setSortingVisibility,
+  const {isSortingVisible, onSetSortingVisibility,
     sortBy, sortOffers, allOffers, currentCity} = props;
 
   let ulElementClassName = `places__options places__options--custom`;
@@ -17,12 +17,12 @@ const Sorting = (props) => {
   const sortTypes = Object.keys(SORT_TYPES).map((it) => SORT_TYPES[it]);
 
   const onSortClick = () => {
-    setSortingVisibility();
+    onSetSortingVisibility();
   };
 
   const onSortOffersClick = (evt) => {
     sortOffers(currentCity, allOffers, evt.target.textContent);
-    setSortingVisibility();
+    onSetSortingVisibility();
   };
 
   return (
@@ -45,7 +45,7 @@ const Sorting = (props) => {
 
 Sorting.propTypes = {
   isSortingVisible: PropTypes.bool,
-  setSortingVisibility: PropTypes.func,
+  onSetSortingVisibility: PropTypes.func,
   sortBy: PropTypes.oneOf([SORT_TYPES.POPULAR, SORT_TYPES.CHEAP_FIRST,
     SORT_TYPES.EXPENSIVE_FIRST, SORT_TYPES.TOP_RATED_FIRST]),
   sortOffers: PropTypes.func,
